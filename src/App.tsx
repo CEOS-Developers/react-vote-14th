@@ -7,14 +7,12 @@ import Result from '../src/pages/Result';
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/vote/:part" element={<Vote />} />
-        <Route path="/result" element={<Result />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/vote/:part" element={<Vote />} />
+      <Route path="/result" element={<Result />} />
+    </Routes>
   );
 }
 
