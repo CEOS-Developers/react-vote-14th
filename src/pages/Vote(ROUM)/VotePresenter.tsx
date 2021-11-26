@@ -13,8 +13,13 @@ export const VoteBox = styled.div`
   height: 45vh;
 `;
 
-export const ButtonBox = styled.div`
+export const LoginBox = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 1rem 2rem 0 0;
+`;
+
+export const VoteButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
 `;

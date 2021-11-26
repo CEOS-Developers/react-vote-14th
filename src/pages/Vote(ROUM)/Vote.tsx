@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { CssBaseline } from "@nextui-org/react";
 import { Radio } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
+import { Modal } from "@nextui-org/react";
+import { Text } from "@nextui-org/react";
 
-import { Logo, VoteBox, ButtonBox } from "./VotePresenter";
+import { Logo, VoteBox, LoginBox, VoteButtonBox } from "./VotePresenter";
 
 const Vote = () => {
   const navigate = useNavigate();
@@ -12,13 +14,27 @@ const Vote = () => {
     navigate("/login");
   };
 
+  const [visible, setVisible] = React.useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => {
+    setVisible(false);
+    console.log("closed");
+  };
+
   return (
     <>
-      <ButtonBox>
-        <Button onClick={handleLoginClick} auto color="primary" rounded flat>
+      <LoginBox>
+        <Button
+          onClick={handleLoginClick}
+          size="small"
+          auto
+          color="primary"
+          rounded
+          flat
+        >
           로그인 하러가기
         </Button>
-      </ButtonBox>
+      </LoginBox>
       <Logo
         alt=""
         src="https://static.wixstatic.com/media/982853_0a088a0f99374ddd85634253179a8a43~mv2.jpeg/v1/fit/w_2500,h_1330,al_c/982853_0a088a0f99374ddd85634253179a8a43~mv2.jpeg"
@@ -38,6 +54,33 @@ const Vote = () => {
           </Radio>
         </Radio.Group>
       </VoteBox>
+      <VoteButtonBox>
+        <Button size="large" color="primary" auto onClick={handler}>
+          투표하기
+        </Button>
+      </VoteButtonBox>
+
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={visible}
+        onClose={closeHandler}
+      >
+        <Modal.Header>
+          <Text b id="modal-title" size={18}>
+            투표 결과
+          </Text>
+        </Modal.Header>
+        <Modal.Body></Modal.Body>
+        <Modal.Footer>
+          <Button auto flat color="error" onClick={closeHandler}>
+            취소
+          </Button>
+          <Button auto onClick={closeHandler}>
+            확인
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
