@@ -1,0 +1,10 @@
+.Cards {
+  margin-top: 200px;
+}
+.Cards .Display {
+  display: flex;
+  gap: 50px;
+}
+.Cards .Footer {
+  text-align: center;
+}
