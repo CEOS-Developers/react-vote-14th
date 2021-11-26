@@ -6,7 +6,13 @@ import { Button } from "@nextui-org/react";
 import { Modal } from "@nextui-org/react";
 import { Text } from "@nextui-org/react";
 
-import { Logo, VoteBox, LoginBox, VoteButtonBox } from "./VotePresenter";
+import {
+  Wrapper,
+  Logo,
+  VoteBox,
+  LoginBox,
+  VoteButtonBox,
+} from "./VotePresenter";
 
 const Vote = () => {
   const navigate = useNavigate();
@@ -22,7 +28,7 @@ const Vote = () => {
   };
 
   return (
-    <>
+    <Wrapper>
       <LoginBox>
         <Button
           onClick={handleLoginClick}
@@ -36,7 +42,7 @@ const Vote = () => {
         </Button>
       </LoginBox>
       <Logo
-        alt=""
+        alt="logo"
         src="https://static.wixstatic.com/media/982853_0a088a0f99374ddd85634253179a8a43~mv2.jpeg/v1/fit/w_2500,h_1330,al_c/982853_0a088a0f99374ddd85634253179a8a43~mv2.jpeg"
       />
 
@@ -81,7 +87,7 @@ const Vote = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </Wrapper>
   );
 };
 

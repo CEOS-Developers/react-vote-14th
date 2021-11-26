@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 export const Logo = styled.img`
   width: 30rem;
   display: block;
@@ -22,4 +28,5 @@ export const LoginBox = styled.div`
 export const VoteButtonBox = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
 `;
