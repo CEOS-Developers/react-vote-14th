@@ -18,9 +18,15 @@ function Login() {
         </Button>
       </div>
       <div style={{ textAlign: "center" }}>
-        <p>계정이 없으신가요?</p>
-        <p>
-          <Link to="/signup" style={{ textDecoration: "none" }}>
+        <p style={{ marginBottom: "0" }}>계정이 없으신가요?</p>
+        <p style={{ marginTop: "0" }}>
+          <Link
+            to="/signup"
+            style={{
+              textDecoration: "none",
+              fontSize: "0.8rem",
+            }}
+          >
             회원가입하기
           </Link>
         </p>
