@@ -16,8 +16,8 @@ function Header() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           {!isLoggedIn ? (
-            <Link to="/login" style={{ textDecoration: "none" }}>
-              <h2 className="Login">Login</h2>
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              <h2 className="Login">Login/Signup</h2>
             </Link>
           ) : (
             <div>Logged In</div>
