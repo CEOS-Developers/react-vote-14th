@@ -7,17 +7,17 @@ const SignIn = () => {
   return (
     <Wrapper>
       <InputContainer>
-        <Nickname>
+        <InputItem>
           <Input placeholder="닉네임" size="xlarge" color="secondary" />
-        </Nickname>
-        <Password>
+        </InputItem>
+        <InputItem>
           <Input
             type="password"
             placeholder="비밀번호"
             size="xlarge"
             color="secondary"
           />
-        </Password>
+        </InputItem>
       </InputContainer>
       <ButtonContainer>
         <Button color="secondary" auto ghost>
@@ -39,10 +39,8 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const Nickname = styled.div`
+const InputItem = styled.div`
   margin: 20px;
 `;
-
-const Password = styled(Nickname)``;
 
 export default SignIn;
