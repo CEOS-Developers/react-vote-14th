@@ -1,51 +1,30 @@
+import { Input, Spacer, Radio, Button, useInput } from "@nextui-org/react";
+import React from "react";
+import { Link } from "react-router-dom";
+
 function Login() {
   return (
     <>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
-      <div>Login</div>
+      <div className="Title">
+        <h2>로그인</h2>
+      </div>
+      <div className="Container">
+        <Input placeholder="아이디" />
+        <Spacer y={1.5} />
+        <Input.Password placeholder="비밀번호" />
+        <Spacer y={1.5} />
+        <Button auto ghost>
+          로그인
+        </Button>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <p>계정이 없으신가요?</p>
+        <p>
+          <Link to="/signup" style={{ textDecoration: "none" }}>
+            회원가입하기
+          </Link>
+        </p>
+      </div>
     </>
   );
 }
