@@ -14,11 +14,11 @@ function MainPage() {
                   objectFit="cover"
                   src="/images/React.png"
                   height="500px"
-                  alt="프론트엔드 투표하러 가기"
+                  alt="CEOS 15기 프론트엔드 파트장 투표하러 가기"
                 />
               </Card.Body>
               <Card.Footer className="Footer">
-                <p>프론트엔드 투표하러 가기</p>
+                <p>CEOS 15기 프론트엔드 파트장 투표하러 가기</p>
               </Card.Footer>
             </Card>
           </Link>
@@ -29,11 +29,11 @@ function MainPage() {
                   objectFit="cover"
                   src="/images/django.png"
                   height="500px"
-                  alt="백엔드 투표하러 가기"
+                  alt="CEOS 15기 백엔드 파트장 투표하러 가기"
                 />
               </Card.Body>
               <Card.Footer className="Footer">
-                <p>백엔드 투표하러 가기</p>
+                <p>CEOS 15기 백엔드 파트장 투표하러 가기</p>
               </Card.Footer>
             </Card>
           </Link>
