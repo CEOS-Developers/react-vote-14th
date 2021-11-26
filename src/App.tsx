@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { CssBaseline } from '@nextui-org/react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LogIn from './pages/LogIn';
-import SignUp from './pages/SignUp';
-import Vote from './pages/Vote';
 import { createGlobalStyle } from 'styled-components';
+import Vote from './pages/Vote(ROUM)/Vote';
+import LogIn from './pages/Auth(SEEWON)/LogIn';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,7 +15,6 @@ const App = () => {
         <Routes>
           <Route path={`/`} element={<Vote />} />
           <Route path={`/login`} element={<LogIn />} />
-          <Route path={`/signup`} element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </>
