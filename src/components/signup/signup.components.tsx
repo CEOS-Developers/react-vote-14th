@@ -24,9 +24,11 @@ function Signup() {
       </div>
       <div style={{ textAlign: "center" }}>
         <p>이미 계정이 있으신가요?</p>
-        <Link to="/login" style={{ textDecoration: "none" }}>
-          <p>로그인하기</p>
-        </Link>
+        <p>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            로그인하기
+          </Link>
+        </p>
       </div>
     </>
   );
