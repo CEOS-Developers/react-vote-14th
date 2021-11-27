@@ -36,10 +36,14 @@ export const Text = styled.div``;
 
 export const TextBox = styled.div``;
 
-export const CandidateBox = styled.div`
+interface WidthProps {
+  width?: boolean;
+}
+
+export const CandidateBox = styled.div<WidthProps>`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 15rem;
+  width: ${(props) => (props.width ? "20rem" : "100%")};
   margin-bottom: 1rem;
 `;

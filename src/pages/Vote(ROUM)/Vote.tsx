@@ -57,7 +57,7 @@ const Vote = () => {
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
-    console.log("closed");
+    //console.log("closed");
   };
 
   return (
@@ -81,13 +81,12 @@ const Vote = () => {
 
       <VoteBox>
         {sortedCandidates.map((candidate) => (
-          <CandidateBox>
+          <CandidateBox width>
             <CandidateList key={candidate.id} {...candidate} />
             <Button
               auto
               flat
               color="error"
-              //size="small"
               icon={<Heart primaryColor="#e85186" filled />}
               onClick={() => handleCount(candidate.id)}
             />
@@ -112,7 +111,13 @@ const Vote = () => {
             투표 결과
           </Text>
         </Modal.Header>
-        <Modal.Body></Modal.Body>
+        <Modal.Body>
+          {sortedCandidates.map((candidate) => (
+            <CandidateBox>
+              <CandidateList key={candidate.id} {...candidate} />
+            </CandidateBox>
+          ))}
+        </Modal.Body>
         <Modal.Footer>
           {/* <Button auto flat color="error" onClick={closeHandler}>
             취소
