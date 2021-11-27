@@ -5,7 +5,7 @@
 }
 .Candidates {
   gap: 30px;
-  width: 70vw;
+  width: 80vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
