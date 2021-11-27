@@ -3,7 +3,7 @@
 }
 .Cards .Display {
   display: flex;
-  gap: 50px;
+  gap: 2%;
 }
 .Cards .Footer {
   text-align: center;
