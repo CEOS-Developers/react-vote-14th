@@ -1,0 +1,17 @@
+.Contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Candidates {
+  gap: 30px;
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.btns {
+  gap: 10px;
+}
