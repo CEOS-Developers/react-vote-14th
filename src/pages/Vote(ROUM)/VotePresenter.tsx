@@ -14,6 +14,7 @@ export const Logo = styled.img`
 
 export const VoteBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 45vh;
@@ -30,3 +31,7 @@ export const VoteButtonBox = styled.div`
   justify-content: center;
   margin-top: 2rem;
 `;
+
+export const Text = styled.div``;
+
+export const TextBox = styled.div``;

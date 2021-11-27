@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { CssBaseline } from '@nextui-org/react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components';
-import Vote from './pages/Vote(ROUM)/Vote';
-import LogIn from './pages/Auth(SEEWON)/LogIn';
+import React, { useState } from "react";
+import { CssBaseline } from "@nextui-org/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import Vote from "./pages/Vote(ROUM)/Vote";
+import LogIn from "./pages/Auth(SEEWON)/LogIn";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
