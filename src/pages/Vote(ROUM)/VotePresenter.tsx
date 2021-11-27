@@ -35,3 +35,11 @@ export const VoteButtonBox = styled.div`
 export const Text = styled.div``;
 
 export const TextBox = styled.div``;
+
+export const CandidateBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15rem;
+  margin-bottom: 1rem;
+`;

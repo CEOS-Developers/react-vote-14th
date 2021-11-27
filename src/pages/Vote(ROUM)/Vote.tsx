@@ -6,6 +6,7 @@ import { Radio } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Modal } from "@nextui-org/react";
 import { Text } from "@nextui-org/react";
+import { Heart } from "react-iconly";
 
 import {
   Wrapper,
@@ -13,6 +14,7 @@ import {
   VoteBox,
   LoginBox,
   VoteButtonBox,
+  CandidateBox,
 } from "./VotePresenter";
 import CandidateList from "./CandidateList";
 
@@ -23,17 +25,6 @@ export interface VoteProps {
     count: number;
   };
 }
-
-// interface RadioEventTarget {
-//   checked: boolean;
-// }
-
-// interface RadioEvent {
-//   target: RadioEventTarget;
-//   stopPropagation: () => void;
-//   preventDefault: () => void;
-//   nativeEvent: React.ChangeEvent;
-// }
 
 const Vote = () => {
   const navigate = useNavigate();
@@ -51,21 +42,12 @@ const Vote = () => {
     return b.count - a.count;
   });
 
-  // const handleChange = (e: any) => {
-  //   setCandidate(e.target.value);
-  //   console.log(candidate);
-  // };
-
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
     console.log("closed");
   };
-
-  // const HandleCandidate(){
-  //   let data =
-  // }
 
   return (
     <Wrapper>
@@ -87,27 +69,23 @@ const Vote = () => {
       />
 
       <VoteBox>
-        {/* <Radio.Group value="1">
-          <Radio type="radio" value="1" onChange={(e) => handleChange(e)}>
-            후보1
-            <Radio.Description>Description for Option1</Radio.Description>
-          </Radio>
-          <Radio type="radio" value="2" onChange={(e) => handleChange(e)}>
-            후보2<Radio.Desc>Description for Option2</Radio.Desc>
-          </Radio>
-          <Radio type="radio" value="3" onChange={(e) => handleChange(e)}>
-            후보3<Radio.Desc>Description for Option2</Radio.Desc>
-          </Radio>
-        </Radio.Group> */}
-
         {sortedCandidates.map((candidate) => (
-          <CandidateList key={candidate.id} {...candidate} />
+          <CandidateBox>
+            <CandidateList key={candidate.id} {...candidate} />
+            <Button
+              auto
+              flat
+              color="error"
+              //size="small"
+              icon={<Heart primaryColor="#e85186" filled />}
+            />
+          </CandidateBox>
         ))}
       </VoteBox>
 
       <VoteButtonBox>
         <Button size="large" color="primary" auto onClick={handler}>
-          투표하기
+          결과보기
         </Button>
       </VoteButtonBox>
 
