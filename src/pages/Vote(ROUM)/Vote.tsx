@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { CssBaseline } from "@nextui-org/react";
@@ -37,6 +37,17 @@ const Vote = () => {
     { id: 1, candidateName: "후보2", count: 3 },
     { id: 2, candidateName: "후보3", count: 1 },
   ]);
+
+  const handleCount = (num: number) => {
+    setCandidates((candidates) =>
+      candidates.map((item) => {
+        if (item.id === num) {
+          return { ...item, count: item.count + 1 };
+        }
+        return item;
+      })
+    );
+  };
 
   const sortedCandidates = candidates.sort((a, b) => {
     return b.count - a.count;
@@ -78,6 +89,7 @@ const Vote = () => {
               color="error"
               //size="small"
               icon={<Heart primaryColor="#e85186" filled />}
+              onClick={() => handleCount(candidate.id)}
             />
           </CandidateBox>
         ))}
@@ -102,9 +114,9 @@ const Vote = () => {
         </Modal.Header>
         <Modal.Body></Modal.Body>
         <Modal.Footer>
-          <Button auto flat color="error" onClick={closeHandler}>
+          {/* <Button auto flat color="error" onClick={closeHandler}>
             취소
-          </Button>
+          </Button> */}
           <Button auto onClick={closeHandler}>
             확인
           </Button>

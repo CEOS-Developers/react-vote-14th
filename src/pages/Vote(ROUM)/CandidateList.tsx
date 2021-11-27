@@ -6,6 +6,7 @@ const CandidateList = (candidate: VoteProps["candidates"]): JSX.Element => {
   return (
     <>
       <Text>{candidate.candidateName}</Text>
+      <Text>{candidate.count}</Text>
     </>
   );
 };
