@@ -31,19 +31,9 @@ const SignIn = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
-        // Redux에 사용자 정보 저장
-        // dispatch(
-        //   setUser({
-        //     email: response.data.email,
-        //     nickname: response.data.login_id,
-        //   })
-        // );
         const accessToken = response.data.access;
-
         //쿠키에 토큰 저장
-        setCookie('login', accessToken);
-
+        setCookie(accessToken);
         //로그인 성공 시 '/'로 이동
         navigate('/');
       })

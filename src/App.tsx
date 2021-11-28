@@ -14,7 +14,8 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = getCookie('login');
+    const token = getCookie();
+    console.log(token);
     if (token) {
       axios
         .post(

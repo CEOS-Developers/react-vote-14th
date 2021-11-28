@@ -6,13 +6,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_USER: {
-      return {
-        isLoggedin: true,
-        email: 'blabla',
-        nickname: 'blabla',
-      };
-    }
+    // case SET_USER: {
+    //   return {
+    //     isLoggedin: true,
+    //     email: 'blabla',
+    //     nickname: 'blabla',
+    //   };
+    // }
 
     default:
       return state;
