@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import { Input } from '@nextui-org/react';
 import { Button } from '@nextui-org/react';
 import styled from 'styled-components';
-import axios from 'axios';
+
+import { setCookie } from '../shared/Cookie';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,10 +30,24 @@ const SignIn = () => {
           password: password,
         }
       )
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data);
+        // Redux에 사용자 정보 저장
+        // dispatch(
+        //   setUser({
+        //     email: response.data.email,
+        //     nickname: response.data.login_id,
+        //   })
+        // );
+        const accessToken = response.data.access;
+
+        //쿠키에 토큰 저장
+        setCookie('login', accessToken);
+
+        //로그인 성공 시 '/'로 이동
+        navigate('/');
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };

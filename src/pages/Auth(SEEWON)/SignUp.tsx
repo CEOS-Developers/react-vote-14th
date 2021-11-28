@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import { Input } from '@nextui-org/react';
 import { Button } from '@nextui-org/react';
 import styled from 'styled-components';
-import axios from 'axios';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
