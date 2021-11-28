@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 
 import { Input } from '@nextui-org/react';
@@ -6,6 +7,7 @@ import { Button } from '@nextui-org/react';
 import styled from 'styled-components';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
@@ -27,9 +29,12 @@ const SignUp = () => {
       )
       .then(function (response) {
         console.log(response);
+        alert('가입되셨습니다 :)\n로그인해 주세요!');
+        navigate(0);
       })
       .catch(function (error) {
         console.log(error);
+        alert('오류가 발생했습니다.\n 다시 시도해 주세요.');
       });
   };
   return (
