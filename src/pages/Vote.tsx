@@ -1,7 +1,8 @@
-import HeaderContainer from '../components/header/HeaderContainer';
+// import HeaderContainer from '../components/header/HeaderContainer';
+import SidebarContainer from '../components/sidebar/SidebarContainer';
 
 const Vote = () => {
-  return <HeaderContainer />;
+  return <SidebarContainer />;
 };
 
 export default Vote;
