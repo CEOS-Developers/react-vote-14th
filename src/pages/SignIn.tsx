@@ -8,7 +8,13 @@ const SignIn = () => {
   // 각 input form 컴포넌트화하기
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
       <h1>Log in</h1>
       <hr />
       <p>15기 프론트/파트장 투표</p>

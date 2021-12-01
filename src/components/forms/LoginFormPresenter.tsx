@@ -1,31 +1,17 @@
 import styled from 'styled-components';
+import COLORS from '../../constants/colors';
 
-export const Header = styled.header`
-  height: 75px;
-
+export const FormContainer = styled.form`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  border-bottom: 1px solid #e2e2e2;
-`;
-
-export const ItemWrapper = styled.section`
-  height: 100%;
-  width: 20%;
-
-  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-export const Logo = styled.img`
-  width: 150px;
-  height: 30px;
-
-  object-fit: contain;
-`;
-
-export const Title = styled.h3`
-  display: flex;
+export const InputContainer = styled.input`
+  flex: 1;
+  padding: 0.2rem;
+  text-align: left;
+  border: 1px solid ${COLORS.lightGray};
+  border-radius: 22px;
 `;
