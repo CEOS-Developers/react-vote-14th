@@ -16,7 +16,6 @@ const SignIn = () => {
       }}
     >
       <h1>Log in</h1>
-      <hr />
       <p>15기 프론트/파트장 투표</p>
       <LoginFormContainer />
     </div>

@@ -6,16 +6,24 @@ import { FormContainer, InputContainer } from './LoginFormPresenter';
 const LoginFormContainer = () => {
   const [userId, setuserId] = useInputs('');
   const [userPw, setuserPw] = useInputs('');
+
+  const onsubmit = (e: any) => {
+    e.preventDefault();
+    console.log(userId, userPw);
+  };
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={onsubmit}>
       <InputContainer
         type="text"
+        className="IdForm"
         placeholder="ID"
         value={userId}
         onChange={setuserId}
       />
       <InputContainer
         type="text"
+        className="PwForm"
         placeholder="PASSWORD"
         value={userPw}
         onChange={setuserPw}
