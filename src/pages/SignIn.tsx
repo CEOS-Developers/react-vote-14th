@@ -1,19 +1,18 @@
 import React from 'react';
+import axios from 'axios';
+import LoginFormContainer from '../components/forms/LoginFormContainer';
 
 const SignIn = () => {
   // 페이지 진입 시 id 입력 form에 focus.
-  // 각 input form 컴포넌트화해서 만들 것.
+  // 전체 form도 묶어서 컴포넌트로 만들기
+  // 각 input form 컴포넌트화하기
 
   return (
     <div>
       <h1>Log in</h1>
       <hr />
       <p>15기 프론트/파트장 투표</p>
-      <form>
-        <input />
-        <input />
-        <button>Let's start!</button>
-      </form>
+      <LoginFormContainer />
     </div>
   );
 };
