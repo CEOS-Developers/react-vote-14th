@@ -1,4 +1,5 @@
 import React from 'react';
+import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { store } from './app/store';
