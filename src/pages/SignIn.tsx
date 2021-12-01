@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import LoginFormContainer from '../components/forms/LoginFormContainer';
 
 const SignIn = () => {
