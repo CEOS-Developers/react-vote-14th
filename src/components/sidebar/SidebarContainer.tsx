@@ -1,7 +1,7 @@
 import {
   Sidebar,
   ItemsWrapper,
-  ItemWrapper,
+  StyledNavLink,
   Logo,
   Text,
 } from "./SidebarPresenter";
@@ -12,19 +12,19 @@ const SidebarContainer = () => {
   return (
     <Sidebar>
       <ItemsWrapper>
-        <ItemWrapper>
+        <StyledNavLink to={"/"}>
           <Logo src={logo} alt="" />
-        </ItemWrapper>
-        <ItemWrapper>
+        </StyledNavLink>
+        <StyledNavLink to={"/vote/:part"}>
           <Text>Vote</Text>
-        </ItemWrapper>
-        <ItemWrapper>
+        </StyledNavLink>
+        <StyledNavLink to={"/result"}>
           <Text>Result</Text>
-        </ItemWrapper>
+        </StyledNavLink>
       </ItemsWrapper>
-      <ItemWrapper>
+      <StyledNavLink to={"/"}>
         <Text>Profile</Text>
-      </ItemWrapper>
+      </StyledNavLink>
     </Sidebar>
   );
 };
