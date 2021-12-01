@@ -8,6 +8,7 @@ import { Button } from '@nextui-org/react';
 import styled from 'styled-components';
 
 import { setCookie } from '../shared/Cookie';
+import { setLoginState } from '../shared/reducer';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -28,12 +29,19 @@ const SignIn = () => {
         {
           login_id: nickname,
           password: password,
-        }
+        },
+        { withCredentials: true }
       )
       .then((response) => {
-        const accessToken = response.data.access;
+        //로그인 성공 시 Redux로 isLoggedin state true로 바꿈
+        dispatch(setLoginState());
+
+        const ACCESS_TOKEN = response.data.access;
+        const REFRESH_TOKEN = response.data.refresh;
         //쿠키에 토큰 저장
-        setCookie(accessToken);
+        setCookie('access', ACCESS_TOKEN);
+        setCookie('refresh', REFRESH_TOKEN);
+
         //로그인 성공 시 '/'로 이동
         navigate('/');
       })
