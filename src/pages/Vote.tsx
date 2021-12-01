@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// import HeaderContainer from '../components/header/HeaderContainer';
 import SidebarContainer from "../components/sidebar/SidebarContainer";
 import VoteContainer from "../components/vote/VoteContainer";
 
