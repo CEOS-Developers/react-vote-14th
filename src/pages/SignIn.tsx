@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import LoginFormContainer from '../components/forms/LoginFormContainer';
 
 const SignIn = () => {
@@ -17,6 +18,12 @@ const SignIn = () => {
       <h1>Log in</h1>
       <p>15기 프론트/파트장 투표</p>
       <LoginFormContainer />
+      <div>
+        <p>Don't have an account?</p>
+        <Link to={'/signup'}>
+          <p>Sign Up</p>
+        </Link>
+      </div>
     </div>
   );
 };
