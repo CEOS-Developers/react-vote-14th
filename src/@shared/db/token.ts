@@ -9,7 +9,7 @@ export default class TokenStorage {
     localStorage.setItem(this.TOKEN, token);
   }
 
-  getToken() {
+  getToken(): string | null {
     return localStorage.getItem(this.TOKEN);
   }
 

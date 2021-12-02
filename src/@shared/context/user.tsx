@@ -14,7 +14,7 @@ const voteService = new VoteService(httpClient, tokenStorage);
 // user type 설정
 type user = {
   id: string | undefined;
-  token: string | undefined;
+  token: string | undefined | null;
   authService: AuthService | undefined;
   voteService: VoteService | undefined;
 };
@@ -45,7 +45,9 @@ type Action =
       id: string | undefined;
       password: string | undefined;
       email: string | undefined;
-    };
+    }
+  | { type: 'log_in'; id: string | undefined; password: string | undefined }
+  | { type: 'log_out' };
 
 // reducer 설정
 function reducer(state: user, action: Action) {
@@ -55,9 +57,17 @@ function reducer(state: user, action: Action) {
     case 'set_user':
       return { ...state, id: action.id, token: action.password };
     case 'sign_up': {
-      const data = authService.signup(action.id, action.email, action.password);
-      console.log(data);
+      authService.signup(action.id, action.email, action.password);
+
       return state;
+    }
+    case 'log_in': {
+      authService.login(action.id, action.password);
+      return { ...state, id: action.id, token: tokenStorage.getToken() };
+    }
+    case 'log_out': {
+      tokenStorage.deleteToken();
+      return { ...state, id: undefined, token: undefined };
     }
   }
 }
@@ -68,10 +78,11 @@ export const UserProvider = (props: React.PropsWithChildren<{}>) => {
     reducer,
     defaultUser
   );
+  const token = tokenStorage.getToken();
 
   return (
     <userContext.Provider value={{ user, dispatch }} {...props}>
-      {user.token ? props.children : <Login />}
+      {token ? props.children : <Login />}
     </userContext.Provider>
   );
 };

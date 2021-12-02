@@ -19,14 +19,22 @@ export default class AuthService {
       method: 'POST',
       body: JSON.stringify({ userid: id, email: email, password: password }),
     });
+    console.log(data);
   }
 
   async login(id: string | undefined, password: string | undefined) {
-    const data = await this.http.fetch('/users/login', {
+    const data = await this.http.fetch('/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ userid: id, password: password }),
     });
-    this.tokenStorage.saveToken(data.token);
+    try {
+      if (data.token) {
+        this.tokenStorage.saveToken(data.token);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return data;
   }
 
   async logout() {

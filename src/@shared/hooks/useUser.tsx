@@ -5,6 +5,7 @@ const useUser = () => {
   const { user, dispatch } = useContext(userContext);
 
   const getUser = () => {
+    dispatch({ type: 'get_user' });
     return user;
   };
 
@@ -20,7 +21,15 @@ const useUser = () => {
     dispatch({ type: 'sign_up', id: id, password: password, email: email });
   };
 
-  return { getUser, setUser, signUp };
+  const logIn = (id: string | undefined, password: string | undefined) => {
+    dispatch({ type: 'log_in', id, password });
+  };
+
+  const logOut = () => {
+    dispatch({ type: 'log_out' });
+  };
+
+  return { getUser, setUser, signUp, logIn, logOut };
 };
 
 export default useUser;

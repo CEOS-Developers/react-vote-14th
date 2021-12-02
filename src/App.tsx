@@ -4,13 +4,13 @@ import useUser from './@shared/hooks/useUser';
 import Vote from './pages/vote/vote';
 
 function App() {
-  const { getUser } = useUser();
+  const { getUser, logOut } = useUser();
   const { id } = getUser();
 
   return (
     <>
       <div>hello, {id}!</div>
-      <div>로그아웃</div>
+      <div onClick={logOut}>로그아웃</div>
       <div>
         <Link to="/vote">투표하기</Link>
       </div>

@@ -16,8 +16,7 @@ export default class HttpClient {
       return res.json();
     } else {
       const message = JSON.stringify(res.status);
-      const error = new Error(message);
-      throw error;
+      console.log('에러발생!', message);
     }
   }
 }

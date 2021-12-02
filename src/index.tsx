@@ -13,12 +13,6 @@ import Navbar from './@shared/components/navbar';
 import { CssBaseline } from '@nextui-org/react';
 import styled from 'styled-components';
 
-const baseURL = 'http://ec2-13-125-77-192.ap-northeast-2.compute.amazonaws.com';
-const tokenStorage = new TokenStorage();
-const httpClient = new HttpClient(baseURL);
-const authService = new AuthService(httpClient, tokenStorage);
-const voteService = new VoteService(httpClient, tokenStorage);
-
 const Background = styled.div`
   background: linear-gradient(
       217deg,

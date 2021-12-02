@@ -19,12 +19,13 @@ const Login = (props: PropsWithChildren<{}>) => {
     email: undefined,
   });
 
-  const { getUser, setUser, signUp } = useUser();
+  const { getUser, setUser, signUp, logIn } = useUser();
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const {
       target: { name, value },
     } = event;
+
     switch (name) {
       case 'id':
         setLoginInfo({ ...loginInfo, id: value });
@@ -41,17 +42,21 @@ const Login = (props: PropsWithChildren<{}>) => {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+  };
+
+  const handleClickLogin: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
+    logIn(loginInfo.id, loginInfo.password);
+  };
+  const handleClickSignUp: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
     signUp(loginInfo.id, loginInfo.password, loginInfo.email);
   };
 
-  const test = useMemo(() => {}, [loginInfo]);
-
-  useEffect(() => {
-    console.log(loginInfo);
-  }, [test]);
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form name="hi" onSubmit={handleSubmit}>
       로그인
       <div>아이디</div>
       <input name="id" type="text" onChange={handleChange} />
@@ -59,8 +64,8 @@ const Login = (props: PropsWithChildren<{}>) => {
       <input name="password" type="password" onChange={handleChange} />
       <div>이메일</div>
       <input name="email" type="text" onChange={handleChange} />
-      <button type="submit">로그인</button>
-      <button>회원가입</button>
+      <button onClick={handleClickLogin}>로그인</button>
+      <button onClick={handleClickSignUp}>회원가입</button>
     </form>
   );
 };
