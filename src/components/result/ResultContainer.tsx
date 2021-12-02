@@ -20,6 +20,7 @@ const ResultContainer = () => {
     fetchResult();
   }, []);
 
+  // 내림차순 정렬
   resultList.sort((a, b: any) => {
     return b["voteCount"] - a["voteCount"];
   });
