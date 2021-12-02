@@ -3,9 +3,9 @@ import {
   Title,
   ResultsWrapper,
   ResultWrapper,
-} from "./ResultPresenter";
-import axios from "axios";
-import { useEffect, useState } from "react";
+} from './ResultPresenter';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const ResultContainer = () => {
   const [resultList, setResultList] = useState([]);
@@ -13,7 +13,7 @@ const ResultContainer = () => {
   useEffect(() => {
     const fetchResult = async () => {
       const response = await axios.get(
-        "https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/vote"
+        'https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/vote'
       );
       setResultList(response.data);
     };
@@ -22,7 +22,7 @@ const ResultContainer = () => {
 
   // 내림차순 정렬
   resultList.sort((a, b: any) => {
-    return b["voteCount"] - a["voteCount"];
+    return b['voteCount'] - a['voteCount'];
   });
 
   console.log(resultList);
