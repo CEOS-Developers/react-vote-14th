@@ -5,6 +5,17 @@ import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Vote from './pages/vote/vote';
 import Result from './pages/result/result';
+import HttpClient from './@shared/http/httpClient';
+import TokenStorage from './@shared/db/token';
+import AuthService from './@shared/service/auth';
+import VoteService from './@shared/service/vote';
+
+const baseURL = 'http://ec2-13-125-77-192.ap-northeast-2.compute.amazonaws.com';
+const tokenStorage = new TokenStorage();
+const httpClient = new HttpClient(baseURL);
+const authService = new AuthService(httpClient, tokenStorage);
+const voteService = new VoteService(httpClient, tokenStorage);
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

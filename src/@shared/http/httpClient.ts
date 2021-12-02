@@ -12,8 +12,6 @@ export default class HttpClient {
         ...options.headers,
       },
     });
-    if (res.ok) {
-      return await res.json();
-    }
+    return res.json();
   }
 }

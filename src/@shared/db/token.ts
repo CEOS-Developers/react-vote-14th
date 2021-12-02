@@ -9,11 +9,11 @@ export default class TokenStorage {
     localStorage.setItem(this.TOKEN, token);
   }
 
-  getToken(token: string) {
-    localStorage.getItem(this.TOKEN);
+  getToken() {
+    return localStorage.getItem(this.TOKEN);
   }
 
-  deleteToken(token: string) {
+  deleteToken() {
     localStorage.clear();
   }
 }
