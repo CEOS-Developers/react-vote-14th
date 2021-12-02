@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { UserProvider } from './@shared/context/user';
 import App from './App';
@@ -9,6 +9,7 @@ import HttpClient from './@shared/http/httpClient';
 import TokenStorage from './@shared/db/token';
 import AuthService from './@shared/service/auth';
 import VoteService from './@shared/service/vote';
+import Navbar from './@shared/components/navbar';
 
 const baseURL = 'http://ec2-13-125-77-192.ap-northeast-2.compute.amazonaws.com';
 const tokenStorage = new TokenStorage();
@@ -20,6 +21,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
+        <Navbar />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/vote" element={<Vote />} />
