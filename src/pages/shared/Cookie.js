@@ -7,3 +7,6 @@ export const getCookie = (name) => cookies.get(name);
 
 // 쿠키에 저장하는 함수
 export const setCookie = (name, value) => cookies.set(name, value);
+
+// 쿠키에서 삭제하는 함수
+export const removeCookie = (name) => cookies.remove(name);

@@ -1,10 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { removeCookie } from '../shared/Cookie';
 
 const Vote = () => {
   const navigate = useNavigate();
   const handleLoginClick = () => {
+    navigate('/login');
+  };
+  const handleLogoutClick = () => {
+    removeCookie('access');
+    removeCookie('refresh');
     navigate('/login');
   };
 
@@ -14,6 +20,7 @@ const Vote = () => {
       <div>
         <div>
           <button onClick={handleLoginClick}>로그인</button>
+          <button onClick={handleLogoutClick}>로그아웃</button>
         </div>
       </div>
     </div>
