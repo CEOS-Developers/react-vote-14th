@@ -8,16 +8,22 @@ import useInputs from '../hooks/useInput';
 const SignUp = () => {
   const [userId, setuserId] = useInputs('');
   const [userPw, setuserPw] = useInputs('');
-  const [field, setField] = useState('FE');
+  const [part, setPart] = useState('');
 
   const handleRadio = (e: any) => {
-    setField(e.target.value);
+    setPart(e.target.value);
   };
 
   const onsubmit = (e: any) => {
     e.preventDefault();
     // body에 담아서 보낼 거 세팅 후 axios
-    console.log('hi');
+    const payload = {
+      username: userId,
+      password: userPw,
+      part: part,
+    };
+
+    console.log(payload);
   };
 
   return (

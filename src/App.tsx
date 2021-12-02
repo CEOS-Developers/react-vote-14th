@@ -9,7 +9,7 @@ import Result from './pages/Result';
 import { Spinner } from './components/Spinner';
 
 function App() {
-  const { loading, setLoading } = useLoadingContext();
+  const { loading }: any = useLoadingContext();
   return (
     <>
       {loading ? <Spinner /> : null}

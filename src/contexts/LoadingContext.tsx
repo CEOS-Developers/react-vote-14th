@@ -29,7 +29,7 @@ import { createContext, useState, useContext } from 'react';
 
 const LoadingContext = createContext({});
 
-const LoadingProvider = ({ children }) => {
+const LoadingProvider = ({ children }: any) => {
   const [loading, setLoading] = useState('');
 
   const loadingContextValue = {

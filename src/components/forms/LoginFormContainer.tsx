@@ -1,9 +1,7 @@
 import useInputs from '../../hooks/useInput';
 import { FormContainer, InputContainer } from './LoginFormPresenter';
-import { Spinner } from '../Spinner';
 import { useLoadingContext } from '../../contexts/LoadingContext';
 import axios from 'axios';
-import { useState } from 'react';
 
 // 수정 중
 // pw 안보이게 수정필요
@@ -12,9 +10,9 @@ const LoginFormContainer = () => {
   const [userPw, setUserPw] = useInputs('');
 
   // spinner 동작 setting
-  const { loading, setLoading } = useLoadingContext();
+  const { loading, setLoading }: any = useLoadingContext();
 
-  const onsubmit = (e) => {
+  const onsubmit = (e: any) => {
     e.preventDefault();
 
     if (userId && userPw) {
@@ -41,8 +39,7 @@ const LoginFormContainer = () => {
   };
 
   const spinnerTest = () => {
-    //console.log(loading);
-    setLoading(true);
+    setLoading(!loading);
   };
 
   return (
@@ -62,7 +59,7 @@ const LoginFormContainer = () => {
         />
         <button>Let's start!</button>
       </FormContainer>
-      {/* <button onClick={spinnerTest}>spinner test</button> */}
+      <button onClick={spinnerTest}>spinner test</button>
     </>
   );
 };
