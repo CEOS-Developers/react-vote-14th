@@ -12,6 +12,12 @@ export default class HttpClient {
         ...options.headers,
       },
     });
-    return res.json();
+    if (res.ok) {
+      return res.json();
+    } else {
+      const message = JSON.stringify(res.status);
+      const error = new Error(message);
+      throw error;
+    }
   }
 }

@@ -1,16 +1,30 @@
 import * as React from 'react';
 import Login from '../../pages/login/login';
+import TokenStorage from '../db/token';
+import HttpClient from '../http/httpClient';
+import AuthService from '../service/auth';
+import VoteService from '../service/vote';
+
+const baseURL = 'http://ec2-13-125-77-192.ap-northeast-2.compute.amazonaws.com';
+const tokenStorage = new TokenStorage();
+const httpClient = new HttpClient(baseURL);
+const authService = new AuthService(httpClient, tokenStorage);
+const voteService = new VoteService(httpClient, tokenStorage);
 
 // user type 설정
 type user = {
   id: string | undefined;
   token: string | undefined;
+  authService: AuthService | undefined;
+  voteService: VoteService | undefined;
 };
 
 //defaultUser 설정
 const defaultUser: user = {
   id: undefined,
   token: undefined,
+  authService: authService,
+  voteService: voteService,
 };
 
 //defaultDispatch 설정
@@ -25,7 +39,13 @@ export const userContext = React.createContext({
 //Action type 설정
 type Action =
   | { type: 'get_user' }
-  | { type: 'set_user'; id: user['id']; password: user['token'] };
+  | { type: 'set_user'; id: user['id']; password: user['token'] }
+  | {
+      type: 'sign_up';
+      id: string | undefined;
+      password: string | undefined;
+      email: string | undefined;
+    };
 
 // reducer 설정
 function reducer(state: user, action: Action) {
@@ -34,6 +54,11 @@ function reducer(state: user, action: Action) {
       return state;
     case 'set_user':
       return { ...state, id: action.id, token: action.password };
+    case 'sign_up': {
+      const data = authService.signup(action.id, action.email, action.password);
+      console.log(data);
+      return state;
+    }
   }
 }
 

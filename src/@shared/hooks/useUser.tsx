@@ -12,7 +12,15 @@ const useUser = () => {
     dispatch({ type: 'set_user', id: id, password: password });
   };
 
-  return { getUser, setUser };
+  const signUp = (
+    id: string | undefined,
+    password: string | undefined,
+    email: string | undefined
+  ) => {
+    dispatch({ type: 'sign_up', id: id, password: password, email: email });
+  };
+
+  return { getUser, setUser, signUp };
 };
 
 export default useUser;

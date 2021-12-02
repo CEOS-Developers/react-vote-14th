@@ -11,13 +11,15 @@ import useUser from '../../@shared/hooks/useUser';
 const Login = (props: PropsWithChildren<{}>) => {
   type id = string | undefined;
   type password = string | undefined;
-  type loginInfo = { id: id; password: password };
+  type email = string | undefined;
+  type loginInfo = { id: id; password: password; email: email };
   const [loginInfo, setLoginInfo] = useState<loginInfo>({
     id: undefined,
     password: undefined,
+    email: undefined,
   });
 
-  const { getUser, setUser } = useUser();
+  const { getUser, setUser, signUp } = useUser();
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const {
@@ -30,13 +32,16 @@ const Login = (props: PropsWithChildren<{}>) => {
       case 'password':
         setLoginInfo({ ...loginInfo, password: value });
         break;
+      case 'email':
+        setLoginInfo({ ...loginInfo, email: value });
+        break;
       default:
     }
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    setUser(loginInfo.id, loginInfo.password);
+    signUp(loginInfo.id, loginInfo.password, loginInfo.email);
   };
 
   const test = useMemo(() => {}, [loginInfo]);
@@ -52,6 +57,8 @@ const Login = (props: PropsWithChildren<{}>) => {
       <input name="id" type="text" onChange={handleChange} />
       <div>비밀번호</div>
       <input name="password" type="password" onChange={handleChange} />
+      <div>이메일</div>
+      <input name="email" type="text" onChange={handleChange} />
       <button type="submit">로그인</button>
       <button>회원가입</button>
     </form>

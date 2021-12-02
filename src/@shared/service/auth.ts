@@ -10,14 +10,18 @@ export default class AuthService {
     this.tokenStorage = tokenStorage;
   }
 
-  async signup(id: string, email: string, password: string) {
-    const data = await this.http.fetch('/users', {
+  async signup(
+    id: string | undefined,
+    email: string | undefined,
+    password: string | undefined
+  ) {
+    const data = await this.http.fetch('/api/users/', {
       method: 'POST',
       body: JSON.stringify({ userid: id, email: email, password: password }),
     });
   }
 
-  async login(id: string, password: string) {
+  async login(id: string | undefined, password: string | undefined) {
     const data = await this.http.fetch('/users/login', {
       method: 'POST',
       body: JSON.stringify({ userid: id, password: password }),
