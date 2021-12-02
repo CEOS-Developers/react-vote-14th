@@ -21,7 +21,9 @@ const Vote = () => {
       투표창 (로움님 부탁드려요😁)
       <div>
         <div>
-          {userObj.nickname ? `${userObj.nickname}님, 안녕하세요.` : null}
+          {userObj.nickname
+            ? `${userObj.nickname}님, 안녕하세요.`
+            : `로그인해야 투표할 수 있습니다.`}
           {userObj.nickname ? (
             <button onClick={handleLogoutClick}>로그아웃</button>
           ) : (
