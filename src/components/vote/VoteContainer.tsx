@@ -4,10 +4,10 @@ import {
   CandidatesWrapper,
   CandidateWrapper,
   SubmitButton,
-} from "./VotePresenter";
+} from './VotePresenter';
 
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const VoteContainer = () => {
   const [candidates, setCandidates] = useState([]);
@@ -15,7 +15,7 @@ const VoteContainer = () => {
   useEffect(() => {
     const fetchCandidates = async () => {
       const response = await axios.get(
-        "https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/vote"
+        'https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/vote'
       );
       setCandidates(response.data);
     };
@@ -27,7 +27,9 @@ const VoteContainer = () => {
       <Title>Front-end</Title>
       <CandidatesWrapper>
         {candidates.map((candidate: any) => (
-          <CandidateWrapper>{candidate.name}</CandidateWrapper>
+          <CandidateWrapper key={candidate.id}>
+            {candidate.name}
+          </CandidateWrapper>
         ))}
       </CandidatesWrapper>
       <SubmitButton>Vote!</SubmitButton>

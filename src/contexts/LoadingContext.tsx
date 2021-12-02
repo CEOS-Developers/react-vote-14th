@@ -1,9 +1,9 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from 'react';
 
 const LoadingContext = createContext({});
 
 const LoadingProvider = ({ children }: any) => {
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState('');
 
   const loadingContextValue = {
     loading,
