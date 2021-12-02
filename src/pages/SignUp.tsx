@@ -43,7 +43,11 @@ const SignUp = () => {
       window.alert('사람 이름에 공백이나 특수문자가 왜 들어갑니까...');
       return false;
     }
-    return true;
+    if (payload.part) return true;
+    else {
+      window.alert('파트 선택을 깜빡하셨군요');
+      return false;
+    }
   }
 
   function onSubmit(payload: Payload) {
