@@ -25,7 +25,7 @@ const SignIn = () => {
     }
     axios
       .post(
-        'http://ec2-3-37-86-93.ap-northeast-2.compute.amazonaws.com/api/auth/token',
+        'https://chatminder.cf/api/auth/token',
         {
           login_id: nickname,
           password: password,
@@ -33,8 +33,12 @@ const SignIn = () => {
         { withCredentials: true }
       )
       .then((response) => {
+        console.log(response);
         //로그인 성공 시 Redux로 isLoggedin state true로 바꿈
-        dispatch(setLoginState());
+        const id = response.data.id;
+        dispatch(setLoginState(id));
+
+        console.log(id);
 
         const ACCESS_TOKEN = response.data.access;
         const REFRESH_TOKEN = response.data.refresh;

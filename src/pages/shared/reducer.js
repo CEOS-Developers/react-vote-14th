@@ -3,7 +3,7 @@ const SET_LOGINSTATE = 'SET_LOGINSTATE';
 const SET_USER_DATA = 'SET_USER_DATA';
 
 //액션 생성함수 만들기
-export const setLoginState = () => ({ type: SET_LOGINSTATE });
+export const setLoginState = (id) => ({ type: SET_LOGINSTATE, id });
 export const setUserData = (nickname, email) => ({
   type: SET_USER_DATA,
   nickname,
@@ -13,6 +13,7 @@ export const setUserData = (nickname, email) => ({
 //초기 상태 선언
 const initialState = {
   isLoggedin: false,
+  id: 0,
   nickname: '',
   email: '',
 };
@@ -24,6 +25,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         isLoggedin: true,
+        id: action.id,
       };
     }
     case SET_USER_DATA: {

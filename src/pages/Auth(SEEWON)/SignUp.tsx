@@ -19,20 +19,17 @@ const SignUp = () => {
       return;
     }
     axios
-      .post(
-        'http://ec2-3-37-86-93.ap-northeast-2.compute.amazonaws.com/api/users',
-        {
-          login_id: nickname,
-          password: password,
-          email: email,
-        }
-      )
-      .then(function (response) {
+      .post('https://chatminder.cf/api/users', {
+        login_id: nickname,
+        password: password,
+        email: email,
+      })
+      .then((response) => {
         console.log(response);
         alert('가입되셨습니다 :)\n로그인해 주세요!');
         navigate(0);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
         alert('오류가 발생했습니다.\n 다시 시도해 주세요.');
       });
