@@ -18,7 +18,7 @@ const VoteContainer = () => {
   const [urlPart, setUrlPart] = useState('');
 
   useEffect(() => {
-    // url 수정 예정이라 일단 이렇게 짰어요
+    // url 수정 예정이라 일단 대충 이렇게 짰어요... ^^ 부끄러운 코드
     if (part === 'frontend') {
       setUrlPart('FE');
     } else if (part === 'backend') {
@@ -39,7 +39,6 @@ const VoteContainer = () => {
   };
 
   const token = JSON.stringify(localStorage.getItem('token'));
-  console.log(`JWT ${token.replaceAll('"', '')}`);
 
   const handleSubmit = () => {
     axios.post(
