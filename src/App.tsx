@@ -8,7 +8,6 @@ function App() {
 
   return (
     <>
-      <div>hello, bonjun!</div>
       <div onClick={logOut}>로그아웃</div>
       <div>
         <Link to="/vote">투표하기</Link>

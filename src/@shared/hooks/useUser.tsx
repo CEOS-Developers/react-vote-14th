@@ -4,6 +4,10 @@ import { userContext } from '../context/user';
 const useUser = () => {
   const { user, dispatch } = useContext(userContext);
 
+  const getUser = () => {
+    return user;
+  };
+
   const setUser = (id: string | undefined, token: string | undefined) => {
     dispatch({ type: 'set_user', id: id, token: token });
   };
@@ -26,7 +30,7 @@ const useUser = () => {
     dispatch({ type: 'log_out' });
   };
 
-  return { setUser, signUp, logIn, logOut };
+  return { setUser, signUp, logIn, logOut, getUser };
 };
 
 export default useUser;
