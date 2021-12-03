@@ -30,9 +30,16 @@ export const VoteButtonBox = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 `;
 
-export const Text = styled.div``;
+type WidthType = {
+  width: string;
+};
+
+export const Text = styled.div<WidthType>`
+  width: ${(props) => props.width || "5rem"};
+`;
 
 export const TextBox = styled.div``;
 

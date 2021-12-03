@@ -47,14 +47,6 @@ const Vote = () => {
   const [candidates, setCandidates] = useState<VoteProps["candidates"][]>([]);
 
   const handleCount = (num: number) => {
-    setCandidates((candidate) =>
-      candidate.map((item) => {
-        if (item.id === num) {
-          return { ...item, votes: item.votes + 1 };
-        }
-        return item;
-      })
-    );
     console.log(candidates[num - 1].name);
 
     axios
@@ -72,6 +64,14 @@ const Vote = () => {
       .then((response) => {
         console.log(response.data);
         alert("소중한 한 표 감사합니다 😉");
+        setCandidates((candidate) =>
+          candidate.map((item) => {
+            if (item.id === num) {
+              return { ...item, votes: item.votes + 1 };
+            }
+            return item;
+          })
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -79,9 +79,9 @@ const Vote = () => {
       });
   };
 
-  const sortedCandidates = candidates.sort((a, b) => {
-    return b.votes - a.votes;
-  });
+  // const sortedCandidates = candidates.sort((a, b) => {
+  //   return b.votes - a.votes;
+  // });
 
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
@@ -148,7 +148,7 @@ const Vote = () => {
       />
 
       <VoteBox>
-        {sortedCandidates.map((candidate) => (
+        {candidates.map((candidate) => (
           <CandidateBox width>
             <CandidateList key={candidate.id} {...candidate} />
             <Button
@@ -163,13 +163,7 @@ const Vote = () => {
       </VoteBox>
 
       <VoteButtonBox>
-        <Button
-          size="large"
-          color="primary"
-          auto
-          onClick={handler}
-          //onClick={() => onClick()}
-        >
+        <Button size="large" color="primary" auto onClick={handler}>
           결과보기
         </Button>
       </VoteButtonBox>
@@ -181,21 +175,20 @@ const Vote = () => {
         onClose={closeHandler}
       >
         <Modal.Header>
+          🎉
           <Text b id="modal-title" size={18}>
             투표 결과
           </Text>
+          🎉
         </Modal.Header>
         <Modal.Body>
-          {sortedCandidates.map((candidate) => (
+          {candidates.map((candidate) => (
             <CandidateBox>
               <CandidateList key={candidate.id} {...candidate} />
             </CandidateBox>
           ))}
         </Modal.Body>
         <Modal.Footer>
-          {/* <Button auto flat color="error" onClick={closeHandler}>
-            취소
-          </Button> */}
           <Button auto onClick={closeHandler}>
             확인
           </Button>

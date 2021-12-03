@@ -5,8 +5,8 @@ import { Text, TextBox } from "./VotePresenter";
 const CandidateList = (candidate: VoteProps["candidates"]): JSX.Element => {
   return (
     <>
-      <Text>{candidate.name}</Text>
-      <Text>{candidate.votes}</Text>
+      <Text width="5rem">{candidate.name}</Text>
+      <Text width="3rem">{candidate.votes} 표</Text>
     </>
   );
 };
