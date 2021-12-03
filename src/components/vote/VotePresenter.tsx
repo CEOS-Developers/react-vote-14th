@@ -42,6 +42,11 @@ export const CandidateButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  &:focus {
+    background: #4c90de;
+    color: #ffffff;
+  }
 `;
 
 export const SubmitButton = styled.button`
