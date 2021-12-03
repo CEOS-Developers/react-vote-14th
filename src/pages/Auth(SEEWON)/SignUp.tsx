@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
+
 import { Input } from '@nextui-org/react';
 import { Button } from '@nextui-org/react';
 import styled from 'styled-components';
-import axios from 'axios';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
@@ -16,19 +19,19 @@ const SignUp = () => {
       return;
     }
     axios
-      .post(
-        'http://ec2-3-37-86-93.ap-northeast-2.compute.amazonaws.com/api/users',
-        {
-          login_id: nickname,
-          password: password,
-          email: email,
-        }
-      )
-      .then(function (response) {
-        console.log(response);
+      .post('https://chatminder.cf/api/users', {
+        login_id: nickname,
+        password: password,
+        email: email,
       })
-      .catch(function (error) {
+      .then((response) => {
+        console.log(response);
+        alert('가입되셨습니다 :)\n로그인해 주세요!');
+        navigate(0);
+      })
+      .catch((error) => {
         console.log(error);
+        alert('오류가 발생했습니다.\n 다시 시도해 주세요.');
       });
   };
   return (

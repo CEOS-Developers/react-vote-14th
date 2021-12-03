@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import { Input } from '@nextui-org/react';
 import { Button } from '@nextui-org/react';
 import styled from 'styled-components';
-import axios from 'axios';
+
+import { setCookie } from '../shared/Cookie';
+import { setLoginState } from '../shared/reducer';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,16 +25,31 @@ const SignIn = () => {
     }
     axios
       .post(
-        'http://ec2-3-37-86-93.ap-northeast-2.compute.amazonaws.com/api/auth/token',
+        'https://chatminder.cf/api/auth/token',
         {
           login_id: nickname,
           password: password,
-        }
+        },
+        { withCredentials: true }
       )
-      .then(function (response) {
-        console.log(response.data);
+      .then((response) => {
+        console.log(response);
+        //로그인 성공 시 Redux로 isLoggedin state true로 바꿈
+        const id = response.data.id;
+        dispatch(setLoginState(id));
+
+        console.log(id);
+
+        const ACCESS_TOKEN = response.data.access;
+        const REFRESH_TOKEN = response.data.refresh;
+        //쿠키에 토큰 저장
+        setCookie('access', ACCESS_TOKEN);
+        setCookie('refresh', REFRESH_TOKEN);
+
+        //로그인 성공 시 '/'로 이동
+        navigate('/');
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };

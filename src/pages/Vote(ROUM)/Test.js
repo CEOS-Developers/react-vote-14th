@@ -5,13 +5,7 @@ const Test = () => {
   const [data, setData] = useState(null);
   const onClick1 = () => {
     axios
-      .get(
-        "https://chatminder.cf/polls/candidates/"
-        // {
-        //   name: "111",
-        //   votes: 3,
-        // }
-      )
+      .get("https://chatminder.cf/polls/candidates")
       .then((response) => {
         //setData(reponse.data);
         console.log(response.data);
