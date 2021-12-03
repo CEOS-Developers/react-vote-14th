@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Vote from "./pages/Vote(ROUM)/Vote";
 import LogIn from "./pages/Auth(SEEWON)/LogIn";
+import Test from "./pages/Vote(ROUM)/Test";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +15,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path={`/`} element={<Vote />} />
+          <Route path={`/test`} element={<Test />} />
           <Route path={`/login`} element={<LogIn />} />
         </Routes>
       </BrowserRouter>

@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 import { CssBaseline } from "@nextui-org/react";
@@ -21,8 +22,8 @@ import CandidateList from "./CandidateList";
 export interface VoteProps {
   candidates: {
     id: number;
-    candidateName: string;
-    count: number;
+    name: string;
+    votes: number;
   };
 }
 
@@ -33,16 +34,16 @@ const Vote = () => {
   };
 
   const [candidates, setCandidates] = useState<VoteProps["candidates"][]>([
-    { id: 0, candidateName: "후보1", count: 2 },
-    { id: 1, candidateName: "후보2", count: 3 },
-    { id: 2, candidateName: "후보3", count: 1 },
+    { id: 0, name: "후보1", votes: 2 },
+    { id: 1, name: "후보2", votes: 3 },
+    { id: 2, name: "후보3", votes: 1 },
   ]);
 
   const handleCount = (num: number) => {
     setCandidates((candidates) =>
       candidates.map((item) => {
         if (item.id === num) {
-          return { ...item, count: item.count + 1 };
+          return { ...item, votes: item.votes + 1 };
         }
         return item;
       })
@@ -50,7 +51,7 @@ const Vote = () => {
   };
 
   const sortedCandidates = candidates.sort((a, b) => {
-    return b.count - a.count;
+    return b.votes - a.votes;
   });
 
   const [visible, setVisible] = React.useState(false);
@@ -59,6 +60,31 @@ const Vote = () => {
     setVisible(false);
     //console.log("closed");
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://chatminder.cf/polls/candidates/"
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // const onClick = () => {
+  //   axios
+  //     .get("https://chatminder.cf/polls/candidates/")
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <Wrapper>
@@ -95,7 +121,13 @@ const Vote = () => {
       </VoteBox>
 
       <VoteButtonBox>
-        <Button size="large" color="primary" auto onClick={handler}>
+        <Button
+          size="large"
+          color="primary"
+          auto
+          onClick={handler}
+          //onClick={() => onClick()}
+        >
           결과보기
         </Button>
       </VoteButtonBox>
