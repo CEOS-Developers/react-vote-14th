@@ -4,6 +4,7 @@ import {
   StyledNavLink,
   Logo,
   Text,
+  ItemWrapper,
 } from './SidebarPresenter';
 import logo from '../../assets/images/logo.png';
 
@@ -12,15 +13,19 @@ const SidebarContainer = () => {
   return (
     <Sidebar>
       <ItemsWrapper>
-        <Logo src={logo} alt="" />
-        <StyledNavLink to={'/vote/:part'}>
+        <ItemWrapper>
+          <Logo src={logo} alt="" />
+        </ItemWrapper>
+        <ItemWrapper>
           <Text>Vote</Text>
-        </StyledNavLink>
+        </ItemWrapper>
         <StyledNavLink to={'/result'}>
           <Text>Result</Text>
         </StyledNavLink>
       </ItemsWrapper>
-      <Text>Profile</Text>
+      <ItemWrapper>
+        <Text>Profile</Text>
+      </ItemWrapper>
     </Sidebar>
   );
 };

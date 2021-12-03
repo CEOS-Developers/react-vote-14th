@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const Sidebar = styled.section`
   width: 20%;
@@ -29,10 +29,18 @@ export const StyledNavLink = styled(NavLink)`
 
   text-decoration: none;
   color: black;
+`;
 
-  .active {
-    color: pink;
-  }
+export const ItemWrapper = styled.section`
+  height: 25%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  color: black;
 `;
 
 export const Logo = styled.img`

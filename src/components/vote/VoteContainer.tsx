@@ -41,15 +41,17 @@ const VoteContainer = () => {
   const token = JSON.stringify(localStorage.getItem('token'));
 
   const handleSubmit = () => {
-    axios.post(
-      `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
-      null,
-      {
-        headers: {
-          Authorization: `JWT ${token.replaceAll('"', '')}`,
-        },
-      }
-    );
+    axios
+      .post(
+        `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
+        null,
+        {
+          headers: {
+            Authorization: `JWT ${token.replaceAll('"', '')}`,
+          },
+        }
+      )
+      .then(() => alert('Voted successfully!'));
   };
 
   return (
