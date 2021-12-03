@@ -33,6 +33,8 @@ export interface VoteProps {
 
 const Vote = () => {
   const userObj: any = useSelector((state: any) => state);
+  const id = userObj.id;
+
   const navigate = useNavigate();
   const handleLoginClick = () => {
     navigate("/login");
@@ -75,7 +77,9 @@ const Vote = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("이미 투표 하셨습니다 😅");
+        id === 0
+          ? alert("로그인이 필요합니다.")
+          : alert("이미 투표 하셨습니다 😅");
       });
   };
 
