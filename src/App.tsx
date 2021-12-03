@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router';
 import { useLoadingContext } from './contexts/LoadingContext';
 import { useAuthContext } from './contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import SignIn from './pages/SignIn';
@@ -11,23 +12,39 @@ import Result from './pages/Result';
 import { Spinner } from './components/Spinner';
 import { useEffect } from 'react';
 
+interface UserData {
+  username: string;
+  password: string;
+  part: string;
+}
+
 function App() {
   const { loading }: any = useLoadingContext();
   const { setIsAuth, setUserData }: any = useAuthContext();
 
+  // redirect
+  const navigate = useNavigate();
+
   // initialize fucntion
   const initializeUserInfo = () => {
-    const ud = JSON.stringify(localStorage.getItem('userData'));
+    const ud: UserData = JSON.parse(localStorage.getItem('userData') || '{}');
     const token = JSON.stringify(localStorage.getItem('token'));
     if (!ud) return;
     setUserData(ud);
     setIsAuth(true);
     axios.defaults.headers.common['Authorization'] = token;
+
+    if (ud.part === 'BE') {
+      navigate(`/vote/backend`);
+    } else {
+      navigate(`/vote/frontend`);
+    }
   };
 
   //initialize when first mount
   useEffect(() => {
     initializeUserInfo();
+    // eslint-disable-next-line
   }, []);
 
   return (
