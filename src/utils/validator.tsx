@@ -19,3 +19,9 @@ export function isUserName(asValue: string) {
     } else return true;
   }
 }
+
+export function isPart(asValue: string) {
+  if (asValue === 'FE') return true;
+  else if (asValue === 'BE') return true;
+  else return false;
+}
