@@ -15,6 +15,7 @@ import {
   LoginBox,
   VoteButtonBox,
   CandidateBox,
+  TextItem,
 } from "./VotePresenter";
 import CandidateList from "./CandidateList";
 
@@ -189,6 +190,7 @@ const Vote = () => {
           {candidates.map((candidate) => (
             <CandidateBox>
               <CandidateList key={candidate.id} {...candidate} />
+              <TextItem width="3rem"> {candidate.votes} 표</TextItem>
             </CandidateBox>
           ))}
         </Modal.Body>

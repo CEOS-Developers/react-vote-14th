@@ -37,7 +37,7 @@ type WidthType = {
   width: string;
 };
 
-export const Text = styled.div<WidthType>`
+export const TextItem = styled.div<WidthType>`
   width: ${(props) => props.width || "5rem"};
 `;
 
