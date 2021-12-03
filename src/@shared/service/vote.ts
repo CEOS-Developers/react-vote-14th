@@ -10,16 +10,21 @@ export default class VoteService {
     this.tokenStorage = tokenStorage;
   }
 
-  async vote(id: number) {
+  async vote(id: string) {
     const token = this.tokenStorage.getToken();
-    const data = await this.http.fetch(
-      `${this.http.baseURL}/users/vote/${id}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: {},
-        },
-      }
-    );
+    const data = await this.http.fetch(`/api/users/vote/${id}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `jwt ${token}`,
+      },
+    });
+    return data;
+  }
+
+  async fetchCandidates() {
+    const data = await this.http.fetch(`/api/candidates`, {
+      method: 'GET',
+    });
+    return data;
   }
 }
