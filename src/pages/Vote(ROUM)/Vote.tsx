@@ -49,14 +49,14 @@ const Vote = () => {
 
   const [candidates, setCandidates] = useState<VoteProps["candidates"][]>([]);
 
-  const handleCount = (num: number) => {
-    console.log(candidates[num - 1].name);
+  const handleCount = (index: number) => {
+    //console.log(candidates[index]);
 
     axios
       .post(
         "https://chatminder.cf/api/polls/votes",
         {
-          candidate_name: candidates[num - 1].name,
+          candidate_name: candidates[index].name,
         },
         {
           headers: {
@@ -69,7 +69,7 @@ const Vote = () => {
         alert("소중한 한 표 감사합니다 😉");
         setCandidates((candidate) =>
           candidate.map((item) => {
-            if (item.id === num) {
+            if (item.id === index) {
               return { ...item, votes: item.votes + 1 };
             }
             return item;
@@ -165,7 +165,7 @@ const Vote = () => {
       />
 
       <VoteBox>
-        {candidates.map((candidate) => (
+        {candidates.map((candidate, index) => (
           <CandidateBox width>
             <CandidateList key={candidate.id} {...candidate} />
             <Button
@@ -173,7 +173,7 @@ const Vote = () => {
               flat
               color="error"
               icon={<Heart primaryColor="#e85186" filled />}
-              onClick={() => handleCount(candidate.id)}
+              onClick={() => handleCount(index)}
             />
           </CandidateBox>
         ))}

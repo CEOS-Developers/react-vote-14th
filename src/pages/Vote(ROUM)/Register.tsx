@@ -19,6 +19,7 @@ const Register = () => {
   console.log(userObj);
   const nickname = userObj.nickname;
   const id = userObj.id;
+  const [registerID, setRegisterID] = useState<number>(0);
 
   const navigate = useNavigate();
   const handleLoginClick = () => {
@@ -38,6 +39,7 @@ const Register = () => {
       })
       .then((response) => {
         console.log(response.data);
+        setRegisterID(response.data.id);
         alert("후보로 등록되었습니다. 😉");
       })
       .catch((error) => {
@@ -49,9 +51,9 @@ const Register = () => {
   };
 
   const handleCancle = () => {
-    console.log(`http://chatminder.cf/api/polls/candidates/${id}`);
+    console.log(`http://chatminder.cf/api/polls/candidates/${registerID}`);
     axios
-      .delete(`http://chatminder.cf/api/polls/candidates/${id}`)
+      .delete(`http://chatminder.cf/api/polls/candidates/${registerID}`)
       .then((response) => {
         console.log(response.data);
         alert("후보 등록이 취소되었습니다.");
@@ -119,10 +121,14 @@ const Register = () => {
         src="https://static.wixstatic.com/media/982853_0a088a0f99374ddd85634253179a8a43~mv2.jpeg/v1/fit/w_2500,h_1330,al_c/982853_0a088a0f99374ddd85634253179a8a43~mv2.jpeg"
       />
       <VoteBox>
-        {nickname
-          ? `${nickname} 님, <br />
-        후보 등록을 원하시면 버튼을 눌러주세요.`
-          : `로그인이 필요합니다.`}
+        {nickname ? (
+          <>
+            {nickname} 님, <br />
+            후보 등록을 원하시면 버튼을 눌러주세요.
+          </>
+        ) : (
+          `로그인이 필요합니다.`
+        )}
       </VoteBox>
       <VoteButtonBox>
         <Button
