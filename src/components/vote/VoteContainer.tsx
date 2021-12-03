@@ -8,10 +8,11 @@ import {
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 const VoteContainer = () => {
   const { part } = useParams();
+  const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
   const [selectedCandidateId, setSelectedCandidateId]: any = useState(-1);
 
@@ -51,7 +52,10 @@ const VoteContainer = () => {
           },
         }
       )
-      .then(() => alert('Voted successfully!'));
+      .then(() => {
+        alert('Voted successfully!');
+        navigate('/result');
+      });
   };
 
   return (
