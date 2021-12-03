@@ -19,7 +19,6 @@ export default class AuthService {
       method: 'POST',
       body: JSON.stringify({ userid: id, email: email, password: password }),
     });
-    console.log(data);
   }
 
   async login(id: string | undefined, password: string | undefined) {
@@ -33,7 +32,7 @@ export default class AuthService {
         return data;
       }
     } catch (error) {
-      console.log(error);
+      // 추후 에러 처리 로직 보강
     }
   }
 
