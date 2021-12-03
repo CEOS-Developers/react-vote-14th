@@ -19,7 +19,7 @@ const Login = (props: PropsWithChildren<{}>) => {
     email: undefined,
   });
 
-  const { getUser, setUser, signUp, logIn } = useUser();
+  const { setUser, signUp, logIn } = useUser();
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const {

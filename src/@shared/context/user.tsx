@@ -15,8 +15,8 @@ const voteService = new VoteService(httpClient, tokenStorage);
 type user = {
   id: string | undefined;
   token: string | undefined | null;
-  authService: AuthService | undefined;
-  voteService: VoteService | undefined;
+  authService: AuthService;
+  voteService: VoteService;
 };
 
 //defaultUser 설정
@@ -39,7 +39,7 @@ export const userContext = React.createContext({
 //Action type 설정
 type Action =
   | { type: 'get_user' }
-  | { type: 'set_user'; id: user['id']; password: user['token'] }
+  | { type: 'set_user'; id: user['id']; token: user['token'] }
   | {
       type: 'sign_up';
       id: string | undefined;
@@ -55,19 +55,19 @@ function reducer(state: user, action: Action) {
     case 'get_user':
       return state;
     case 'set_user':
-      return { ...state, id: action.id, token: action.password };
+      return { ...state, id: action.id, token: action.token };
     case 'sign_up': {
       authService.signup(action.id, action.email, action.password);
 
       return state;
     }
     case 'log_in': {
-      authService.login(action.id, action.password);
-      return { ...state, id: action.id, token: tokenStorage.getToken() };
+      const data = authService.login(action.id, action.password);
+      return { ...state, id: action.id, token: authService.getToken() };
     }
     case 'log_out': {
       tokenStorage.deleteToken();
-      return { ...state, id: undefined, token: undefined };
+      return { ...state, id: undefined, token: authService.getToken() };
     }
   }
 }
@@ -78,11 +78,10 @@ export const UserProvider = (props: React.PropsWithChildren<{}>) => {
     reducer,
     defaultUser
   );
-  const token = tokenStorage.getToken();
 
   return (
     <userContext.Provider value={{ user, dispatch }} {...props}>
-      {token ? props.children : <Login />}
+      {authService.getToken() ? props.children : <Login />}
     </userContext.Provider>
   );
 };

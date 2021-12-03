@@ -40,4 +40,8 @@ export default class AuthService {
   async logout() {
     this.tokenStorage.deleteToken();
   }
+
+  getToken() {
+    return this.tokenStorage.getToken();
+  }
 }
