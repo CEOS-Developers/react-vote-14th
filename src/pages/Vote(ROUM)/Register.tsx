@@ -11,14 +11,19 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeCookie } from "../shared/Cookie";
+import { useDispatch } from "react-redux";
+import { setVoteID } from "../shared/reducer";
 
 import axios from "axios";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const userObj: any = useSelector((state: any) => state);
-  console.log(userObj);
+  //console.log(userObj);
   const nickname = userObj.nickname;
   const id = userObj.id;
+  const voteId = userObj.voteId;
+  //console.log(voteId);
   const [registerID, setRegisterID] = useState<number>(0);
 
   const navigate = useNavigate();
@@ -39,7 +44,8 @@ const Register = () => {
       })
       .then((response) => {
         console.log(response.data);
-        setRegisterID(response.data.id);
+        dispatch(setVoteID(response.data.id));
+        //setRegisterID(response.data.id);
         alert("후보로 등록되었습니다. 😉");
       })
       .catch((error) => {
@@ -51,9 +57,9 @@ const Register = () => {
   };
 
   const handleCancle = () => {
-    console.log(`http://chatminder.cf/api/polls/candidates/${registerID}`);
+    console.log(`http://chatminder.cf/api/polls/candidates/${voteId}`);
     axios
-      .delete(`http://chatminder.cf/api/polls/candidates/${registerID}`)
+      .delete(`http://chatminder.cf/api/polls/candidates/${voteId}`)
       .then((response) => {
         console.log(response.data);
         alert("후보 등록이 취소되었습니다.");
