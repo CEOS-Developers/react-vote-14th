@@ -8,31 +8,33 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const ResultContainer = () => {
-  const [resultList, setResultList] = useState([]);
+  const [FEResult, setFEResult] = useState([]);
+  const [BEResult, setBEResult] = useState([]);
 
   useEffect(() => {
     const fetchResult = async () => {
       const response = await axios.get(
-        'https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/vote'
+        `
+        https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/result`
       );
-      setResultList(response.data);
+
+      setFEResult(response.data[0].data);
+      setBEResult(response.data[1].data);
     };
     fetchResult();
   }, []);
-
-  // 내림차순 정렬
-  resultList.sort((a, b: any) => {
-    return b['voteCount'] - a['voteCount'];
-  });
-
-  console.log(resultList);
 
   return (
     <Wrapper>
       <Title>Result</Title>
       <ResultsWrapper>
-        {resultList.map((result: any) => (
-          <ResultWrapper key={result.name}>{result.name}</ResultWrapper>
+        {FEResult.map((result: any) => (
+          <ResultWrapper key={result.id}>{result.name}</ResultWrapper>
+        ))}
+      </ResultsWrapper>
+      <ResultsWrapper>
+        {BEResult.map((result: any) => (
+          <ResultWrapper key={result.id}>{result.name}</ResultWrapper>
         ))}
       </ResultsWrapper>
     </Wrapper>
