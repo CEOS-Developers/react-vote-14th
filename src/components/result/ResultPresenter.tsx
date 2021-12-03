@@ -27,9 +27,10 @@ export const ResultsWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-
   flex-wrap: wrap;
 `;
+
+export const Text = styled.span``;
 
 export const ResultWrapper = styled.section`
   width: 250px;
@@ -39,7 +40,7 @@ export const ResultWrapper = styled.section`
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
   border-radius: 10px;
   border: 1px solid #d2d2d2;

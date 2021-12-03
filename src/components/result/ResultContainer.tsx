@@ -4,6 +4,7 @@ import {
   ResultBox,
   ResultsWrapper,
   ResultWrapper,
+  Text,
 } from './ResultPresenter';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -34,13 +35,22 @@ const ResultContainer = () => {
       <Title>Result</Title>
       <ResultBox>
         <ResultsWrapper>
-          {FEResult.map((candidate: any) => (
-            <ResultWrapper key={candidate.id}>{candidate.name}</ResultWrapper>
+          {FEResult.map((candidate: any, i: number) => (
+            <ResultWrapper key={candidate.id}>
+              <Text>{i + 1 + '등'}</Text>
+              <Text>{candidate.name}</Text>
+
+              <Text>{candidate.vote_count}</Text>
+            </ResultWrapper>
           ))}
         </ResultsWrapper>
         <ResultsWrapper>
-          {BEResult.map((candidate: any) => (
-            <ResultWrapper key={candidate.id}>{candidate.name}</ResultWrapper>
+          {BEResult.map((candidate: any, i: number) => (
+            <ResultWrapper key={candidate.id}>
+              <Text>{i + 1 + '등'}</Text>
+              <Text>{candidate.name}</Text>
+              <Text>{candidate.vote_count}</Text>
+            </ResultWrapper>
           ))}
         </ResultsWrapper>
       </ResultBox>
