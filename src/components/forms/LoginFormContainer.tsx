@@ -1,7 +1,8 @@
 import useInputs from '../../hooks/useInput';
 import { FormContainer, InputContainer } from './LoginFormPresenter';
 import { useLoadingContext } from '../../contexts/LoadingContext';
-import axios from 'axios';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 // 수정 중
 // pw 안보이게 수정필요
@@ -11,30 +12,33 @@ const LoginFormContainer = () => {
 
   // spinner 동작 setting
   const { loading, setLoading }: any = useLoadingContext();
+  // redirect
+  const navigate = useNavigate();
+  // login context
+  const { login }: any = useAuthContext();
 
   const onsubmit = (e: any) => {
     e.preventDefault();
 
     if (userId && userPw) {
-      console.log(userId, userPw);
       setLoading(true);
-      axios
-        .post('https://vote-mailedit.kro.kr/api/signin', {
-          username: userId,
-          password: userPw,
-        })
-        .then((res) => {
-          // setloading 풀어줘
-          setLoading(false);
-          if (res.status === 200) {
-            console.log(res.data);
-            console.log('login success');
+      const payload = { username: userId, password: userPw };
+      login('signin', payload).then((res: any) => {
+        if (res) {
+          const data = localStorage.getItem('userData');
+          if (data) {
+            const parsedData = JSON.parse(data);
+            const part = parsedData.part;
+            if (part === 'FE') {
+              navigate('/vote/frontend');
+            } else {
+              navigate('/vote/backend');
+            }
+          } else {
+            window.alert('something wrong..');
           }
-        })
-        .catch((err) => {
-          setLoading(false);
-          window.alert('회원정보가 일치하지 않습니다.');
-        });
+        }
+      });
     }
   };
 
