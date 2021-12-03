@@ -39,6 +39,7 @@ function Vote() {
                 size={20}
                 onClick={handleClick}
                 name={element.id}
+                key={element.id}
               >
                 {element.name}
               </Radio>
