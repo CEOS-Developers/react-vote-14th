@@ -6,6 +6,7 @@ import { Button } from "@nextui-org/react";
 import { Modal } from "@nextui-org/react";
 import { Text } from "@nextui-org/react";
 import { Heart } from "react-iconly";
+import { getCookie } from "../shared/Cookie";
 
 import {
   Wrapper,
@@ -46,19 +47,39 @@ const Vote = () => {
   const [candidates, setCandidates] = useState<VoteProps["candidates"][]>([]);
 
   const handleCount = (num: number) => {
-    setCandidates((candidates) =>
-      candidates.map((item) => {
+    setCandidates((candidate) =>
+      candidate.map((item) => {
         if (item.id === num) {
           return { ...item, votes: item.votes + 1 };
         }
         return item;
       })
     );
+    console.log(candidates[num - 1].name);
+
+    axios
+      .post(
+        "https://chatminder.cf/api/polls/votes",
+        {
+          candidate_name: candidates[num - 1].name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${getCookie("access")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const sortedCandidates = candidates.sort((a, b) => {
-    return b.votes - a.votes;
-  });
+  // const sortedCandidates = candidates.sort((a, b) => {
+  //   return b.votes - a.votes;
+  // });
 
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
@@ -87,7 +108,7 @@ const Vote = () => {
         <div>
           {userObj.nickname ? (
             <span style={{ color: "grey", marginRight: "1rem" }}>
-              `${userObj.nickname}님, 안녕하세요.`
+              {userObj.nickname}님, 안녕하세요.
             </span>
           ) : (
             <span style={{ color: "grey", marginRight: "1rem" }}>
@@ -125,7 +146,7 @@ const Vote = () => {
       />
 
       <VoteBox>
-        {sortedCandidates.map((candidate) => (
+        {candidates.map((candidate) => (
           <CandidateBox width>
             <CandidateList key={candidate.id} {...candidate} />
             <Button
@@ -163,7 +184,7 @@ const Vote = () => {
           </Text>
         </Modal.Header>
         <Modal.Body>
-          {sortedCandidates.map((candidate) => (
+          {candidates.map((candidate) => (
             <CandidateBox>
               <CandidateList key={candidate.id} {...candidate} />
             </CandidateBox>
