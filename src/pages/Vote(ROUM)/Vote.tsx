@@ -70,16 +70,18 @@ const Vote = () => {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        alert("소중한 한 표 감사합니다 😉");
       })
       .catch((error) => {
         console.log(error);
+        alert("이미 투표 하셨습니다 😅");
       });
   };
 
-  // const sortedCandidates = candidates.sort((a, b) => {
-  //   return b.votes - a.votes;
-  // });
+  const sortedCandidates = candidates.sort((a, b) => {
+    return b.votes - a.votes;
+  });
 
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
@@ -146,7 +148,7 @@ const Vote = () => {
       />
 
       <VoteBox>
-        {candidates.map((candidate) => (
+        {sortedCandidates.map((candidate) => (
           <CandidateBox width>
             <CandidateList key={candidate.id} {...candidate} />
             <Button
@@ -184,7 +186,7 @@ const Vote = () => {
           </Text>
         </Modal.Header>
         <Modal.Body>
-          {candidates.map((candidate) => (
+          {sortedCandidates.map((candidate) => (
             <CandidateBox>
               <CandidateList key={candidate.id} {...candidate} />
             </CandidateBox>
