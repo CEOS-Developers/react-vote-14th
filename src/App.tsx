@@ -34,9 +34,11 @@ function App() {
     setIsAuth(true);
     axios.defaults.headers.common['Authorization'] = token;
 
+    console.log(ud);
+
     if (ud.part === 'BE') {
       navigate(`/vote/backend`);
-    } else {
+    } else if (ud.part === 'FE') {
       navigate(`/vote/frontend`);
     }
   };
@@ -49,7 +51,7 @@ function App() {
 
   return (
     <>
-      {loading ?? <Spinner />}
+      {loading && <Spinner />}
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
