@@ -13,7 +13,8 @@ const Vote = () => {
   const handleLogoutClick = () => {
     removeCookie('access');
     removeCookie('refresh');
-    navigate('/login');
+    alert('로그아웃 되었습니다!');
+    navigate(0);
   };
 
   return (
