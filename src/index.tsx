@@ -35,6 +35,10 @@ const Container = styled.div`
   overflow: auto;
   padding: 5vmin;
   border-radius: 3vmin;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 `;
 
 ReactDOM.render(
