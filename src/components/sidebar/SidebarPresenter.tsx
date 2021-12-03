@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Sidebar = styled.section`
@@ -19,7 +19,7 @@ export const ItemsWrapper = styled.section`
   margin-top: 10%;
 `;
 
-export const StyledNavLink = styled(NavLink)`
+export const StyledLink = styled(Link)`
   height: 25%;
   width: 100%;
 
