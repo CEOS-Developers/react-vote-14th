@@ -23,8 +23,6 @@ const Register = () => {
   const nickname = userObj.nickname;
   const id = userObj.id;
   const voteId = userObj.voteId;
-  //console.log(voteId);
-  const [registerID, setRegisterID] = useState<number>(0);
 
   const navigate = useNavigate();
   const handleLoginClick = () => {
@@ -45,7 +43,6 @@ const Register = () => {
       .then((response) => {
         console.log(response.data);
         dispatch(setVoteID(response.data.id));
-        //setRegisterID(response.data.id);
         alert("후보로 등록되었습니다. 😉");
       })
       .catch((error) => {
