@@ -32,7 +32,7 @@ function App() {
 
   return (
     <>
-      {loading ? <Spinner /> : null}
+      {loading ?? <Spinner />}
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
