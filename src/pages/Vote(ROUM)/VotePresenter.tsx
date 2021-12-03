@@ -17,19 +17,20 @@ export const VoteBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   //height: 45vh;
 `;
 
 export const LoginBox = styled.div`
   display: flex;
-  justify-content: flex-end;
-  margin: 1rem 2rem 0 0;
+  justify-content: space-between;
+  margin: 1rem 2rem 0rem 1rem;
 `;
 
 export const VoteButtonBox = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 2rem;
   margin-bottom: 2rem;
 `;
 

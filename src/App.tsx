@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Vote from "./pages/Vote(ROUM)/Vote";
 import LogIn from "./pages/Auth(SEEWON)/LogIn";
+import Register from "./pages/Vote(ROUM)/Register";
 import axios from "axios";
 import { getCookie } from "./pages/shared/Cookie";
 
@@ -44,6 +45,7 @@ const App = () => {
         <Routes>
           <Route path={`/`} element={<Vote />} />
           <Route path={`/login`} element={<LogIn />} />
+          <Route path={`/register`} element={<Register />} />
         </Routes>
       </BrowserRouter>
     </>

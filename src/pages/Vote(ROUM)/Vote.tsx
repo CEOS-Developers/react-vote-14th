@@ -112,6 +112,18 @@ const Vote = () => {
   return (
     <Wrapper>
       <LoginBox>
+        <>
+          <Button
+            size="small"
+            auto
+            color="#A4A4A4"
+            rounded
+            flat
+            onClick={() => navigate("/register")}
+          >
+            후보 등록하러 가기
+          </Button>
+        </>
         <div>
           {userObj.nickname ? (
             <span style={{ color: "grey", marginRight: "1rem" }}>
