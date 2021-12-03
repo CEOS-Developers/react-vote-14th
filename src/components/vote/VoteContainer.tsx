@@ -39,28 +39,23 @@ const VoteContainer = () => {
   };
 
   const token = JSON.stringify(localStorage.getItem('token'));
+  console.log(`JWT ${token.replaceAll('"', '')}`);
 
   const handleSubmit = () => {
-    axios
-      .post(
-        `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
-        null,
-        {
-          headers: {
-            Authorization: `JWT ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-
-        alert('Voted successfully');
-      });
+    axios.post(
+      `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
+      null,
+      {
+        headers: {
+          Authorization: `JWT ${token.replaceAll('"', '')}`,
+        },
+      }
+    );
   };
 
   return (
     <Wrapper>
-      <Title>Front-end</Title>
+      <Title>{part}</Title>
       <CandidatesWrapper>
         {candidates.map((candidate: any) => (
           <CandidateButton
