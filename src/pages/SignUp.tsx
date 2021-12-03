@@ -5,7 +5,6 @@ import {
   InputContainer,
 } from '../components/forms/LoginFormPresenter';
 import { useAuthContext } from '../contexts/AuthContext';
-import { useLoadingContext } from '../contexts/LoadingContext';
 import useInputs from '../hooks/useInput';
 import { isPart, isPassword, isUserName } from '../utils/validator';
 
@@ -24,15 +23,12 @@ const SignUp = () => {
   const navigate = useNavigate();
   // login context
   const { login }: any = useAuthContext();
-  // loading spinner context
-  const { setLoading }: any = useLoadingContext();
 
   const handleRadio = (e: any) => {
     setPart(e.target.value);
   };
 
   const handleSubmit = (e: any) => {
-    setLoading(true);
     e.preventDefault();
     // body에 담아서 보낼 거 세팅 후 submit
     const payload = {
@@ -71,7 +67,6 @@ const SignUp = () => {
         }
       }
     });
-    setLoading(false);
   }
 
   return (
