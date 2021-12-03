@@ -13,31 +13,46 @@ import { useParams } from 'react-router';
 const VoteContainer = () => {
   const { part } = useParams();
   const [candidates, setCandidates] = useState([]);
-  const [selectedCandidate, setSelectedCandidate] = useState('');
+  const [selectedCandidateId, setSelectedCandidateId]: any = useState(-1);
+
+  const [urlPart, setUrlPart] = useState('');
 
   useEffect(() => {
+    // url 수정 예정이라 일단 이렇게 짰어요
+    if (part === 'frontend') {
+      setUrlPart('FE');
+    } else if (part === 'backend') {
+      setUrlPart('BE');
+    }
+
     const fetchCandidates = async () => {
       const response = await axios.get(
-        `https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/vote/${part}`
+        `https://vote-mailedit.kro.kr/api/candidate?part=${urlPart}`
       );
       setCandidates(response.data);
     };
     fetchCandidates();
-  }, [part]);
+  }, [part, urlPart]);
 
   const handleCandidateButtonClick = (e: any) => {
-    setSelectedCandidate(e.target.value);
+    setSelectedCandidateId(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const token = JSON.stringify(localStorage.getItem('token'));
+
+  const handleSubmit = () => {
     axios
       .post(
-        'https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/selected',
-        selectedCandidate
+        `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
+        null,
+        {
+          headers: {
+            Authorization: `JWT ${token}`,
+          },
+        }
       )
-      .then((res) => {
-        console.log(res.config.data);
-        // console.log(selectedCandidate);
+      .then((response) => {
+        console.log(response);
 
         alert('Voted successfully');
       });
@@ -50,7 +65,7 @@ const VoteContainer = () => {
         {candidates.map((candidate: any) => (
           <CandidateButton
             key={candidate.name}
-            value={candidate.name}
+            value={candidate.id}
             onClick={handleCandidateButtonClick}
           >
             {candidate.name}

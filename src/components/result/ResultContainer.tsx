@@ -1,6 +1,7 @@
 import {
   Wrapper,
   Title,
+  ResultBox,
   ResultsWrapper,
   ResultWrapper,
 } from './ResultPresenter';
@@ -12,31 +13,37 @@ const ResultContainer = () => {
   const [BEResult, setBEResult] = useState([]);
 
   useEffect(() => {
-    const fetchResult = async () => {
-      const response = await axios.get(
-        `
-        https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/result`
+    const fetchFEResult = async () => {
+      const FEResponse = await axios.get(
+        'https://vote-mailedit.kro.kr/api/candidate/result?part=FE'
       );
 
-      setFEResult(response.data[0].data);
-      setBEResult(response.data[1].data);
+      const BEResponse = await axios.get(
+        'https://vote-mailedit.kro.kr/api/candidate/result?part=BE'
+      );
+
+      setFEResult(FEResponse.data);
+      setBEResult(BEResponse.data);
     };
-    fetchResult();
+
+    fetchFEResult();
   }, []);
 
   return (
     <Wrapper>
       <Title>Result</Title>
-      <ResultsWrapper>
-        {FEResult.map((result: any) => (
-          <ResultWrapper key={result.id}>{result.name}</ResultWrapper>
-        ))}
-      </ResultsWrapper>
-      <ResultsWrapper>
-        {BEResult.map((result: any) => (
-          <ResultWrapper key={result.id}>{result.name}</ResultWrapper>
-        ))}
-      </ResultsWrapper>
+      <ResultBox>
+        <ResultsWrapper>
+          {FEResult.map((candidate: any) => (
+            <ResultWrapper key={candidate.id}>{candidate.name}</ResultWrapper>
+          ))}
+        </ResultsWrapper>
+        <ResultsWrapper>
+          {BEResult.map((candidate: any) => (
+            <ResultWrapper key={candidate.id}>{candidate.name}</ResultWrapper>
+          ))}
+        </ResultsWrapper>
+      </ResultBox>
     </Wrapper>
   );
 };
