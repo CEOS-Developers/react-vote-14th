@@ -81,17 +81,6 @@ const Vote = () => {
     fetchData();
   }, []);
 
-  // const onClick = () => {
-  //   axios
-  //     .get("https://chatminder.cf/polls/candidates/")
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
   return (
     <Wrapper>
       <LoginBox>

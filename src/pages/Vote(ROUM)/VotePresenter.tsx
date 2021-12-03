@@ -17,7 +17,7 @@ export const VoteBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 45vh;
+  //height: 45vh;
 `;
 
 export const LoginBox = styled.div`
