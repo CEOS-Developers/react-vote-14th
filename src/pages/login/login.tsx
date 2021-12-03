@@ -8,7 +8,7 @@ import React, {
 import styled from 'styled-components';
 import { userContext } from '../../@shared/context/user';
 import useUser from '../../@shared/hooks/useUser';
-import { Button, Input, Spacer } from '@nextui-org/react';
+import { Button, Input, Spacer, Checkbox } from '@nextui-org/react';
 import { FormElement } from '@nextui-org/react/esm/input/input-props';
 
 const Login = (props: PropsWithChildren<{}>) => {
@@ -22,28 +22,11 @@ const Login = (props: PropsWithChildren<{}>) => {
     email: undefined,
   });
 
+  const [checked, setChecked] = useState(false);
+
   const { setUser, signUp, logIn } = useUser();
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    const {
-      target: { name, value },
-    } = event;
-
-    switch (name) {
-      case 'id':
-        setLoginInfo({ ...loginInfo, id: value });
-        break;
-      case 'password':
-        setLoginInfo({ ...loginInfo, password: value });
-        break;
-      case 'email':
-        setLoginInfo({ ...loginInfo, email: value });
-        break;
-      default:
-    }
-  };
-
-  const handleChange2:
+  const handleChange:
     | ((e: React.ChangeEvent<FormElement>) => void)
     | undefined = (event) => {
     const {
@@ -62,6 +45,10 @@ const Login = (props: PropsWithChildren<{}>) => {
         break;
       default:
     }
+  };
+
+  const handleCheck = () => {
+    setChecked(() => !checked);
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -90,7 +77,7 @@ const Login = (props: PropsWithChildren<{}>) => {
       <Input
         name="id"
         labelPlaceholder="ID"
-        onChange={handleChange2}
+        onChange={handleChange}
         color="primary"
         bordered={true}
         width="250px"
@@ -99,7 +86,7 @@ const Login = (props: PropsWithChildren<{}>) => {
       <Input.Password
         name="password"
         labelPlaceholder="Password"
-        onChange={handleChange2}
+        onChange={handleChange}
         width="250px"
         color="primary"
         bordered={true}
@@ -108,19 +95,31 @@ const Login = (props: PropsWithChildren<{}>) => {
       <Button onClick={handleClickLogin} size="large">
         로그인
       </Button>
-      <Spacer y={1.5} />
-      <Input
-        name="email"
-        labelPlaceholder="E-mail"
-        onChange={handleChange2}
-        color="primary"
-        bordered={true}
-        width="250px"
-      />
       <Spacer y={1} />
-      <Button onClick={handleClickSignUp} size="large">
-        회원가입
-      </Button>
+      <Checkbox color="gradient" checked={checked} onClick={handleCheck}>
+        계정이 없으신가요?
+      </Checkbox>
+      <Spacer y={1.5} />
+      {(() => {
+        if (checked) {
+          return (
+            <>
+              <Input
+                name="email"
+                labelPlaceholder="E-mail"
+                onChange={handleChange}
+                color="primary"
+                bordered={true}
+                width="250px"
+              />
+              <Spacer y={1} />
+              <Button onClick={handleClickSignUp} size="large">
+                회원가입
+              </Button>
+            </>
+          );
+        }
+      })()}
     </LogInContainer>
   );
 };

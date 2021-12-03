@@ -28,7 +28,7 @@ const Background = styled.div`
   width: 100vw;
 `;
 const Container = styled.div`
-  background-color: #f3f3f3;
+  background-color: #ffffff;
   width: 75vmin;
   height: 90vmin;
   display: flex;
