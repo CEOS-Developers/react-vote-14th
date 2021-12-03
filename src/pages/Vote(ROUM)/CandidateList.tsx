@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { VoteProps } from "./Vote";
-import { TextItem } from "./VotePresenter";
+import { VoteProps } from './Vote';
+import { TextItem } from './VotePresenter';
 
 const CandidateList = (
-  candidate: VoteProps["candidates"]
+  candidate: VoteProps['candidates']
   //isResult: VoteProps["isResult"]
 ): JSX.Element => {
   return (

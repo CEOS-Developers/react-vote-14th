@@ -1,20 +1,18 @@
-import React, { useState } from "react";
-
-import { Button } from "@nextui-org/react";
+import { Button } from '@nextui-org/react';
 import {
   Wrapper,
   Logo,
   LoginBox,
   VoteButtonBox,
   VoteBox,
-} from "./VotePresenter";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { removeCookie } from "../shared/Cookie";
-import { useDispatch } from "react-redux";
-import { setVoteID } from "../shared/reducer";
+} from './VotePresenter';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { removeCookie } from '../shared/Cookie';
+import { useDispatch } from 'react-redux';
+import { setVoteID } from '../shared/reducer';
 
-import axios from "axios";
+import axios from 'axios';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -26,46 +24,45 @@ const Register = () => {
 
   const navigate = useNavigate();
   const handleLoginClick = () => {
-    navigate("/login");
+    navigate('/login');
   };
   const handleLogoutClick = () => {
-    removeCookie("access");
-    removeCookie("refresh");
-    alert("로그아웃 되었습니다!");
+    removeCookie('access');
+    removeCookie('refresh');
+    alert('로그아웃 되었습니다!');
     navigate(0);
   };
 
   const handleRegister = () => {
     axios
-      .post("http://chatminder.cf/api/polls/candidates", {
+      .post('https://chatminder.cf/api/polls/candidates', {
         name: nickname,
       })
       .then((response) => {
         console.log(response.data);
         dispatch(setVoteID(response.data.id));
-        alert("후보로 등록되었습니다. 😉");
+        alert('후보로 등록되었습니다. 😉');
       })
       .catch((error) => {
         console.log(error);
         id === 0
-          ? alert("로그인이 필요합니다.")
-          : alert("이미 등록되었습니다. ");
+          ? alert('로그인이 필요합니다.')
+          : alert('이미 등록되었습니다. ');
       });
   };
 
   const handleCancle = () => {
-    console.log(`http://chatminder.cf/api/polls/candidates/${voteId}`);
     axios
-      .delete(`http://chatminder.cf/api/polls/candidates/${voteId}`)
+      .delete(`https://chatminder.cf/api/polls/candidates/${voteId}`)
       .then((response) => {
         console.log(response.data);
-        alert("후보 등록이 취소되었습니다.");
+        alert('후보 등록이 취소되었습니다.');
       })
       .catch((error) => {
         console.log(error);
         id === 0
-          ? alert("로그인이 필요합니다.")
-          : alert("이미 취소되었습니다. ");
+          ? alert('로그인이 필요합니다.')
+          : alert('이미 취소되었습니다. ');
       });
   };
 
@@ -79,18 +76,18 @@ const Register = () => {
             color="#A4A4A4"
             rounded
             flat
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
           >
             투표하러 가기
           </Button>
         </>
         <div>
           {nickname ? (
-            <span style={{ color: "grey", marginRight: "1rem" }}>
+            <span style={{ color: 'grey', marginRight: '1rem' }}>
               {nickname}님, 안녕하세요.
             </span>
           ) : (
-            <span style={{ color: "grey", marginRight: "1rem" }}>
+            <span style={{ color: 'grey', marginRight: '1rem' }}>
               로그인해야 등록할 수 있습니다.
             </span>
           )}
@@ -139,7 +136,7 @@ const Register = () => {
           color="#e85186"
           auto
           onClick={() => handleCancle()}
-          style={{ marginRight: "2rem" }}
+          style={{ marginRight: '2rem' }}
         >
           후보 취소하기
         </Button>

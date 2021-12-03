@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { CssBaseline } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { Modal } from "@nextui-org/react";
-import { Text } from "@nextui-org/react";
-import { Heart } from "react-iconly";
-import { getCookie } from "../shared/Cookie";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@nextui-org/react';
+import { Modal } from '@nextui-org/react';
+import { Text } from '@nextui-org/react';
+import { Heart } from 'react-iconly';
+import { getCookie } from '../shared/Cookie';
 
 import {
   Wrapper,
@@ -16,11 +15,11 @@ import {
   VoteButtonBox,
   CandidateBox,
   TextItem,
-} from "./VotePresenter";
-import CandidateList from "./CandidateList";
+} from './VotePresenter';
+import CandidateList from './CandidateList';
 
-import { useSelector } from "react-redux";
-import { removeCookie } from "../shared/Cookie";
+import { useSelector } from 'react-redux';
+import { removeCookie } from '../shared/Cookie';
 
 export interface VoteProps {
   candidates: {
@@ -38,35 +37,35 @@ const Vote = () => {
 
   const navigate = useNavigate();
   const handleLoginClick = () => {
-    navigate("/login");
+    navigate('/login');
   };
   const handleLogoutClick = () => {
-    removeCookie("access");
-    removeCookie("refresh");
-    alert("로그아웃 되었습니다!");
+    removeCookie('access');
+    removeCookie('refresh');
+    alert('로그아웃 되었습니다!');
     navigate(0);
   };
 
-  const [candidates, setCandidates] = useState<VoteProps["candidates"][]>([]);
+  const [candidates, setCandidates] = useState<VoteProps['candidates'][]>([]);
 
   const handleCount = (index: number) => {
     //console.log(candidates[index]);
 
     axios
       .post(
-        "https://chatminder.cf/api/polls/votes",
+        'https://chatminder.cf/api/polls/votes',
         {
           candidate_name: candidates[index].name,
         },
         {
           headers: {
-            Authorization: `Bearer ${getCookie("access")}`,
+            Authorization: `Bearer ${getCookie('access')}`,
           },
         }
       )
       .then((response) => {
         console.log(response.data);
-        alert("소중한 한 표 감사합니다 😉");
+        alert('소중한 한 표 감사합니다 😉');
         setCandidates((candidate) =>
           candidate.map((item) => {
             if (item.id === index) {
@@ -79,8 +78,8 @@ const Vote = () => {
       .catch((error) => {
         console.log(error);
         id === 0
-          ? alert("로그인이 필요합니다.")
-          : alert("이미 투표 하셨습니다 😅");
+          ? alert('로그인이 필요합니다.')
+          : alert('이미 투표 하셨습니다 😅');
       });
   };
 
@@ -99,7 +98,7 @@ const Vote = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://chatminder.cf/polls/candidates"
+          'https://chatminder.cf/polls/candidates'
         );
         setCandidates(response.data);
       } catch (error) {
@@ -119,18 +118,18 @@ const Vote = () => {
             color="#A4A4A4"
             rounded
             flat
-            onClick={() => navigate("/register")}
+            onClick={() => navigate('/register')}
           >
             후보 등록하러 가기
           </Button>
         </>
         <div>
           {userObj.nickname ? (
-            <span style={{ color: "grey", marginRight: "1rem" }}>
+            <span style={{ color: 'grey', marginRight: '1rem' }}>
               {userObj.nickname}님, 안녕하세요.
             </span>
           ) : (
-            <span style={{ color: "grey", marginRight: "1rem" }}>
+            <span style={{ color: 'grey', marginRight: '1rem' }}>
               로그인해야 투표할 수 있습니다.
             </span>
           )}

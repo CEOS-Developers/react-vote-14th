@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ type WidthType = {
 };
 
 export const TextItem = styled.div<WidthType>`
-  width: ${(props) => props.width || "5rem"};
+  width: ${(props) => props.width || '5rem'};
 `;
 
 export const TextBox = styled.div``;
@@ -52,6 +52,6 @@ export const CandidateBox = styled.div<WidthProps>`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: ${(props) => (props.width ? "20rem" : "100%")};
+  width: ${(props) => (props.width ? '20rem' : '100%')};
   margin-bottom: 1rem;
 `;
