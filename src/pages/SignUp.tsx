@@ -17,7 +17,7 @@ interface Payload {
 const SignUp = () => {
   const [userId, setuserId] = useInputs('');
   const [userPw, setuserPw] = useInputs('');
-  const [part, setPart] = useState('');
+  const [userPart, setUserPart] = useState('');
 
   // redirect
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const SignUp = () => {
   const { login }: any = useAuthContext();
 
   const handleRadio = (e: any) => {
-    setPart(e.target.value);
+    setUserPart(e.target.value);
   };
 
   const handleSubmit = (e: any) => {
@@ -34,7 +34,7 @@ const SignUp = () => {
     const payload = {
       username: userId,
       password: userPw,
-      part: part,
+      part: userPart,
     };
     // axios call 하기 전 유효성 검사
     if (checkSignUpForm(payload)) {
@@ -60,7 +60,7 @@ const SignUp = () => {
   function onSubmit(payload: Payload) {
     login('signup', payload).then((res: any) => {
       if (res) {
-        if (part === 'FE') {
+        if (userPart === 'FE') {
           navigate('/vote/frontend');
         } else {
           navigate('/vote/backend');

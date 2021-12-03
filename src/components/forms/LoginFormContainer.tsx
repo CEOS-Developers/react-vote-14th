@@ -29,6 +29,7 @@ const LoginFormContainer = () => {
           if (data) {
             const parsedData = JSON.parse(data);
             const part = parsedData.part;
+            console.log(parsedData);
             if (part === 'FE') {
               navigate('/vote/frontend');
             } else {
