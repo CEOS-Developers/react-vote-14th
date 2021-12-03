@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.section`
   width: 80%;
@@ -12,8 +12,16 @@ export const Title = styled.span`
   margin: 0;
 `;
 
+export const ResultBox = styled.section`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+`;
+
 export const ResultsWrapper = styled.section`
-  width: 80%;
+  width: 50%;
   height: 80%;
 
   display: flex;
@@ -21,12 +29,10 @@ export const ResultsWrapper = styled.section`
   justify-content: center;
 
   flex-wrap: wrap;
-
-  border: 1px solid black;
 `;
 
 export const ResultWrapper = styled.section`
-  width: 500px;
+  width: 250px;
   height: 50px;
 
   margin: 0 25px;

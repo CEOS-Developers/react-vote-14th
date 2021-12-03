@@ -19,8 +19,6 @@ const AuthProvider = ({ children }: any) => {
             setIsAuth(true);
             const user = res.data.user;
             const token = res.data.token;
-            console.log(user);
-            console.log(token);
 
             axios.defaults.headers.common['Authorization'] = token.access;
 
@@ -36,7 +34,6 @@ const AuthProvider = ({ children }: any) => {
           if (err.code === 'ECONNABORTED') {
             window.alert('timeout error handle');
           }
-          console.log('something wrong');
           return reject(err);
         });
     });

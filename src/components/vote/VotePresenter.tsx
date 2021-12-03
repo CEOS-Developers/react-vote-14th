@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.section`
   width: 80%;
@@ -25,7 +25,7 @@ export const CandidatesWrapper = styled.section`
   border: 1px solid black;
 `;
 
-export const CandidateWrapper = styled.section`
+export const CandidateButton = styled.button`
   width: 150px;
   height: 50px;
 
@@ -35,8 +35,18 @@ export const CandidateWrapper = styled.section`
   align-items: center;
   justify-content: center;
 
+  background: none;
   border-radius: 10px;
   border: 1px solid #d2d2d2;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    background: #4c90de;
+    color: #ffffff;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -47,4 +57,8 @@ export const SubmitButton = styled.button`
 
   border: 1px solid black;
   border-radius: 15px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

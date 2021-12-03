@@ -2,35 +2,73 @@ import {
   Wrapper,
   Title,
   CandidatesWrapper,
-  CandidateWrapper,
+  CandidateButton,
   SubmitButton,
-} from "./VotePresenter";
+} from './VotePresenter';
 
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 const VoteContainer = () => {
+  const { part } = useParams();
   const [candidates, setCandidates] = useState([]);
+  const [selectedCandidateId, setSelectedCandidateId]: any = useState(-1);
+
+  const [urlPart, setUrlPart] = useState('');
 
   useEffect(() => {
+    // url 수정 예정이라 일단 대충 이렇게 짰어요... ^^ 부끄러운 코드
+    if (part === 'frontend') {
+      setUrlPart('FE');
+    } else if (part === 'backend') {
+      setUrlPart('BE');
+    }
+
     const fetchCandidates = async () => {
       const response = await axios.get(
-        "https://9a63efda-a674-4015-be3c-824740a2aa52.mock.pstmn.io/vote"
+        `https://vote-mailedit.kro.kr/api/candidate?part=${urlPart}`
       );
       setCandidates(response.data);
     };
     fetchCandidates();
-  }, []);
+  }, [part, urlPart]);
+
+  const handleCandidateButtonClick = (e: any) => {
+    setSelectedCandidateId(e.target.value);
+  };
+
+  const token = JSON.stringify(localStorage.getItem('token'));
+
+  const handleSubmit = () => {
+    axios
+      .post(
+        `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
+        null,
+        {
+          headers: {
+            Authorization: `JWT ${token.replaceAll('"', '')}`,
+          },
+        }
+      )
+      .then(() => alert('Voted successfully!'));
+  };
 
   return (
     <Wrapper>
-      <Title>Front-end</Title>
+      <Title>{part}</Title>
       <CandidatesWrapper>
         {candidates.map((candidate: any) => (
-          <CandidateWrapper>{candidate.name}</CandidateWrapper>
+          <CandidateButton
+            key={candidate.name}
+            value={candidate.id}
+            onClick={handleCandidateButtonClick}
+          >
+            {candidate.name}
+          </CandidateButton>
         ))}
       </CandidatesWrapper>
-      <SubmitButton>Vote!</SubmitButton>
+      <SubmitButton onClick={handleSubmit}>Vote!</SubmitButton>
     </Wrapper>
   );
 };
