@@ -30,11 +30,11 @@ export default class AuthService {
     try {
       if (data.token) {
         this.tokenStorage.saveToken(data.token);
+        return data;
       }
     } catch (error) {
       console.log(error);
     }
-    return data;
   }
 
   async logout() {

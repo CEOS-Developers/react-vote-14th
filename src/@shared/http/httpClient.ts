@@ -16,7 +16,7 @@ export default class HttpClient {
       return res.json();
     } else {
       const message = JSON.stringify(res.status);
-      console.log('에러발생!', message);
+      alert('잘못된 접근입니다.');
     }
   }
 }
