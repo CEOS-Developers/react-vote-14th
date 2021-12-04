@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
+import { RootState, useAppSelector } from '../../app/store';
 import { getCandidateThunk } from '../../app/vote/thunks';
 const Vote = () => {
   const dispatch = useDispatch();
-  const candidates = useSelector((state: RootState) => state.voteReducer);
+  const candidates = useAppSelector((state) => state.voteReducer);
   useEffect(() => {
     dispatch(getCandidateThunk());
   }, [dispatch]);
