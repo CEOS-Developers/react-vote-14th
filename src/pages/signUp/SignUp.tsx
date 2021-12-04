@@ -3,7 +3,7 @@ import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
 import { Col } from '../../components/Containers';
 import useAuth from '../../hooks/useAuth';
-import { SignUpPayloadI } from '../../app/auth/auth';
+import { SignUpPayloadI } from '../../app/auth/types';
 
 const SignUp = () => {
   const { postSignUp } = useAuth();

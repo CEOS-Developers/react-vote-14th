@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import memoReducer from './ExampleRTK/exampleRTK';
+import { authReducer } from './auth/reducer';
 import { voteReducer } from './vote/reducer';
 
 const rootReducer = combineReducers({
-  memoReducer: memoReducer,
+  authReducer: authReducer,
   voteReducer: voteReducer,
 });
 export default rootReducer;
