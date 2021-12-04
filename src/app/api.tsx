@@ -13,13 +13,18 @@ class Api {
   };
 
   requestPostSignUp = async (payload: SignUpPayloadI) => {
-    const res = await axios.post('register', payload);
+    const res = await axios.post('register/', payload);
     return res.data;
   };
 
   requestPostLogin = async (payload: LoginPayloadI) => {
-    const res = await axios.post('login', payload);
+    const res = await axios.post('login/', payload);
     return res.data;
+  };
+
+  requestCheckUserVerification = async () => {
+    const res = await axios.post('user/verify/');
+    return res.status;
   };
 }
 
