@@ -19,7 +19,6 @@ const withAuth = (
           navigate('/vote');
           return;
         }
-        navigate('/sign-up');
       }
     }, [authorized]);
 

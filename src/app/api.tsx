@@ -24,6 +24,7 @@ class Api {
 
   requestCheckUserVerification = async () => {
     const res = await axios.post('user/verify/');
+    console.log('api res: ', res);
     return res.status;
   };
 }

@@ -81,7 +81,7 @@ export function checkUserVerificationThunk(): ThunkAction<
     dispatch(setAuthLoading(true));
 
     try {
-      const res = await api.requestCheckUserVerification;
+      const res = await api.requestCheckUserVerification();
       dispatch(success(res));
     } catch (e: any) {
       console.log('CHECK USER VERIFICATION THUNK ERR: ', e);
