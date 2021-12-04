@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
 import { Col } from '../../components/Containers';
@@ -22,14 +22,21 @@ const SignUp = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          width: '80%',
+          width: '100%',
           height: '100%',
-          margin: 'auto',
         }}
         onFinish={onSubmitHandler}
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: 'Please input your email!' }]}
+        >
+          <Input />
+        </Form.Item>
+
         <Form.Item
           label="Username"
           name="username"
@@ -41,7 +48,25 @@ const SignUp = () => {
         <Form.Item
           label="Password"
           name="password1"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[
+            {
+              required: true,
+
+              message: 'Please input your password!',
+            },
+            {
+              min: 8,
+              message: '8글자 이상 입력해주세요',
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!/^[a-zA-Z0-9]+$/.test(value)) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('특수 문자를 포함해주세요'));
+              },
+            }),
+          ]}
         >
           <Input.Password />
         </Form.Item>
@@ -49,7 +74,22 @@ const SignUp = () => {
         <Form.Item
           label="Confirm Password"
           name="password2"
-          rules={[{ required: true, message: 'Confirm your password!' }]}
+          rules={[
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (value && getFieldValue('password1') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error('Please Confirm your Password'),
+                );
+              },
+            }),
+            {
+              required: true,
+              message: 'Please input your Password again',
+            },
+          ]}
         >
           <Input.Password />
         </Form.Item>
@@ -68,10 +108,9 @@ const Container = styled(Col)`
   justify-content: center;
   align-items: center;
 
-  width: 100%;
   height: 100vh;
 
-  margin: auto;
+  margin: 0 10%;
 `;
 
 export default SignUp;
