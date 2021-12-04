@@ -18,12 +18,15 @@ const Login = () => {
   const onSubmitHandler = (e: LoginPayloadI) => {
     postLogin(e);
   };
+
+  const goSignUp = () => {
+    navigate('/sign-up');
+  };
+
   return (
     <Container>
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -35,6 +38,15 @@ const Login = () => {
         //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        <Button
+          style={{
+            alignSelf: 'flex-end',
+            marginBottom: '24px',
+          }}
+          onClick={goSignUp}
+        >
+          Go to Sign Up!
+        </Button>
         <Form.Item
           label="Email"
           name="email"
@@ -77,11 +89,13 @@ const Login = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ alignSelf: 'flex-end' }}
+        >
+          Login
+        </Button>
       </Form>
     </Container>
   );

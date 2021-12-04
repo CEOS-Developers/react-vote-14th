@@ -20,11 +20,8 @@ const SignUp = () => {
 
   return (
     <Container>
-      <Button onClick={goLoginPage}>Login</Button>
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -33,9 +30,18 @@ const SignUp = () => {
           height: '100%',
         }}
         onFinish={onSubmitHandler}
-        //   onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        <Button
+          onClick={goLoginPage}
+          style={{
+            alignSelf: 'flex-end',
+            marginBottom: '24px',
+          }}
+        >
+          Go to Login!
+        </Button>
+
         <Form.Item
           label="Email"
           name="email"
@@ -101,11 +107,15 @@ const SignUp = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{
+            alignSelf: 'flex-end',
+          }}
+        >
+          Sign Up
+        </Button>
       </Form>
     </Container>
   );
