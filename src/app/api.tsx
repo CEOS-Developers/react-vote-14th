@@ -1,3 +1,4 @@
+import { LoginPayloadI, SignUpPayloadI } from './auth/types';
 import axios from './customAxios';
 
 class Api {
@@ -8,6 +9,16 @@ class Api {
 
   requestPostVote = async () => {
     const res = await axios.post('');
+    return res.data;
+  };
+
+  requestPostSignUp = async (payload: SignUpPayloadI) => {
+    const res = await axios.post('register', payload);
+    return res.data;
+  };
+
+  requestPostLogin = async (payload: LoginPayloadI) => {
+    const res = await axios.post('login', payload);
     return res.data;
   };
 }
