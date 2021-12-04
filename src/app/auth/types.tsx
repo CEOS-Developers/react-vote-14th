@@ -3,6 +3,8 @@ import { ActionType } from 'typesafe-actions';
 
 export type ActionT = ActionType<typeof actions>;
 
+export const SET_AUTH_LOADING = 'auth/SET_AUTH_LOADING';
+
 export interface UserI {
   id: number;
   username: string;
@@ -36,6 +38,5 @@ export interface SignUpResponseI {
 export interface AuthReducerI {
   loading: boolean;
   success: boolean;
+  authorized: boolean;
 }
-
-export {};

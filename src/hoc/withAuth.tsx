@@ -1,11 +1,32 @@
-import React, { JSXElementConstructor, ReactElement } from 'react';
+import React, { JSXElementConstructor, ReactElement, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
-const withAuth = (WrappedComponent: React.FC<{}>): React.FC<{}> => {
+const withAuth = (
+  WrappedComponent: React.FC<{}>,
+  isAuthorizingNeed: boolean,
+): ReactElement<any, string | JSXElementConstructor<any>> => {
   const Auth = () => {
-    return <WrappedComponent />;
+    const { checkUserVerification, authorized, authLoading } = useAuth();
+    const navigate = useNavigate();
+    useEffect(() => {
+      checkUserVerification();
+    }, []);
+
+    useEffect(() => {
+      if (isAuthorizingNeed) {
+        if (authorized) {
+          navigate('/vote');
+          return;
+        }
+        navigate('/sign-up');
+      }
+    }, [authorized]);
+
+    return authLoading ? <div>Loading...</div> : <WrappedComponent />;
   };
 
-  return Auth;
+  return <Auth />;
 };
 
 export default withAuth;

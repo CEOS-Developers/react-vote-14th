@@ -1,19 +1,26 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
 import { Col } from '../../components/Containers';
 import useAuth from '../../hooks/useAuth';
 import { SignUpPayloadI } from '../../app/auth/types';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const { postSignUp } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmitHandler = (e: SignUpPayloadI) => {
     postSignUp(e);
   };
 
+  const goLoginPage = () => {
+    navigate('/login');
+  };
+
   return (
     <Container>
+      <Button onClick={goLoginPage}>Login</Button>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

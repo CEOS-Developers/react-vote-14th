@@ -6,18 +6,15 @@ import {
   checkUserVerificationAsync,
   postLoginAsync,
   postSignUpAsync,
+  setAuthLoading,
 } from './actions';
 import {
   ActionT,
   LoginPayloadI,
+  LoginResponseI,
   SignUpPayloadI,
   SignUpResponseI,
 } from './types';
-
-// export const postSignUpThunk = createAsyncThunk(
-//   postSignUpAsync,
-//   api.requestPostSignUp,
-// );
 
 export function postSignUpThunk(
   signUpData: SignUpPayloadI,
@@ -31,6 +28,7 @@ export function postSignUpThunk(
     } = postLoginAsync;
     dispatch(request(signUpData));
 
+    dispatch(setAuthLoading(true));
     try {
       const res: SignUpResponseI = await api.requestPostSignUp(signUpData);
       dispatch(success(res));
@@ -45,6 +43,8 @@ export function postSignUpThunk(
       console.log('POST SIGNUP THUNK ERR: ', e);
       dispatch(failure(e));
     }
+
+    dispatch(setAuthLoading(false));
   };
 }
 
@@ -54,18 +54,22 @@ export function postLoginThunk(
   return async (dispatch) => {
     const { request, success, failure } = postLoginAsync;
     dispatch(request(loginData));
+    dispatch(setAuthLoading(true));
 
     try {
-      const res = await api.requestPostLogin(loginData);
+      const res: LoginResponseI = await api.requestPostLogin(loginData);
+      window.localStorage.setItem('token: ', res.token);
       dispatch(success(res));
     } catch (e: any) {
       console.log('POST LOGIN THUNK ERR: ', e);
       dispatch(failure(e));
     }
+
+    dispatch(setAuthLoading(false));
   };
 }
 
-export function checkUserVerification(): ThunkAction<
+export function checkUserVerificationThunk(): ThunkAction<
   void,
   RootState,
   null,
@@ -73,7 +77,8 @@ export function checkUserVerification(): ThunkAction<
 > {
   return async (dispatch) => {
     const { request, success, failure } = checkUserVerificationAsync;
-    dispatch(success(request(0)));
+    dispatch(request(0));
+    dispatch(setAuthLoading(true));
 
     try {
       const res = await api.requestCheckUserVerification;
@@ -82,5 +87,7 @@ export function checkUserVerification(): ThunkAction<
       console.log('CHECK USER VERIFICATION THUNK ERR: ', e);
       dispatch(failure(e));
     }
+
+    dispatch(setAuthLoading(false));
   };
 }

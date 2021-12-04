@@ -1,11 +1,14 @@
 import { AxiosError } from 'axios';
-import { createAsyncAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 import {
   LoginPayloadI,
   LoginResponseI,
+  SET_AUTH_LOADING,
   SignUpPayloadI,
   SignUpResponseI,
 } from './types';
+
+export const setAuthLoading = createAction(SET_AUTH_LOADING)<boolean>();
 
 export const postSignUpAsync = createAsyncAction(
   'auth/POST_SIGN_UP_REQUEST',
