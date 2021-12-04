@@ -8,5 +8,8 @@ const initialState: AuthReducerI = {
 };
 
 export const authReducer = createReducer<AuthReducerI, ActionT>(initialState)
-  .handleAction(postSignUpAsync.success, (state, action) => state)
+  .handleAction(postSignUpAsync.success, (state, action) => {
+    // console.log('action: ', action);
+    return state;
+  })
   .handleAction(postLoginAsync.success, (state, action) => state);
