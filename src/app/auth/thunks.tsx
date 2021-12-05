@@ -31,8 +31,9 @@ export function postSignUpThunk(
     dispatch(setAuthLoading(true));
     try {
       const res: SignUpResponseI = await api.requestPostSignUp(signUpData);
-      dispatch(success(res));
-      dispatch(
+      window.alert('회원가입이 완료되었습니다. ');
+      await dispatch(success(res));
+      await dispatch(
         loginRequest({
           username: signUpData.username,
           email: signUpData.email,
@@ -40,6 +41,9 @@ export function postSignUpThunk(
         }),
       );
     } catch (e: any) {
+      window.alert(
+        '회원가입이 되지 않았습니다. 이메일 또는 User Name이 중복됩니다. ',
+      );
       console.log('POST SIGNUP THUNK ERR: ', e);
       dispatch(failure(e));
     }
@@ -59,8 +63,12 @@ export function postLoginThunk(
     try {
       const res: LoginResponseI = await api.requestPostLogin(loginData);
       window.localStorage.setItem('token: ', res.token);
+      window.alert('로그인에 성공했습니다.');
       dispatch(success(res));
     } catch (e: any) {
+      window.alert(
+        '로그인에 실패했습니다. 이메일, 패스워드, User Name을 확인해주세요',
+      );
       console.log('POST LOGIN THUNK ERR: ', e);
       dispatch(failure(e));
     }
