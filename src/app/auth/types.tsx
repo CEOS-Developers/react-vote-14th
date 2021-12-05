@@ -36,6 +36,7 @@ export interface SignUpResponseI {
 }
 
 export interface AuthReducerI {
+  username: string;
   loading: boolean;
   success: boolean;
   authorized: boolean;
