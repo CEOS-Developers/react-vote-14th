@@ -1,24 +1,41 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { RootState, useAppSelector } from '../../app/store';
-import { getCandidateThunk } from '../../app/vote/thunks';
+import React from 'react';
+import useVote from '../../hooks/useVote';
+import styled from 'styled-components';
+import { Col, Row } from '../../components/Containers';
+import { Button } from 'antd';
 const Vote = () => {
-  const dispatch = useDispatch();
-  const candidates = useAppSelector((state) => state.voteReducer);
-  useEffect(() => {
-    dispatch(getCandidateThunk());
-  }, [dispatch]);
+  const { candidates, postVote } = useVote();
+  const onVoteClicked = (id: number) => {
+    postVote(id);
+  };
   return (
-    <div>
+    <Container>
       {candidates.map((candidate) => {
         return (
-          <div key={candidate.id}>
-            {candidate.name} {candidate.vote}
-          </div>
+          <VoteContainer key={candidate.id}>
+            <div>
+              {candidate.name} {candidate.vote}
+            </div>
+            <Button onClick={() => onVoteClicked(candidate.id)}>
+              투표하기
+            </Button>
+          </VoteContainer>
         );
       })}
-    </div>
+    </Container>
   );
 };
+const Container = styled(Col)`
+  justify-content: center;
+  align-items: center;
 
+  height: 100vh;
+
+  margin: 0 10%;
+`;
+const VoteContainer = styled(Row)`
+  align-items: center;
+
+  margin: 10px;
+`;
 export default Vote;

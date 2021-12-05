@@ -62,7 +62,7 @@ export function postLoginThunk(
 
     try {
       const res: LoginResponseI = await api.requestPostLogin(loginData);
-      window.localStorage.setItem('token: ', res.token);
+      window.localStorage.setItem('token', res.token);
       window.alert('로그인에 성공했습니다.');
       dispatch(success(res));
     } catch (e: any) {
@@ -87,7 +87,6 @@ export function checkUserVerificationThunk(): ThunkAction<
     const { request, success, failure } = checkUserVerificationAsync;
     dispatch(request(0));
     dispatch(setAuthLoading(true));
-
     try {
       const res = await api.requestCheckUserVerification();
       dispatch(success(res));

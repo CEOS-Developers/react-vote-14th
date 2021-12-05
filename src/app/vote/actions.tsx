@@ -11,4 +11,4 @@ export const postVote = createAsyncAction(
   'POST_VOTE_REQUEST',
   'POST_VOTE_SUCCESS',
   'POST_VOTE_FAIL',
-)<unknown, CandidatePayloadI, AxiosError>();
+)<unknown, number, AxiosError>();
