@@ -8,13 +8,14 @@ const Vote = () => {
   const onVoteClicked = (id: number) => {
     postVote(id);
   };
+  const sortedCandidateArray = candidates.sort((a, b) => b.vote - a.vote);
   return (
     <Container>
-      {candidates.map((candidate) => {
+      {sortedCandidateArray.map((candidate, index) => {
         return (
           <VoteContainer key={candidate.id}>
             <div>
-              {candidate.name} {candidate.vote}
+              {index + 1} {candidate.name} {candidate.vote}
             </div>
             <Button onClick={() => onVoteClicked(candidate.id)}>
               투표하기
@@ -31,7 +32,7 @@ const Container = styled(Col)`
 
   height: 100vh;
 
-  margin: 0 10%;
+  margin: 0 auto;
 `;
 const VoteContainer = styled(Row)`
   align-items: center;

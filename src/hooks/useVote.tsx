@@ -9,6 +9,7 @@ const useVote = () => {
     dispatch(postVoteThunk(id));
   };
   useEffect(() => {
+    if (candidates.length > 0) return;
     dispatch(getCandidateThunk());
   }, [candidates, dispatch]);
   return {
