@@ -1,13 +1,13 @@
-import {
-  Wrapper,
-  Title,
-  ResultBox,
-  ResultsWrapper,
-  ResultWrapper,
-  Text,
-} from './ResultPresenter';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import {
+  Container,
+  RankWrapper,
+  Result,
+  ResultBox,
+  Text,
+  Title,
+} from './ResultPresenter';
 
 const ResultContainer = () => {
   const [FEResult, setFEResult] = useState([]);
@@ -31,30 +31,31 @@ const ResultContainer = () => {
   }, []);
 
   return (
-    <Wrapper>
+    <Container>
       <Title>Result</Title>
       <ResultBox>
-        <ResultsWrapper>
+        <Result>
           {FEResult.map((candidate: any, i: number) => (
-            <ResultWrapper key={candidate.id}>
+            <RankWrapper key={candidate.id}>
               <Text>{i + 1 + '등'}</Text>
               <Text>{candidate.name}</Text>
 
               <Text>{candidate.vote_count}</Text>
-            </ResultWrapper>
+            </RankWrapper>
           ))}
-        </ResultsWrapper>
-        <ResultsWrapper>
+        </Result>
+        <Result>
           {BEResult.map((candidate: any, i: number) => (
-            <ResultWrapper key={candidate.id}>
+            <RankWrapper key={candidate.id}>
               <Text>{i + 1 + '등'}</Text>
               <Text>{candidate.name}</Text>
+
               <Text>{candidate.vote_count}</Text>
-            </ResultWrapper>
+            </RankWrapper>
           ))}
-        </ResultsWrapper>
+        </Result>
       </ResultBox>
-    </Wrapper>
+    </Container>
   );
 };
 

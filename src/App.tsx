@@ -9,7 +9,7 @@ import SignUp from './pages/SignUp';
 import Vote from './pages/Vote';
 import Result from './pages/Result';
 
-import { Spinner } from './components/Spinner';
+// import { Spinner } from './components/Spinner';
 import { useEffect } from 'react';
 
 interface UserData {
@@ -51,7 +51,7 @@ function App() {
 
   return (
     <>
-      {loading && <Spinner />}
+      {/* {loading && <Spinner />} */}
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
