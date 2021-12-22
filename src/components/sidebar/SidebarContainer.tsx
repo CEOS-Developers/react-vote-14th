@@ -1,45 +1,38 @@
-import {
-  Sidebar,
-  ItemsWrapper,
-  StyledLink,
-  Logo,
-  Text,
-  ItemWrapper,
-} from './SidebarPresenter';
 import logo from '../../assets/images/logo.png';
-import { useEffect, useState } from 'react';
+import {
+  Logo,
+  Menus,
+  Sidebar,
+  StyledLink,
+  Menu,
+  Group,
+  GroupName,
+  SignOut,
+} from './SidebarPresenter';
 
 // 수정 중
 const SidebarContainer = () => {
-  const user: any = localStorage.getItem('userData');
-  const part: string = JSON.parse(user).part;
-  const [partName, setPartName] = useState('');
-
-  useEffect(() => {
-    // 나중에 url 통일할 예정입니다,,,
-    if (part === 'BE') {
-      setPartName('backend');
-    } else if (part === 'FE') {
-      setPartName('frontend');
-    }
-  }, [part]);
-
   return (
     <Sidebar>
-      <ItemsWrapper>
-        <StyledLink to={`/vote/${partName}`}>
-          <Logo src={logo} alt="" />
-        </StyledLink>
-        <StyledLink to={`/vote/${partName}`}>
-          <Text>Vote</Text>
-        </StyledLink>
-        <StyledLink to={'/result'}>
-          <Text>Result</Text>
-        </StyledLink>
-      </ItemsWrapper>
-      <ItemWrapper>
-        <Text>Profile</Text>
-      </ItemWrapper>
+      <Logo src={logo} alt="" />
+      <Menus>
+        <Group>
+          <GroupName>투표하기</GroupName>
+          <StyledLink to={`/vote/frontend`}>
+            <Menu>프론트엔드</Menu>
+          </StyledLink>
+          <StyledLink to={`/vote/backend`}>
+            <Menu>백엔드</Menu>
+          </StyledLink>
+        </Group>
+        <Group>
+          <GroupName>결과 보기</GroupName>
+          <StyledLink to={'/result'}>
+            <Menu>투표 결과</Menu>
+          </StyledLink>
+        </Group>
+      </Menus>
+      <SignOut>로그아웃</SignOut>
     </Sidebar>
   );
 };

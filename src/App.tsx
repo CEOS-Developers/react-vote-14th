@@ -19,7 +19,7 @@ interface UserData {
 }
 
 function App() {
-  const { loading }: any = useLoadingContext();
+  // const { loading }: any = useLoadingContext();
   const { setIsAuth, setUserData }: any = useAuthContext();
 
   // redirect

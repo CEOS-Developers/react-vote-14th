@@ -1,56 +1,69 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
+  display: grid;
   width: 80%;
-  padding: 2.5%;
+
+  grid-template-rows: 1.5fr 7fr 1.5fr;
+  grid-template-columns: 1fr 8fr 1fr;
+
+  grid-template-areas:
+    'title title title'
+    '. vote .'
+    '. submit .';
+  text-align: center;
+
+  color: #3a3a55;
+  font-weight: 600;
+  background: #f8f9fa;
 `;
 
-export const Title = styled.span`
-  font-size: 50px;
-  font-weight: 400;
-
-  margin: 0;
-`;
-
-export const CandidatesWrapper = styled.section`
-  width: 80%;
-  height: 80%;
+export const Title = styled.section`
+  grid-area: title;
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
-  flex-wrap: wrap;
-  justify-content: space-between;
+  font-size: 36px;
+`;
 
-  border: 1px solid black;
+export const CandidatesWrapper = styled.section`
+  grid-area: vote;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  align-items: center;
+  justify-items: center;
+  align-content: space-evenly;
 `;
 
 export const CandidateButton = styled.button`
   width: 150px;
   height: 50px;
 
-  margin: 0 25px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background: none;
-  border-radius: 10px;
-  border: 1px solid #d2d2d2;
+  border-radius: 20px;
+  border: 1px solid #5d5fe7;
 
   &:hover {
     cursor: pointer;
   }
 
   &:focus {
-    background: #4c90de;
+    background: #5d5fe7;
     color: #ffffff;
   }
 `;
 
 export const SubmitButton = styled.button`
-  width: 100px;
+  grid-area: submit;
+
+  align-self: start;
+  justify-self: center;
+
+  width: 85%;
   height: 40px;
 
   background: none;

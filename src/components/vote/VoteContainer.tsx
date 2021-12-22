@@ -1,39 +1,30 @@
-import {
-  Wrapper,
-  Title,
-  CandidatesWrapper,
-  CandidateButton,
-  SubmitButton,
-} from './VotePresenter';
-
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import {
+  CandidateButton,
+  CandidatesWrapper,
+  SubmitButton,
+  Title,
+  Wrapper,
+} from './VotePresenter';
 
 const VoteContainer = () => {
   const { part } = useParams();
   const navigate = useNavigate();
+
   const [candidates, setCandidates] = useState([]);
   const [selectedCandidateId, setSelectedCandidateId]: any = useState(-1);
 
-  const [urlPart, setUrlPart] = useState('');
-
   useEffect(() => {
-    // url 수정 예정이라 일단 대충 이렇게 짰어요... ^^ 부끄러운 코드
-    if (part === 'frontend') {
-      setUrlPart('FE');
-    } else if (part === 'backend') {
-      setUrlPart('BE');
-    }
-
     const fetchCandidates = async () => {
       const response = await axios.get(
-        `https://vote-mailedit.kro.kr/api/candidate?part=${urlPart}`
+        `https://vote-mailedit.kro.kr/api/candidate?part=${part}`
       );
       setCandidates(response.data);
     };
     fetchCandidates();
-  }, [part, urlPart]);
+  }, [part]);
 
   const handleCandidateButtonClick = (e: any) => {
     setSelectedCandidateId(e.target.value);

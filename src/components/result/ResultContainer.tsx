@@ -16,11 +16,11 @@ const ResultContainer = () => {
   useEffect(() => {
     const fetchFEResult = async () => {
       const FEResponse = await axios.get(
-        'https://vote-mailedit.kro.kr/api/candidate/result?part=FE'
+        'https://vote-mailedit.kro.kr/api/candidate/result?part=frontend'
       );
 
       const BEResponse = await axios.get(
-        'https://vote-mailedit.kro.kr/api/candidate/result?part=BE'
+        'https://vote-mailedit.kro.kr/api/candidate/result?part=backend'
       );
 
       setFEResult(FEResponse.data);

@@ -14,6 +14,7 @@ export const Container = styled.div`
 
   color: #3a3a55;
   font-weight: 600;
+  background: #f8f9fa;
 `;
 
 export const Title = styled.section`
