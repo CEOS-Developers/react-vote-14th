@@ -72,11 +72,24 @@ export const Menu = styled.span`
   }
 `;
 
-export const SignOut = styled.span`
+export const SignOut = styled.section`
+  grid-area: signout;
+
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const SignOutButton = styled.button`
+  grid-area: signout;
 
   color: #c3c3c3;
-  font-size: 16px;
+  font-size: 15px;
+
+  border: none;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

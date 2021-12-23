@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import logo from '../../assets/images/logo.png';
 import {
   Logo,
@@ -8,9 +9,17 @@ import {
   Group,
   GroupName,
   SignOut,
+  SignOutButton,
 } from './SidebarPresenter';
 
 const SidebarContainer = () => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
   return (
     <Sidebar>
       <Logo src={logo} alt="" />
@@ -31,7 +40,9 @@ const SidebarContainer = () => {
           </StyledLink>
         </Group>
       </Menus>
-      <SignOut>로그아웃</SignOut>
+      <SignOut>
+        <SignOutButton onClick={handleSignOut}>로그아웃</SignOutButton>
+      </SignOut>
     </Sidebar>
   );
 };
