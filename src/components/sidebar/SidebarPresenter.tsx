@@ -1,19 +1,18 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Sidebar = styled.section`
-  display: grid;
   width: 20%;
 
-  grid-template-rows: 1.5fr 7fr 1.5fr;
-
+  display: grid;
+  grid-template-rows: 1.75fr 6.25fr 2fr;
   grid-template-areas:
     'logo'
     'menus'
     'signout';
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
   width: 100%;
 
   display: flex;
@@ -24,8 +23,9 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Logo = styled.img`
-  grid-area: logo;
   width: 180px;
+
+  grid-area: logo;
 
   align-self: center;
   justify-self: center;
@@ -43,29 +43,32 @@ export const Menus = styled.menu`
 `;
 
 export const Group = styled.section`
-  height: 25%;
+  height: 20%;
   margin-top: 5%;
-  margin-bottom: 20%;
+  margin-bottom: 25%;
 `;
 
 export const GroupName = styled.section`
   width: 70%;
-  border-bottom: 1px solid #6e6e6e;
-  margin: 0 14% 5% 16%;
+
+  margin: 0 15% 5% 15%;
   padding-bottom: 2.5%;
 
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
+
+  border-bottom: 1px solid #6e6e6e;
 `;
 
 export const Menu = styled.span`
-  font-size: 20px;
+  margin: 5% 0 2.5% 15%;
 
-  margin: 5% 0 5% 18%;
   color: #6e6e6e;
+  font-size: 16px;
 
-  &:hover {
+  .active & {
     color: #5d5fe7;
+    font-weight: 500;
   }
 `;
 

@@ -30,6 +30,8 @@ const ResultContainer = () => {
     fetchFEResult();
   }, []);
 
+  const rank = ['🥇', '🥈', '🥉', '4', '5', '6', '7', '8', '9', '10'];
+
   return (
     <Container>
       <Title>Result</Title>
@@ -37,7 +39,7 @@ const ResultContainer = () => {
         <Result>
           {FEResult.map((candidate: any, i: number) => (
             <RankWrapper key={candidate.id}>
-              <Text>{i + 1 + '등'}</Text>
+              <Text>{rank[i]}</Text>
               <Text>{candidate.name}</Text>
 
               <Text>{candidate.vote_count}</Text>
@@ -47,7 +49,7 @@ const ResultContainer = () => {
         <Result>
           {BEResult.map((candidate: any, i: number) => (
             <RankWrapper key={candidate.id}>
-              <Text>{i + 1 + '등'}</Text>
+              <Text>{rank[i]}</Text>
               <Text>{candidate.name}</Text>
 
               <Text>{candidate.vote_count}</Text>

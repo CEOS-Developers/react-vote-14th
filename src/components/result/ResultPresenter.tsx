@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: grid;
   width: 80%;
 
-  grid-template-rows: 1.5fr 8.5fr;
+  grid-template-rows: 1.75fr 8.25fr;
   grid-template-columns: 1fr 8fr 1fr;
 
   grid-template-areas:
@@ -30,7 +30,7 @@ export const Title = styled.section`
 export const ResultBox = styled.section`
   grid-area: result;
 
-  display: felx;
+  display: flex;
   align-items: center;
   justify-content: center;
 `;
@@ -46,7 +46,7 @@ export const Result = styled.section`
 
 export const RankWrapper = styled.section`
   width: 250px;
-  height: 50px;
+  height: 45px;
 
   margin: 0 25px 12.5px 25px;
 

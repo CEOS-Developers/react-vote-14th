@@ -4,7 +4,7 @@ export const Wrapper = styled.section`
   display: grid;
   width: 80%;
 
-  grid-template-rows: 1.5fr 7fr 1.5fr;
+  grid-template-rows: 1.75fr 6.25fr 2fr;
   grid-template-columns: 1fr 8fr 1fr;
 
   grid-template-areas:
@@ -36,7 +36,6 @@ export const CandidatesWrapper = styled.section`
 
   align-items: center;
   justify-items: center;
-  align-content: space-evenly;
 `;
 
 export const CandidateButton = styled.button`
@@ -60,7 +59,7 @@ export const CandidateButton = styled.button`
 export const SubmitButton = styled.button`
   grid-area: submit;
 
-  align-self: start;
+  align-self: center;
   justify-self: center;
 
   width: 85%;

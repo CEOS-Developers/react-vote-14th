@@ -10,7 +10,6 @@ import {
   SignOut,
 } from './SidebarPresenter';
 
-// 수정 중
 const SidebarContainer = () => {
   return (
     <Sidebar>
