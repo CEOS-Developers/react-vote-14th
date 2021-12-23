@@ -20,6 +20,7 @@ export interface LoginPayloadI {
 export interface LoginResponseI {
   user: {
     username: string;
+    voted: boolean;
   };
   token: string;
 }
@@ -36,7 +37,10 @@ export interface SignUpResponseI {
 }
 
 export interface AuthReducerI {
-  username: string;
+  user: {
+    username: string;
+    voted: boolean;
+  };
   loading: boolean;
   success: boolean;
   authorized: boolean;

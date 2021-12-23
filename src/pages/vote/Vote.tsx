@@ -3,9 +3,12 @@ import useVote from '../../hooks/useVote';
 import styled from 'styled-components';
 import { Col, Row } from '../../components/Containers';
 import { Button, Table } from 'antd';
+import useAuth from '../../hooks/useAuth';
 const Vote = () => {
   const { candidates, postVote } = useVote();
+  const { user } = useAuth();
   const onVoteClicked = (id: number) => {
+    if (user.voted) alert('이미 투표하셨습니다.');
     postVote(id);
   };
   const sortedCandidateArray = candidates.sort((a, b) => b.vote - a.vote);
@@ -13,6 +16,7 @@ const Vote = () => {
   return (
     <Container>
       <h1>15기 백엔드짱 투표</h1>
+      <h3>안녕하세요 {user.username}님!</h3>
       <StyledTable dataSource={sortedCandidateArray} pagination={false}>
         <Column title="등수" render={(text, record, index) => index + 1} />
         <Column title="이름" dataIndex="name" key="name" />

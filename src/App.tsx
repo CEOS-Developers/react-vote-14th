@@ -16,10 +16,10 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={withAuth(Login, true)} />
-            <Route path="/sign-up" element={withAuth(SignUp, true)} />
-            <Route path="/vote" element={withAuth(Vote, false)} />
-            <Route path="/" element={withAuth(SignUp, true)} />
+            <Route path="/login" element={withAuth(Login, false)} />
+            <Route path="/sign-up" element={withAuth(SignUp, false)} />
+            <Route path="/vote" element={withAuth(Vote, true)} />
+            <Route path="/" element={withAuth(SignUp, false)} />
           </Routes>
         </BrowserRouter>
       </Provider>

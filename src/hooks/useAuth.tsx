@@ -12,7 +12,7 @@ const useAuth = () => {
   const authLoading = useAppSelector((state) => state.authReducer.loading);
   const authorized = useAppSelector((state) => state.authReducer.authorized);
   const loginSuccess = useAppSelector((state) => state.authReducer.success);
-  const userName = useAppSelector((state) => state.authReducer.username);
+  const user = useAppSelector((state) => state.authReducer.user);
 
   const postLogin = (loginData: LoginPayloadI) => {
     dispatch(postLoginThunk(loginData));
@@ -32,7 +32,7 @@ const useAuth = () => {
     checkUserVerification,
     authorized,
     loginSuccess,
-    userName,
+    user,
     authLoading,
   };
 };
