@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { css } from 'styled-components';
 import COLORS from '../../constants/colors';
 
 export const Container = styled.form`
@@ -22,4 +23,36 @@ export const InputContainer = styled.input`
 
 export const FormContainer = styled.div`
   margin-top: 12px;
+`;
+
+interface ModeProp {
+  mode?: string;
+}
+
+export const Button = styled.button<ModeProp>`
+  ${(props) => {
+    console.log(props.mode);
+    switch (props.mode) {
+      case 'ok':
+        return css`
+          background-color: ${COLORS.green};
+          border: none;
+          border-radius: 18px;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          font-size: 16px;
+        `;
+      default:
+        return css`
+          background-color: ${COLORS.lightGray};
+          border: none;
+          border-radius: 18px;
+          color: black;
+          padding: 15px 32px;
+          text-align: center;
+          font-size: 16px;
+        `;
+    }
+  }}
 `;

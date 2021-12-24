@@ -1,13 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   FormContainer,
   InputContainer,
   Container,
+  Button,
 } from '../components/forms/LoginFormPresenter';
 import { useAuthContext } from '../contexts/AuthContext';
 import useInputs from '../hooks/useInput';
-import { isPart, isPassword, isUserName, isEmail } from '../utils/validator';
+import {
+  isPart,
+  isPassword,
+  isUserName,
+  isEmail,
+  emailDuplicateCheck,
+  userNameDuplicateCheck,
+} from '../utils/validator';
 
 interface Payload {
   userEmail: string;
@@ -18,9 +26,13 @@ interface Payload {
 
 const SignUp = () => {
   const [userEmail, setuserEmail] = useInputs('');
-  const [userId, setuserId] = useInputs('');
-  const [userPw, setuserPw] = useInputs('');
+  const [emailValid, setEmailValid] = useState(true);
+  const [username, setUsername] = useInputs('');
+  const [userPassword, setUserPassword] = useInputs('');
   const [userPart, setUserPart] = useState('');
+
+  const [formCheck1, setFormcheck1] = useState(false);
+  const [formCheck2, setFormcheck2] = useState(false);
 
   // redirect
   const navigate = useNavigate();
@@ -30,14 +42,36 @@ const SignUp = () => {
   const handleRadio = (e: any) => {
     setUserPart(e.target.value);
   };
+  const duplicateEmail = async () => {
+    const flag = await emailDuplicateCheck(userEmail);
+    flag ? setFormcheck1(false) : setFormcheck1(true);
+    if (flag) {
+      window.alert('중복된 이메일입니다.');
+    } else {
+      window.alert('사용할 수 있는 이메일입니다.');
+    }
+  };
+  const duplicateUserName = async () => {
+    const flag = await userNameDuplicateCheck(username);
+    flag ? setFormcheck2(false) : setFormcheck2(true);
+    if (flag) {
+      window.alert('중복된 이름입니다.');
+    } else {
+      window.alert('사용할 수 있는 이름입니다.');
+    }
+  };
+
+  useEffect(() => {
+    setEmailValid(isEmail(userEmail));
+  }, [userEmail]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     // body에 담아서 보낼 거 세팅 후 submit
     const payload = {
       userEmail: userEmail,
-      userName: userId,
-      password: userPw,
+      userName: username,
+      password: userPassword,
       part: userPart,
     };
     // axios call 하기 전 유효성 검사
@@ -50,7 +84,7 @@ const SignUp = () => {
       window.alert('비밀번호는 영문 숫자 조합 6자리 이상이어야 합니다.');
       return false;
     } else if (!isEmail(payload.userEmail)) {
-      window.alert('사용할 수 없는 이메일입니다.');
+      window.alert('중복된 이메일입니다.');
     } else if (!isUserName(payload.userName)) {
       window.alert('사람 이름에 공백이나 특수문자가 왜 들어갑니까...');
       return false;
@@ -90,16 +124,6 @@ const SignUp = () => {
         <FormContainer>
           <div>
             <h2>이메일</h2>
-            <span
-              style={{
-                fontSize: '12px',
-                fontWeight: 'bold',
-                verticalAlign: 'baseline',
-                color: 'red',
-              }}
-            >
-              이메일 형식이 올바르지 않습니다.
-            </span>
           </div>
           <InputContainer
             type="text"
@@ -107,39 +131,120 @@ const SignUp = () => {
             value={userEmail}
             onChange={setuserEmail}
           />
+          <div>
+            {emailValid ? (
+              <div style={{ marginTop: '12px' }}>
+                <span
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    color: 'green',
+                  }}
+                >
+                  이메일 형식이 올바르네요! ☺️
+                  <span
+                    style={{
+                      color: 'black',
+                    }}
+                    onClick={duplicateEmail}
+                  >
+                    중복확인
+                  </span>
+                </span>
+              </div>
+            ) : (
+              <span
+                style={{
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  color: 'tomato',
+                }}
+              >
+                이메일 형식을 지켜주세요 ☺️☺️
+              </span>
+            )}
+          </div>
         </FormContainer>
         <FormContainer>
           <h2>이름</h2>
           <InputContainer
             type="text"
             placeholder="ID"
-            value={userId}
-            onChange={setuserId}
+            value={username}
+            onChange={setUsername}
           />
+          <div>
+            {username ? (
+              <div style={{ marginTop: '12px' }}>
+                <span
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    color: 'green',
+                  }}
+                >
+                  멋진 이름이네요! ☺️
+                  <span
+                    style={{
+                      color: 'black',
+                    }}
+                    onClick={duplicateUserName}
+                  >
+                    중복확인
+                  </span>
+                </span>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </FormContainer>
         <FormContainer>
           <h2>비밀번호</h2>
           <InputContainer
             type="password"
             placeholder="PASSWORD"
-            value={userPw}
-            onChange={setuserPw}
+            value={userPassword}
+            onChange={setUserPassword}
           />
         </FormContainer>
         <FormContainer>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <input type="radio" name="part" value="FE" onClick={handleRadio} />{' '}
-            프론트
-            <input
-              type="radio"
-              name="part"
-              value="BE"
-              onClick={handleRadio}
-            />{' '}
-            백엔드
+          <div
+            style={{
+              marginTop: '12px',
+              marginBottom: '12px',
+              display: 'flex',
+              flexDirection: 'row',
+              margin: '10px',
+            }}
+          >
+            <label>
+              <input
+                type="radio"
+                name="part"
+                value="FE"
+                onClick={handleRadio}
+              />
+              프론트
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="part"
+                value="BE"
+                onClick={handleRadio}
+              />
+              백엔드
+            </label>
           </div>
         </FormContainer>
-        <button>회원가입하기</button>
+        {formCheck1 && formCheck2 ? (
+          <Button mode="ok" style={{ marginBottom: '14px' }}>
+            회원가입하기
+          </Button>
+        ) : (
+          <Button style={{ marginBottom: '14px' }}>회원가입하기</Button>
+        )}
       </Container>
     </div>
   );

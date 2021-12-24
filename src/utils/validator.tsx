@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // check email form
 export function isEmail(asValue: string) {
   var regExp =
@@ -25,4 +27,35 @@ export function isPart(asValue: string) {
   if (asValue === 'FE') return true;
   else if (asValue === 'BE') return true;
   else return false;
+}
+
+export async function emailDuplicateCheck(input: string) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post('https://vote-mailedit.kro.kr/api/duplicate/email', {
+        email: input,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return resolve(res.data);
+        } else {
+          return reject(false);
+        }
+      });
+  });
+}
+export async function userNameDuplicateCheck(input: string) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post('https://vote-mailedit.kro.kr/api/duplicate/username', {
+        username: input,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return resolve(res.data);
+        } else {
+          return reject(false);
+        }
+      });
+  });
 }
