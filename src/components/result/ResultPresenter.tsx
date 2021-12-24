@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.section`
   display: grid;
   width: 80%;
 
   grid-template-rows: 1.75fr 8.25fr;
-  grid-template-columns: 1fr 8fr 1fr;
 
   grid-template-areas:
-    'title title title'
-    '. result .';
+    'title'
+    'result';
   text-align: center;
 
   color: #3a3a55;
@@ -58,4 +57,6 @@ export const RankWrapper = styled.section`
   border: 1px solid #d2d2d2;
 `;
 
-export const Text = styled.span``;
+export const Text = styled.span`
+  font-weight: 400;
+`;

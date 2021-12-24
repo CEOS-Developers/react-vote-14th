@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import {
   CandidateButton,
   CandidatesWrapper,
-  SubmitButton,
+  SubmitButton, 
   Title,
   Wrapper,
 } from './VotePresenter';
