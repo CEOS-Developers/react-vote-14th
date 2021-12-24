@@ -23,16 +23,18 @@ const SidebarContainer = () => {
   return (
     <Sidebar>
       <Logo src={logo} alt="" />
+
       <Menus>
         <Group>
           <GroupName>투표하기</GroupName>
-          <StyledLink to={`/vote/frontend`}>
+          <StyledLink to={'/vote/frontend'}>
             <Menu>프론트엔드</Menu>
           </StyledLink>
-          <StyledLink to={`/vote/backend`}>
+          <StyledLink to={'/vote/backend'}>
             <Menu>백엔드</Menu>
           </StyledLink>
         </Group>
+
         <Group>
           <GroupName>결과 보기</GroupName>
           <StyledLink to={'/result'}>
@@ -40,6 +42,7 @@ const SidebarContainer = () => {
           </StyledLink>
         </Group>
       </Menus>
+
       <SignOut>
         <SignOutButton onClick={handleSignOut}>로그아웃</SignOutButton>
       </SignOut>

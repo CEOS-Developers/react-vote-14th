@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+
 import {
   CandidateButton,
   CandidatesWrapper,
-  SubmitButton, 
+  SubmitButton,
   Title,
   Wrapper,
 } from './VotePresenter';
@@ -33,20 +34,18 @@ const VoteContainer = () => {
   const token = JSON.stringify(localStorage.getItem('token'));
 
   const handleSubmit = () => {
-    axios
-      .post(
-        `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
-        null,
-        {
-          headers: {
-            Authorization: `JWT ${token.replaceAll('"', '')}`,
-          },
-        }
-      )
-      .then(() => {
-        alert('Voted successfully!');
-        navigate('/result');
-      });
+    axios.post(
+      `https://vote-mailedit.kro.kr/api/candidate/${selectedCandidateId}`,
+      null,
+      {
+        headers: {
+          Authorization: `JWT ${token.replaceAll('"', '')}`,
+        },
+      }
+    );
+
+    alert('Voted successfully!');
+    navigate('/result');
   };
 
   return (

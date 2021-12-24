@@ -19,7 +19,7 @@ export const StyledLink = styled(NavLink)`
   display: flex;
   align-items: center;
 
-  color: black;
+  color: #000000;
   text-decoration: none;
 `;
 
