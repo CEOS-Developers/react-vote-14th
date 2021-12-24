@@ -15,8 +15,9 @@ import { useState } from "react";
 type VoteModalProps = {
   visible: boolean;
   setVisible: Function;
-  candidateName: String;
+  candidateName: string;
   candidateVote: number;
+  candidateImage: string;
 };
 
 function VoteModal({
@@ -24,6 +25,7 @@ function VoteModal({
   setVisible,
   candidateName,
   candidateVote,
+  candidateImage,
 }: VoteModalProps) {
   const closeHandlerQuit = () => {
     setVisible(false);
@@ -52,6 +54,15 @@ function VoteModal({
         </Text>
       </Modal.Header>
       <Modal.Body>
+        <img src={candidateImage} alt={candidateName} />
+        {/* <Card.Image
+          objectFit="cover"
+          autoResize={false}
+          src={candidateImage}
+          width="100%"
+          height={140}
+          alt={candidateName}
+        /> */}
         <Text>
           {candidateName}님의 현재 투표수: {candidateVote}
         </Text>

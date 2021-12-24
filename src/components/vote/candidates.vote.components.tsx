@@ -9,7 +9,7 @@ function Candidates() {
   const [visible, setVisible] = useState(false);
   const [voteName, setVoteName] = useState("");
   const [voteCount, setVoteCount] = useState(0);
-
+  const [voteImage, setVoteImage] = useState("");
   function handler() {
     setVisible(true);
   }
@@ -48,6 +48,7 @@ function Candidates() {
                       onClick={() => {
                         setVoteName(user.name);
                         setVoteCount(user.vote);
+                        setVoteImage(user.image);
                         handler();
                       }}
                     >
@@ -65,6 +66,7 @@ function Candidates() {
         setVisible={setVisible}
         candidateName={voteName}
         candidateVote={voteCount}
+        candidateImage={voteImage}
       />
     </div>
   );
