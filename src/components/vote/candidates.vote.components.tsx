@@ -1,11 +1,18 @@
 import { Grid, Card, Text, Divider, Row, Button } from "@nextui-org/react";
 import { useState } from "react";
 import Data from "./Data";
+import VoteModal from "./modal.vote.components";
 import "./candidates.vote.components.css";
 
 function Candidates() {
   const [users, setUsers] = useState(Data);
-
+  const [visible, setVisible] = useState(false);
+  const [voteName, setVoteName] = useState("");
+  const [voteCount, setVoteCount] = useState(0);
+  const [voteImage, setVoteImage] = useState("");
+  function handler() {
+    setVisible(true);
+  }
   return (
     <div className="Contain">
       <div className="Candidates">
@@ -33,7 +40,18 @@ function Candidates() {
                     <Button disabled size="small" rounded>
                       현재 투표수: {user.vote}
                     </Button>
-                    <Button size="small" color="primary" rounded ghost>
+                    <Button
+                      size="small"
+                      color="primary"
+                      rounded
+                      ghost
+                      onClick={() => {
+                        setVoteName(user.name);
+                        setVoteCount(user.vote);
+                        setVoteImage(user.image);
+                        handler();
+                      }}
+                    >
                       투표하기
                     </Button>
                   </Row>
@@ -43,6 +61,13 @@ function Candidates() {
           );
         })}
       </div>
+      <VoteModal
+        visible={visible}
+        setVisible={setVisible}
+        candidateName={voteName}
+        candidateVote={voteCount}
+        candidateImage={voteImage}
+      />
     </div>
   );
 }
