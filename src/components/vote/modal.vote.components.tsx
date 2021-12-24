@@ -7,7 +7,9 @@ import {
   Button,
   Modal,
   Input,
+  Loading,
 } from "@nextui-org/react";
+import { notification, Space } from "antd";
 import { useState } from "react";
 
 type VoteModalProps = {
@@ -28,7 +30,13 @@ function VoteModal({
   };
   const closeHandlerVote = () => {
     setVisible(false);
-    alert("투표 성공");
+    openNotification("bottomRight");
+  };
+  const openNotification = (placement: any) => {
+    notification.info({
+      placement,
+      message: "투표 성공!",
+    });
   };
   return (
     <Modal
