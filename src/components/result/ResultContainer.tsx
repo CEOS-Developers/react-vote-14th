@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import RenderResult from './RenderResult';
-import { Container, ResultBox, Title } from './ResultPresenter';
+import { Container, Main, Title } from './ResultPresenter';
 
 const ResultContainer = () => {
   const [frontendResult, setFrontendResult] = useState([]);
@@ -28,10 +28,10 @@ const ResultContainer = () => {
   return (
     <Container>
       <Title>투표 결과</Title>
-      <ResultBox>
+      <Main>
         <RenderResult resultList={frontendResult} />
         <RenderResult resultList={backendResult} />
-      </ResultBox>
+      </Main>
     </Container>
   );
 };

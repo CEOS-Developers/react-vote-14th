@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  display: grid;
   width: 80%;
 
+  display: grid;
   grid-template-rows: 1.75fr 8.25fr;
-
   grid-template-areas:
     'title'
     'result';
@@ -26,7 +25,7 @@ export const Title = styled.section`
   font-size: 36px;
 `;
 
-export const ResultBox = styled.section`
+export const Main = styled.main`
   grid-area: result;
 
   display: flex;
@@ -35,7 +34,8 @@ export const ResultBox = styled.section`
 `;
 
 export const Result = styled.section`
-  width: 50%;
+  width: 35%;
+  min-width: 350px;
   height: 100%;
 
   display: flex;
@@ -47,13 +47,13 @@ export const RankWrapper = styled.section`
   width: 250px;
   height: 45px;
 
-  margin: 0 25px 12.5px 25px;
+  margin-bottom: 12.5px;
 
   display: flex;
   align-items: center;
   justify-content: space-around;
 
-  border-radius: 10px;
+  border-radius: 15px;
   border: 1px solid #d2d2d2;
 `;
 
