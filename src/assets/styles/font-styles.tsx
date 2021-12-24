@@ -8,6 +8,13 @@ const FontStyle = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
 }
+
+* {
+    font-family: 'Pretendard-Regular';
+  }
+
+ 
+
 `;
 
 export default FontStyle;
