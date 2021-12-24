@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Sidebar = styled.section`
   width: 20%;
+  min-width: 180px;
 
   display: grid;
   grid-template-rows: 1.75fr 6.25fr 2fr;
