@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import RenderResult from './RenderResult';
 import { Container, Main, Title } from './ResultPresenter';
 
-const ResultContainer = () => {
+const TotalResultContainer = () => {
   const [frontendResult, setFrontendResult] = useState([]);
   const [backendResult, setBackendResult] = useState([]);
 
@@ -31,4 +31,4 @@ const ResultContainer = () => {
   );
 };
 
-export default ResultContainer;
+export default TotalResultContainer;

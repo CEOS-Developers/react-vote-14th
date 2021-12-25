@@ -1,13 +1,13 @@
-import ResultContainer from "../components/result/ResultContainer";
-import SidebarContainer from "../components/sidebar/SidebarContainer";
+import styled from 'styled-components';
 
-import styled from "styled-components";
+import SidebarContainer from '../components/sidebar/SidebarContainer';
+import LeaderResultContainer from '../components/result/LeaderResultContainer';
 
 const Result = () => {
   return (
     <Wrapper>
       <SidebarContainer />
-      <ResultContainer />
+      <LeaderResultContainer />
     </Wrapper>
   );
 };

@@ -7,11 +7,11 @@ import axios from 'axios';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Vote from './pages/Vote';
+import Result from './pages/Result';
+import NotFound from './pages/NotFound';
 
 // import { Spinner } from './components/Spinner';
 import { useEffect } from 'react';
-import NotFound from './pages/NotFound';
-import LeaderResult from './pages/LeaderResult';
 
 interface UserData {
   username: string;
@@ -57,7 +57,7 @@ function App() {
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/vote/:part" element={<Vote />} />
-        <Route path="/result" element={<LeaderResult />} />
+        <Route path="/result" element={<Result />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
