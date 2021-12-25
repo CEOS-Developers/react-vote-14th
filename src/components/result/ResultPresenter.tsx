@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import COLORS from '../../constants/Colors';
 
 export const Container = styled.section`
+  display: grid;
   width: 80%;
 
-  display: grid;
   grid-template-rows: 1.75fr 8.25fr;
   grid-template-areas:
     'title'

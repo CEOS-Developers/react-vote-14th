@@ -11,6 +11,12 @@ import {
   Wrapper,
 } from './VotePresenter';
 
+interface candidatesProps {
+  id: number;
+  name: string;
+  part: string;
+}
+
 const VoteContainer = () => {
   const { part } = useParams();
   const navigate = useNavigate();
@@ -20,7 +26,7 @@ const VoteContainer = () => {
   const [candidates, setCandidates] = useState([]);
   const [selectedCandidateId, setSelectedCandidateId] = useState(-1);
 
-  const token = JSON.stringify(localStorage.getItem('token'));
+  const token = localStorage.getItem('token');
   const user = localStorage.getItem('userData');
 
   useEffect(() => {
@@ -43,17 +49,17 @@ const VoteContainer = () => {
   };
 
   const handleSubmit = () => {
-    if (user !== 'null') {
+    if (user) {
       API.post(`/candidate/${selectedCandidateId}`, null, {
         headers: {
-          Authorization: `JWT ${token.replaceAll('"', '')}`,
+          Authorization: `JWT ${token}`,
         },
       });
 
       alert('Voted successfully!');
       navigate('/result');
     } else {
-      alert('로그인 후 투표할 수 있습니다.');
+      alert('로그인 후 이용 가능합니다.');
       navigate('/');
     }
   };
@@ -62,7 +68,7 @@ const VoteContainer = () => {
     <Wrapper>
       <Title>{`${title} 파트장 투표 🚀`}</Title>
       <CandidatesWrapper>
-        {candidates.map((candidate: any) => (
+        {candidates.map((candidate: candidatesProps) => (
           <CandidateButton
             key={candidate.name}
             value={candidate.id}
