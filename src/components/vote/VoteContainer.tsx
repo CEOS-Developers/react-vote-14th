@@ -16,8 +16,9 @@ const VoteContainer = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
+
   const [candidates, setCandidates] = useState([]);
-  const [selectedCandidateId, setSelectedCandidateId]: any = useState(-1);
+  const [selectedCandidateId, setSelectedCandidateId] = useState(-1);
 
   const token = JSON.stringify(localStorage.getItem('token'));
   const user = localStorage.getItem('userData');
