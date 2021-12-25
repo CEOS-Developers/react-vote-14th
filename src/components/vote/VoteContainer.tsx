@@ -5,9 +5,10 @@ import { useNavigate, useParams } from 'react-router';
 
 import {
   CandidateButton,
-  CandidatesWrapper,
+  Main,
   SubmitButton,
   Title,
+  VoteForm,
   Wrapper,
 } from './VotePresenter';
 
@@ -67,18 +68,26 @@ const VoteContainer = () => {
   return (
     <Wrapper>
       <Title>{`${title} 파트장 투표 🚀`}</Title>
-      <CandidatesWrapper>
-        {candidates.map((candidate: candidatesProps) => (
-          <CandidateButton
-            key={candidate.name}
-            value={candidate.id}
-            onClick={handleCandidateButtonClick}
+      <Main>
+        <VoteForm>
+          {candidates.map((candidate: candidatesProps) => (
+            <CandidateButton
+              key={candidate.name}
+              value={candidate.id}
+              onClick={handleCandidateButtonClick}
+            >
+              {candidate.name}
+            </CandidateButton>
+          ))}
+
+          <SubmitButton
+            onClick={handleSubmit}
+            margin={part === 'frontend' ? 10 : 7.5}
           >
-            {candidate.name}
-          </CandidateButton>
-        ))}
-      </CandidatesWrapper>
-      <SubmitButton onClick={handleSubmit}>Vote!</SubmitButton>
+            투표하기
+          </SubmitButton>
+        </VoteForm>
+      </Main>
     </Wrapper>
   );
 };

@@ -5,17 +5,15 @@ export const Wrapper = styled.section`
   display: grid;
   width: 80%;
 
-  grid-template-rows: 1.75fr 6.25fr 2fr;
-  grid-template-columns: 1fr 8fr 1fr;
-
+  grid-template-rows: 1.75fr 8.25fr;
   grid-template-areas:
-    'title title title'
-    '. vote .'
-    '. submit .';
+    'title'
+    'main';
+
   text-align: center;
 
-  color: ${COLORS.grayFont};
   font-weight: 600;
+  color: ${COLORS.grayFont};
   background: ${COLORS.background};
 `;
 
@@ -29,50 +27,77 @@ export const Title = styled.section`
   font-size: 36px;
 `;
 
-export const CandidatesWrapper = styled.section`
-  grid-area: vote;
+export const Main = styled.main`
+  grid-area: main;
+  width: 350px;
+  height: 600px;
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
 
   align-items: center;
   justify-items: center;
+
+  justify-self: center;
+
+  border-radius: 20px;
+  box-shadow: 0 0 15px ${COLORS.border};
+`;
+
+export const VoteForm = styled.section`
+  grid-area: vote;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+
+  font-size: 18px;
 `;
 
 export const CandidateButton = styled.button`
-  width: 150px;
-  height: 50px;
+  width: 240px;
+  height: 40px;
 
+  border: none;
   background: none;
-  border-radius: 20px;
-  border: 1px solid ${COLORS.primary};
 
   &:hover {
     cursor: pointer;
+    color: ${COLORS.primary};
+    transition-duration: 0.3s;
   }
 
   &:focus {
-    background: ${COLORS.primary};
-    color: #ffffff;
+    color: ${COLORS.primary};
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  & + & {
+    margin-top: 7.5px;
   }
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.button<{ margin: number }>`
   grid-area: submit;
 
-  align-self: center;
-  justify-self: center;
+  width: 100px;
+  height: 45px;
 
-  width: 85%;
-  height: 40px;
+  align-self: center;
+  margin-top: ${(props) => props.margin}%;
 
   background: none;
-
-  color: ${COLORS.grayFont};
-  border-radius: 15px;
-  border: 1px solid darkgray;
+  border: none;
+  color: ${COLORS.primary};
+  font-weight: 600;
 
   &:hover {
     cursor: pointer;
+    text-decoration: 2px solid ${COLORS.primary} underline;
+    transition-duration: 0.3s;
   }
 `;
