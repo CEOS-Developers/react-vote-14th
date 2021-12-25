@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import COLORS from '../../constants/Colors';
+import { slideUpAnimation } from '../../utils/animations';
 
 export const Container = styled.section`
   width: 80%;
@@ -52,6 +53,8 @@ export const Main = styled.main`
 
   border: 1px solid gray;
   border-radius: 30px;
+
+  animation: ${slideUpAnimation} 2s;
 `;
 
 export const ResultWrapper = styled.section`

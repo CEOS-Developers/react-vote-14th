@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import COLORS from '../../constants/Colors';
+import { slideUpAnimation } from '../../utils/animations';
 
 export const Container = styled.section`
   display: grid;
@@ -44,7 +45,8 @@ export const Result = styled.section`
   flex-direction: column;
 `;
 
-export const RankWrapper = styled.section`
+const STAGGER = 0.25;
+export const RankWrapper = styled.section<{ index: number }>`
   width: 250px;
   height: 45px;
 
@@ -56,6 +58,8 @@ export const RankWrapper = styled.section`
 
   border-radius: 15px;
   border: 1px solid ${COLORS.border};
+
+  animation: ${slideUpAnimation} ${({ index }) => index * STAGGER}s;
 `;
 
 export const Text = styled.span`

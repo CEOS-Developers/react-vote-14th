@@ -2,7 +2,7 @@ import API from '../../utils/API';
 import { useEffect, useState } from 'react';
 
 import RenderResult from './RenderResult';
-import { Container, Main, Title } from './ResultPresenter';
+import { Container, Main, Title } from './TotalResultPresenter';
 
 const TotalResultContainer = () => {
   const [frontendResult, setFrontendResult] = useState([]);

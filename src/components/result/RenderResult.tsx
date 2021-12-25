@@ -1,4 +1,4 @@
-import { RankWrapper, Result, Text } from './ResultPresenter';
+import { RankWrapper, Result, Text } from './TotalResultPresenter';
 
 interface resultListProps {
   resultList: never[];
@@ -17,7 +17,7 @@ const RenderResult = ({ resultList }: resultListProps) => {
   return (
     <Result>
       {resultList.map((candidate: candidateProps, i: number) => (
-        <RankWrapper key={candidate.id}>
+        <RankWrapper key={candidate.id} index={i}>
           <Text>{rank[i]}</Text>
           <Text>{candidate.name}</Text>
           <Text>{candidate.vote_count}</Text>
