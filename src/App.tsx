@@ -12,6 +12,7 @@ import Result from './pages/Result';
 // import { Spinner } from './components/Spinner';
 import { useEffect } from 'react';
 import NotFound from './pages/NotFound';
+import LeaderResult from './pages/LeaderResult';
 
 interface UserData {
   username: string;
@@ -57,7 +58,7 @@ function App() {
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/vote/:part" element={<Vote />} />
-        <Route path="/result" element={<Result />} />
+        <Route path="/result" element={<LeaderResult />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
