@@ -42,7 +42,7 @@ const VoteContainer = () => {
   };
 
   const handleSubmit = () => {
-    if (user != 'null') {
+    if (user !== 'null') {
       API.post(`/candidate/${selectedCandidateId}`, null, {
         headers: {
           Authorization: `JWT ${token.replaceAll('"', '')}`,
