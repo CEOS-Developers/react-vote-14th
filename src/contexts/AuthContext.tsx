@@ -19,6 +19,7 @@ const AuthProvider = ({ children }: any) => {
             setIsAuth(true);
             const user = res.data.user;
             const token = res.data.token;
+            console.log('user: ', user);
 
             axios.defaults.headers.common['Authorization'] = token.access;
 

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import API from '../../utils/API';
 import { useEffect, useState } from 'react';
 
 import RenderResult from './RenderResult';
@@ -10,13 +10,8 @@ const ResultContainer = () => {
 
   useEffect(() => {
     const fetchVoteResult = async () => {
-      const FEResponse = await axios.get(
-        'https://vote-mailedit.kro.kr/api/candidate/result?part=frontend'
-      );
-
-      const BEResponse = await axios.get(
-        'https://vote-mailedit.kro.kr/api/candidate/result?part=backend'
-      );
+      const FEResponse = await API.get('/candidate/result?part=frontend');
+      const BEResponse = await API.get('/candidate/result?part=backend');
 
       setFrontendResult(FEResponse.data);
       setBackendResult(BEResponse.data);
