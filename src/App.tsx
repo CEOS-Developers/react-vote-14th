@@ -7,7 +7,6 @@ import axios from 'axios';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Vote from './pages/Vote';
-import Result from './pages/Result';
 
 // import { Spinner } from './components/Spinner';
 import { useEffect } from 'react';

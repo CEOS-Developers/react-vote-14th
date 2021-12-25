@@ -49,14 +49,14 @@ const Confetti = () => {
 
   useEffect(() => {
     fire();
-  }, []);
+  }, [fire]);
 
   return <StyledReactCanvasConfetti refConfetti={getInstance} />;
 };
 
 const StyledReactCanvasConfetti = styled(ReactCanvasConfetti)`
   position: fixed;
-  width: 100vw;
+  width: 80%;
   height: 100wh;
 `;
 
