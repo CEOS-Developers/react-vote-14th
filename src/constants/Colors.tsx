@@ -1,8 +1,9 @@
 const COLORS = {
-  primary: '#5d5fe7',
-  background: '#FAFAFA',
+  primary: '#5D5FE7',
+  background: '#F8F9FA',
   lightGray: '#E8E8E8',
-  grayFont: '#8E8E8E',
+  border: '#D2D2D2',
+  grayFont: '#3A3A55',
 };
 
 export default COLORS;

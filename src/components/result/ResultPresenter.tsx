@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import COLORS from '../../constants/Colors';
 
 export const Container = styled.section`
   width: 80%;
@@ -10,9 +11,9 @@ export const Container = styled.section`
     'result';
   text-align: center;
 
-  color: #3a3a55;
+  color: ${COLORS.grayFont};
   font-weight: 600;
-  background: #f8f9fa;
+  background: ${COLORS.background};
 `;
 
 export const Title = styled.section`
@@ -54,7 +55,7 @@ export const RankWrapper = styled.section`
   justify-content: space-around;
 
   border-radius: 15px;
-  border: 1px solid #d2d2d2;
+  border: 1px solid ${COLORS.border};
 `;
 
 export const Text = styled.span`

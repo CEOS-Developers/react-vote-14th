@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import COLORS from '../../constants/Colors';
 
 export const Wrapper = styled.section`
   display: grid;
@@ -13,9 +14,9 @@ export const Wrapper = styled.section`
     '. submit .';
   text-align: center;
 
-  color: #3a3a55;
+  color: ${COLORS.grayFont};
   font-weight: 600;
-  background: #f8f9fa;
+  background: ${COLORS.background};
 `;
 
 export const Title = styled.section`
@@ -44,14 +45,14 @@ export const CandidateButton = styled.button`
 
   background: none;
   border-radius: 20px;
-  border: 1px solid #5d5fe7;
+  border: 1px solid ${COLORS.primary};
 
   &:hover {
     cursor: pointer;
   }
 
   &:focus {
-    background: #5d5fe7;
+    background: ${COLORS.primary};
     color: #ffffff;
   }
 `;
@@ -67,8 +68,9 @@ export const SubmitButton = styled.button`
 
   background: none;
 
-  border: 1px solid black;
+  color: ${COLORS.grayFont};
   border-radius: 15px;
+  border: 1px solid darkgray;
 
   &:hover {
     cursor: pointer;
