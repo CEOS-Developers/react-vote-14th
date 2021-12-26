@@ -8,6 +8,8 @@ const COLORS = {
 
   background: '#F8F9FA',
   darkBackground: '#343A40',
+
+  green: '#4CAF50',
 };
 
 export default COLORS;

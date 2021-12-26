@@ -1,9 +1,12 @@
-// export function isEmail(asValue:string) {
-//   var regExp =
-//     // eslint-disable-next-line
-//     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-//   return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
-// }
+import axios from 'axios';
+
+// check email form
+export function isEmail(asValue: string) {
+  var regExp =
+    // eslint-disable-next-line
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+}
 export function isPassword(asValue: string) {
   var regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; //  6자 이상의 영어소문자, 숫자 조합
   return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
@@ -21,7 +24,38 @@ export function isUserName(asValue: string) {
 }
 
 export function isPart(asValue: string) {
-  if (asValue === 'FE') return true;
-  else if (asValue === 'BE') return true;
+  if (asValue === 'frontend') return true;
+  else if (asValue === 'backend') return true;
   else return false;
+}
+
+export async function emailDuplicateCheck(input: string) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post('https://vote-mailedit.kro.kr/api/duplicate/email', {
+        email: input,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return resolve(res.data);
+        } else {
+          return reject(false);
+        }
+      });
+  });
+}
+export async function userNameDuplicateCheck(input: string) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post('https://vote-mailedit.kro.kr/api/duplicate/username', {
+        username: input,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return resolve(res.data);
+        } else {
+          return reject(false);
+        }
+      });
+  });
 }

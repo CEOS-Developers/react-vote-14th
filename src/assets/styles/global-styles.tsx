@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
 
   }
+  a {
+  text-decoration-line: none;
+  }
 `;
 
 export default GlobalStyle;
