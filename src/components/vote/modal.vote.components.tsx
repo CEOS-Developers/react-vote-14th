@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { notification, Space } from "antd";
 import { useState } from "react";
+import axios from "axios";
 
 type VoteModalProps = {
   visible: boolean;

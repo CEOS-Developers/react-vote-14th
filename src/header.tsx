@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./header.css";
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <Navbar fixed="top" bg="light">
       <Container>
@@ -20,7 +20,9 @@ function Header() {
               <h2 className="Login">Login/Signup</h2>
             </Link>
           ) : (
-            <div>Logged In</div>
+            <div>
+              <b>박준열</b>님 안녕하세요
+            </div>
           )}
         </Navbar.Collapse>
       </Container>

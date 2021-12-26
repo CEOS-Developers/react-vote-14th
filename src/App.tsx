@@ -6,8 +6,16 @@ import Header from "./header";
 import "./App.css";
 import Front from "./components/vote/frontend.vote.components";
 import Back from "./components/vote/backend.vote.components";
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    axios.get(`https://ceos-15th-partzzang`).then((response) => {
+      const [name, vote] = [response.name, response.vote_count];
+    });
+  }, []);
+
   return (
     <div className="App">
       <Header />
