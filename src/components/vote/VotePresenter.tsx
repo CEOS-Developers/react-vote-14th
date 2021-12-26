@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import COLORS from '../../constants/Colors';
+import COLORS from '../../constants/colors';
 
 export const Wrapper = styled.section`
   display: grid;

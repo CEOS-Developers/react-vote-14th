@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import COLORS from '../../constants/Colors';
+import COLORS from '../../constants/colors';
+
+export const FullScreen = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Box = styled.div`
   display: flex;
