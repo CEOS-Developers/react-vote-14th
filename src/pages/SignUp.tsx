@@ -5,6 +5,9 @@ import {
   InputContainer,
   Container,
   Button,
+  SpanGreen,
+  SpanTomato,
+  SpanDefault,
 } from '../components/forms/LoginFormPresenter';
 import { useAuthContext } from '../contexts/AuthContext';
 import useInputs from '../hooks/useInput';
@@ -131,34 +134,13 @@ const SignUp = () => {
           <div>
             {emailValid ? (
               <div style={{ marginTop: '12px' }}>
-                <span
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    color: 'green',
-                  }}
-                >
+                <SpanGreen>
                   이메일 형식이 올바르네요! ☺️
-                  <span
-                    style={{
-                      color: 'black',
-                    }}
-                    onClick={duplicateEmail}
-                  >
-                    중복확인
-                  </span>
-                </span>
+                  <SpanDefault onClick={duplicateEmail}>중복확인</SpanDefault>
+                </SpanGreen>
               </div>
             ) : (
-              <span
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  color: 'tomato',
-                }}
-              >
-                이메일 형식을 지켜주세요 ☺️☺️
-              </span>
+              <SpanTomato>이메일 형식을 지켜주세요 ☺️☺️</SpanTomato>
             )}
           </div>
         </FormContainer>
@@ -173,23 +155,12 @@ const SignUp = () => {
           <div>
             {username ? (
               <div style={{ marginTop: '12px' }}>
-                <span
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    color: 'green',
-                  }}
-                >
+                <SpanGreen>
                   멋진 이름이네요! ☺️
-                  <span
-                    style={{
-                      color: 'black',
-                    }}
-                    onClick={duplicateUserName}
-                  >
+                  <SpanDefault onClick={duplicateUserName}>
                     중복확인
-                  </span>
-                </span>
+                  </SpanDefault>
+                </SpanGreen>
               </div>
             ) : (
               <></>
@@ -212,10 +183,10 @@ const SignUp = () => {
               marginBottom: '12px',
               display: 'flex',
               flexDirection: 'row',
-              margin: '10px',
+              margin: '12px',
             }}
           >
-            <label>
+            <label style={{ marginRight: '12px' }}>
               <input
                 type="radio"
                 name="part"

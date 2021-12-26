@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import LoginFormContainer from '../components/forms/LoginFormContainer';
-import { Container } from '../components/forms/LoginFormPresenter';
+import { Box, SpanDefault } from '../components/forms/LoginFormPresenter';
 
 const SignIn = () => {
   // 페이지 진입 시 id 입력 form에 focus.
@@ -18,17 +18,16 @@ const SignIn = () => {
         justifyContent: 'center',
       }}
     >
-      <Container>
+      <Box>
         <h1>Log in</h1>
         <h3>15기 프론트/파트장 투표</h3>
         <LoginFormContainer />
-        <div>
-          <p>Don't have an account?</p>
+        <div style={{ marginBottom: '12px' }}>
           <Link to={'/signup'}>
-            <p>Sign Up</p>
+            <SpanDefault>회원가입 하고 투표하기 🥳</SpanDefault>
           </Link>
         </div>
-      </Container>
+      </Box>
     </div>
   );
 };

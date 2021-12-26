@@ -5,10 +5,12 @@ import { useAuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-// 수정 중
-// pw 안보이게 수정필요
+interface payload {
+  username: string;
+  password: string;
+}
 const LoginFormContainer = () => {
-  const [userId, setUserId] = useInputs('');
+  const [username, setUserId] = useInputs('');
   const [userPw, setUserPw] = useInputs('');
   const [formCheck1, setFormCheck1] = useState(false);
   const [formCheck2, setFormCheck2] = useState(false);
@@ -20,12 +22,19 @@ const LoginFormContainer = () => {
   // login context
   const { login }: any = useAuthContext();
 
-  const onsubmit = (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (userId !== '' && userPw !== '') {
+    if (username !== '' && userPw !== '') {
+      const payload = { username: username, password: userPw };
+      onSubmit(payload);
+    } else {
+      window.alert('입력 form이 완성되지 않았습니다.');
+    }
+  };
+
+  function onSubmit(payload: payload) {
+    if (username !== '' && userPw !== '') {
       setLoading(true);
-      const payload = { username: userId, password: userPw };
-      console.log(payload);
       login('signin', payload).then((res: any) => {
         if (res) {
           const data = localStorage.getItem('userData');
@@ -33,6 +42,7 @@ const LoginFormContainer = () => {
             const parsedData = JSON.parse(data);
             const part = parsedData.part;
             console.log(parsedData);
+            setLoading(false);
             if (part === 'frontend') {
               navigate('/vote/frontend');
             } else {
@@ -46,15 +56,15 @@ const LoginFormContainer = () => {
     } else {
       window.alert('입력 form이 완성되지 않았습니다.');
     }
-  };
+  }
 
   useEffect(() => {
-    if (userId !== '') {
+    if (username !== '') {
       setFormCheck1(true);
     } else {
       setFormCheck1(false);
     }
-  }, [userId]);
+  }, [username]);
   useEffect(() => {
     if (userPw !== '') {
       setFormCheck2(true);
@@ -69,19 +79,28 @@ const LoginFormContainer = () => {
 
   return (
     <>
-      <FormContainer onSubmit={onsubmit}>
-        <InputContainer
-          type="text"
-          placeholder="USERNAME"
-          value={userId}
-          onChange={setUserId}
-        />
-        <InputContainer
-          type="password"
-          placeholder="PASSWORD"
-          value={userPw}
-          onChange={setUserPw}
-        />
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <FormContainer>
+          <InputContainer
+            type="text"
+            placeholder="USERNAME"
+            value={username}
+            onChange={setUserId}
+          />
+          <InputContainer
+            type="password"
+            placeholder="PASSWORD"
+            value={userPw}
+            onChange={setUserPw}
+          />
+        </FormContainer>
         {formCheck1 && formCheck2 ? (
           <Button mode="ok" style={{ marginBottom: '12px' }}>
             Let's start!
@@ -89,8 +108,8 @@ const LoginFormContainer = () => {
         ) : (
           <Button style={{ marginBottom: '12px' }}>Let's start!</Button>
         )}
-      </FormContainer>
-      <button onClick={spinnerTest}>spinner test</button>
+      </form>
+      {/* <button onClick={spinnerTest}>spinner test</button> */}
     </>
   );
 };

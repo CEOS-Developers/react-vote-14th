@@ -2,6 +2,17 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 import COLORS from '../../constants/colors';
 
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+
+  border: 1px solid ${COLORS.primary};
+  border-radius: 18px;
+`;
+
 export const Container = styled.form`
   display: flex;
   flex-direction: column;
@@ -26,6 +37,22 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+export const SpanGreen = styled.span`
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+`;
+export const SpanTomato = styled.span`
+  font-size: 12px;
+  font-weight: bold;
+  color: tomato;
+`;
+export const SpanDefault = styled.span`
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
 `;
 
 interface ModeProp {
