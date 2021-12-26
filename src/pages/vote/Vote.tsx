@@ -1,15 +1,14 @@
 import React from 'react';
 import useVote from '../../hooks/useVote';
 import styled from 'styled-components';
-import { Col, Row } from '../../components/Containers';
+import { Col } from '../../components/Containers';
 import { Button, Table } from 'antd';
 import useAuth from '../../hooks/useAuth';
 const Vote = () => {
   const { candidates, postVote } = useVote();
   const { user } = useAuth();
   const onVoteClicked = (id: number) => {
-    if (user.voted) alert('이미 투표하셨습니다.');
-    else postVote(id);
+    postVote(id);
   };
   const sortedCandidateArray = candidates.sort((a, b) => b.vote - a.vote);
   const { Column } = Table;

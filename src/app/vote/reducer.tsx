@@ -9,4 +9,8 @@ export const voteReducer = createReducer<CandidatePayloadI[], ActionT>([])
       vote:
         candidate.id === action.payload ? candidate.vote + 1 : candidate.vote,
     })),
-  );
+  )
+  .handleAction(postVote.failure, (state, action) => {
+    alert('이미 투표하셨습니다.');
+    return state;
+  });

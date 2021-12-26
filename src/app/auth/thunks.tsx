@@ -1,5 +1,4 @@
 import { ThunkAction } from '@reduxjs/toolkit';
-import createAsyncThunk from '../../utils/createAsyncThunk';
 import api from '../api';
 import { RootState } from '../store';
 import {
