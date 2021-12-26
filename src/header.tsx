@@ -3,8 +3,12 @@ import { Navbar, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./header.css";
 
-function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+type HeaderProps = {
+  isLoggedIn: boolean;
+};
+
+function Header({ isLoggedIn }: HeaderProps) {
+  const [name, setName] = useState("박준열");
   return (
     <Navbar fixed="top" bg="light">
       <Container>
@@ -21,7 +25,7 @@ function Header() {
             </Link>
           ) : (
             <div>
-              <b>박준열</b>님 안녕하세요
+              <b>{name}</b>님 안녕하세요
             </div>
           )}
         </Navbar.Collapse>
