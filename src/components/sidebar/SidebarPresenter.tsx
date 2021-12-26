@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import COLORS from '../../constants/Colors';
+import COLORS from '../../constants/colors';
 
 export const Sidebar = styled.section`
   width: 20%;
