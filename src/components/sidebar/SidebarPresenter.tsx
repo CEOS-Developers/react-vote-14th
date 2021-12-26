@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Sidebar = styled.section`
   width: 20%;
+  height: 100vh;
   min-width: 180px;
 
   display: grid;
@@ -11,6 +12,8 @@ export const Sidebar = styled.section`
     'logo'
     'menus'
     'signout';
+
+  background: #ffffff;
 `;
 
 export const StyledLink = styled(NavLink)`

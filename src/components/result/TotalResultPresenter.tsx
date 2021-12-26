@@ -15,6 +15,8 @@ export const Container = styled.section`
   color: ${COLORS.grayFont};
   font-weight: 600;
   background: ${COLORS.background};
+
+  animation: ${slideUpAnimation} 1s;
 `;
 
 export const Title = styled.section`

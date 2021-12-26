@@ -4,6 +4,10 @@ import COLORS from '../../constants/Colors';
 export const Wrapper = styled.section`
   display: grid;
   width: 80%;
+  height: 100%;
+
+  position: fixed;
+  right: 0;
 
   grid-template-rows: 1.75fr 8.25fr;
   grid-template-areas:

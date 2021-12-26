@@ -4,6 +4,7 @@ import { slideUpAnimation } from '../../utils/animations';
 
 export const Container = styled.section`
   width: 80%;
+  height: 100vh;
 
   display: grid;
   justify-content: center;
@@ -14,7 +15,7 @@ export const Container = styled.section`
     'title'
     'subtitle'
     'result'
-    'next';
+    'scrollDown';
   text-align: center;
 
   color: ${COLORS.grayFont};
@@ -87,8 +88,8 @@ export const LeaderName = styled.h4`
   justify-content: center;
 `;
 
-export const Next = styled.span`
-  grid-area: next;
+export const ScrollDown = styled.span`
+  grid-area: scrollDown;
 
   display: flex;
   align-items: center;

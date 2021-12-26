@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
-import API from '../../utils/API';
 import Confetti from '../../utils/Confetti';
+import API from '../../utils/API';
+
 import {
   Main,
   Container,
   LeaderName,
-  Next,
   PartName,
   ResultWrapper,
   Title,
   SubTitle,
+  ScrollDown,
 } from './LeaderResultPresenter';
 
-const LeaderResultContainer = () => {
+const LeaderResultContainer = ({ handleScrollDownBtnClick }: any) => {
   const [frontendLeader, setFrontendLeader] = useState([]);
   const [backendLeader, setBackendLeader] = useState([]);
 
@@ -43,7 +44,9 @@ const LeaderResultContainer = () => {
           <LeaderName>{`🥇 ${backendLeader}`}</LeaderName>
         </ResultWrapper>
       </Main>
-      <Next>⬇ 전체 결과 확인하기</Next>
+      <ScrollDown onClick={handleScrollDownBtnClick}>
+        ⬇ 전체 결과 확인하기
+      </ScrollDown>
     </Container>
   );
 };
