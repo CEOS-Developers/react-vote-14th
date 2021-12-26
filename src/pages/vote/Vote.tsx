@@ -9,7 +9,7 @@ const Vote = () => {
   const { user } = useAuth();
   const onVoteClicked = (id: number) => {
     if (user.voted) alert('이미 투표하셨습니다.');
-    postVote(id);
+    else postVote(id);
   };
   const sortedCandidateArray = candidates.sort((a, b) => b.vote - a.vote);
   const { Column } = Table;
