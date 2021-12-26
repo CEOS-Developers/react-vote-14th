@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SidebarContainer from '../components/sidebar/SidebarContainer';
 import LeaderResultContainer from '../components/result/LeaderResultContainer';
-import COLORS from '../constants/Colors';
+import COLORS from '../constants/colors';
 import { useEffect, useState } from 'react';
 import TotalResultContainer from '../components/result/TotalResultContainer';
 
