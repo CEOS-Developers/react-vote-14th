@@ -10,6 +10,7 @@ export const FullScreen = styled.div`
   justify-content: center;
 `;
 
+
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
