@@ -16,8 +16,6 @@ const Result = () => {
     setIsScrollDownBtnClicked(!isScrollDownBtnClicked);
   };
 
-  console.log(isScrollDownBtnClicked);
-
   return (
     <Wrapper>
       <SidebarContainer />
