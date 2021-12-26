@@ -18,7 +18,7 @@ const withAuth = (
       if (isAuthorizingNeed) {
         if (authorized) {
           navigate('/vote');
-        } else navigate('/login');
+        }
       }
     }, [authorized, navigate]);
 
