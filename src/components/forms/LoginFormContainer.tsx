@@ -16,7 +16,7 @@ const LoginFormContainer = () => {
   const [formCheck2, setFormCheck2] = useState(false);
 
   // spinner 동작 setting
-  const { loading, setLoading }: any = useLoadingContext();
+  const { setLoading }: any = useLoadingContext();
   // redirect
   const navigate = useNavigate();
   // login context
@@ -41,20 +41,15 @@ const LoginFormContainer = () => {
           if (data) {
             const parsedData = JSON.parse(data);
             const part = parsedData.part;
-            console.log(parsedData);
             setLoading(false);
-            if (part === 'frontend') {
-              navigate('/vote/frontend');
-            } else {
-              navigate('/vote/backend');
-            }
+            navigate(`/vote/${part}`);
           } else {
-            window.alert('something wrong..');
+            window.alert('서버 상의 문제가 있어요 😢');
           }
         }
       });
     } else {
-      window.alert('입력 form이 완성되지 않았습니다.');
+      window.alert('입력 form이 완성되지 않았어요. 😢');
     }
   }
 
@@ -73,9 +68,9 @@ const LoginFormContainer = () => {
     }
   }, [userPw]);
 
-  const spinnerTest = () => {
-    setLoading(!loading);
-  };
+  // const spinnerTest = () => {
+  //   setLoading(!loading);
+  // };
 
   return (
     <>
