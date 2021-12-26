@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router';
-import { useLoadingContext } from './contexts/LoadingContext';
+// import { useLoadingContext } from './contexts/LoadingContext';
 import { useAuthContext } from './contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,8 +8,9 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Vote from './pages/Vote';
 import Result from './pages/Result';
+import NotFound from './pages/NotFound';
 
-import { Spinner } from './components/Spinner';
+// import { Spinner } from './components/Spinner';
 import { useEffect } from 'react';
 
 interface UserData {
@@ -19,7 +20,7 @@ interface UserData {
 }
 
 function App() {
-  const { loading }: any = useLoadingContext();
+  // const { loading }: any = useLoadingContext();
   const { setIsAuth, setUserData }: any = useAuthContext();
 
   // redirect
@@ -51,12 +52,13 @@ function App() {
 
   return (
     <>
-      {loading && <Spinner />}
+      {/* {loading && <Spinner />} */}
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/vote/:part" element={<Vote />} />
         <Route path="/result" element={<Result />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
   );

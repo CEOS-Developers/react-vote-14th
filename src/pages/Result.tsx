@@ -1,13 +1,33 @@
-import ResultContainer from "../components/result/ResultContainer";
-import SidebarContainer from "../components/sidebar/SidebarContainer";
-
-import styled from "styled-components";
+import styled from 'styled-components';
+import SidebarContainer from '../components/sidebar/SidebarContainer';
+import LeaderResultContainer from '../components/result/LeaderResultContainer';
+import COLORS from '../constants/Colors';
+import { useEffect, useState } from 'react';
+import TotalResultContainer from '../components/result/TotalResultContainer';
 
 const Result = () => {
+  const [isScrollDownBtnClicked, setIsScrollDownBtnClicked] = useState(false);
+
+  useEffect(() => {
+    setIsScrollDownBtnClicked(false);
+  }, []);
+
+  const handleScrollDownBtnClick = () => {
+    setIsScrollDownBtnClicked(!isScrollDownBtnClicked);
+  };
+
+  console.log(isScrollDownBtnClicked);
+
   return (
     <Wrapper>
       <SidebarContainer />
-      <ResultContainer />
+      {isScrollDownBtnClicked ? (
+        <TotalResultContainer />
+      ) : (
+        <LeaderResultContainer
+          handleScrollDownBtnClick={handleScrollDownBtnClick}
+        />
+      )}
     </Wrapper>
   );
 };
@@ -18,6 +38,8 @@ const Wrapper = styled.section`
 
   display: flex;
   flex-direction: row;
+
+  background: ${COLORS.background};
 `;
 
 export default Result;
