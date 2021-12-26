@@ -19,6 +19,9 @@ type VoteModalProps = {
   candidateName: string;
   candidateVote: number;
   candidateImage: string;
+  candidateId: number;
+  setData: Function;
+  data: any;
 };
 
 function VoteModal({
@@ -27,6 +30,9 @@ function VoteModal({
   candidateName,
   candidateVote,
   candidateImage,
+  candidateId,
+  setData,
+  data,
 }: VoteModalProps) {
   const closeHandlerQuit = () => {
     setVisible(false);
@@ -72,7 +78,17 @@ function VoteModal({
         <Button auto color="error" onClick={closeHandlerQuit}>
           최소
         </Button>
-        <Button auto onClick={closeHandlerVote}>
+        <Button
+          auto
+          onClick={() => {
+            let temp = [...data];
+            console.log(temp);
+            console.log(temp[candidateId]);
+            temp[candidateId].vote++;
+            setData(temp);
+            closeHandlerVote();
+          }}
+        >
           투표
         </Button>
       </Modal.Footer>

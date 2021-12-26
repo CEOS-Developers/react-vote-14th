@@ -14,6 +14,7 @@ function Candidates({ isLoggedIn, part }: CandidatesProps) {
   const [frontUsers, setFrontUsers] = useState(FrontData);
   const [backUsers, setBackUsers] = useState(BackData);
   const [visible, setVisible] = useState(false);
+  const [voteUser, setVoteUser] = useState(0);
   const [voteName, setVoteName] = useState("");
   const [voteCount, setVoteCount] = useState(0);
   const [voteImage, setVoteImage] = useState("");
@@ -59,6 +60,7 @@ function Candidates({ isLoggedIn, part }: CandidatesProps) {
                             setVoteName(user.name);
                             setVoteCount(user.vote);
                             setVoteImage(user.image);
+                            setVoteUser(user.id);
                             handler();
                           }}
                         >
@@ -106,6 +108,7 @@ function Candidates({ isLoggedIn, part }: CandidatesProps) {
                             setVoteName(user.name);
                             setVoteCount(user.vote);
                             setVoteImage(user.image);
+                            setVoteUser(user.id);
                             handler();
                           }}
                         >
@@ -126,6 +129,9 @@ function Candidates({ isLoggedIn, part }: CandidatesProps) {
           candidateName={voteName}
           candidateVote={voteCount}
           candidateImage={voteImage}
+          candidateId={voteUser}
+          setData={setFrontUsers}
+          data={frontUsers}
         />
       </div>
     );
@@ -168,6 +174,7 @@ function Candidates({ isLoggedIn, part }: CandidatesProps) {
                             setVoteName(user.name);
                             setVoteCount(user.vote);
                             setVoteImage(user.image);
+                            setVoteUser(user.id);
                             handler();
                           }}
                         >
@@ -215,6 +222,7 @@ function Candidates({ isLoggedIn, part }: CandidatesProps) {
                             setVoteName(user.name);
                             setVoteCount(user.vote);
                             setVoteImage(user.image);
+                            setVoteUser(user.id);
                             handler();
                           }}
                         >
@@ -235,6 +243,9 @@ function Candidates({ isLoggedIn, part }: CandidatesProps) {
           candidateName={voteName}
           candidateVote={voteCount}
           candidateImage={voteImage}
+          candidateId={voteUser}
+          setData={setBackUsers}
+          data={backUsers}
         />
       </div>
     );
