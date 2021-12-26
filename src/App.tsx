@@ -35,7 +35,7 @@ function App() {
     setIsAuth(true);
     axios.defaults.headers.common['Authorization'] = token;
 
-    console.log(ud);
+    // console.log(ud);
 
     if (ud.part === 'BE') {
       navigate(`/vote/backend`);
