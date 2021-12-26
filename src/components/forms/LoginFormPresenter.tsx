@@ -19,10 +19,13 @@ export const InputContainer = styled.input`
   text-align: left;
   border: 1px solid ${COLORS.lightGray};
   border-radius: 22px;
+  margin-bottom: 6px;
 `;
 
 export const FormContainer = styled.div`
-  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 interface ModeProp {
@@ -41,6 +44,7 @@ export const Button = styled.button<ModeProp>`
           padding: 15px 32px;
           text-align: center;
           font-size: 16px;
+          margin-top: 6px;
         `;
       default:
         return css`
@@ -51,6 +55,7 @@ export const Button = styled.button<ModeProp>`
           padding: 15px 32px;
           text-align: center;
           font-size: 16px;
+          margin-top: 6px;
         `;
     }
   }}

@@ -236,11 +236,11 @@ const SignUp = () => {
           </div>
         </FormContainer>
         {formCheck1 && formCheck2 ? (
-          <Button mode="ok" style={{ marginBottom: '14px' }}>
+          <Button mode="ok" style={{ marginBottom: '12px' }}>
             회원가입하기
           </Button>
         ) : (
-          <Button style={{ marginBottom: '14px' }}>회원가입하기</Button>
+          <Button style={{ marginBottom: '12px' }}>회원가입하기</Button>
         )}
       </Container>
     </div>
