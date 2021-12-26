@@ -3,7 +3,8 @@ import { FormContainer, InputContainer, Button } from './LoginFormPresenter';
 import { useLoadingContext } from '../../contexts/LoadingContext';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
+import useFormCheck from '../../hooks/useFormCheck';
 
 interface payload {
   username: string;
@@ -12,8 +13,9 @@ interface payload {
 const LoginFormContainer = () => {
   const [username, setUserId] = useInputs('');
   const [userPw, setUserPw] = useInputs('');
-  const [formCheck1, setFormCheck1] = useState(false);
-  const [formCheck2, setFormCheck2] = useState(false);
+
+  const formCheck1 = useFormCheck(username);
+  const formCheck2 = useFormCheck(userPw);
 
   // spinner 동작 setting
   const { setLoading }: any = useLoadingContext();
@@ -53,25 +55,6 @@ const LoginFormContainer = () => {
     }
   }
 
-  useEffect(() => {
-    if (username !== '') {
-      setFormCheck1(true);
-    } else {
-      setFormCheck1(false);
-    }
-  }, [username]);
-  useEffect(() => {
-    if (userPw !== '') {
-      setFormCheck2(true);
-    } else {
-      setFormCheck2(false);
-    }
-  }, [userPw]);
-
-  // const spinnerTest = () => {
-  //   setLoading(!loading);
-  // };
-
   return (
     <>
       <form
@@ -104,7 +87,6 @@ const LoginFormContainer = () => {
           <Button style={{ marginBottom: '12px' }}>Let's start!</Button>
         )}
       </form>
-      {/* <button onClick={spinnerTest}>spinner test</button> */}
     </>
   );
 };

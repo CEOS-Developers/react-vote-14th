@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from 'react';
+import API from '../utils/API';
 import axios from 'axios';
 
 const AuthContext = createContext({});
@@ -7,13 +8,10 @@ const AuthProvider = ({ children }: any) => {
   const [isAuth, setIsAuth] = useState(false);
   const [userData, setUserData] = useState({});
 
-  const baseUrl = 'https://vote-mailedit.kro.kr/api/';
-
   // user : 사용자가 입력한 id, password 객체
   const login = (url: string, user: any) => {
     return new Promise((resolve, reject) => {
-      axios
-        .post(baseUrl + `${url}`, user)
+      API.post(`${url}`, user)
         .then((res) => {
           if (res.status === 200) {
             setIsAuth(true);

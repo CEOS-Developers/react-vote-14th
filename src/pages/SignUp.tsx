@@ -8,8 +8,10 @@ import {
   SpanGreen,
   SpanTomato,
   SpanDefault,
+  FullScreen,
 } from '../components/forms/LoginFormPresenter';
 import { useAuthContext } from '../contexts/AuthContext';
+import useFormCheck from '../hooks/useFormCheck';
 import useInputs from '../hooks/useInput';
 import {
   isPart,
@@ -36,6 +38,8 @@ const SignUp = () => {
 
   const [formCheck1, setFormcheck1] = useState(false);
   const [formCheck2, setFormcheck2] = useState(false);
+  const formCheck3 = useFormCheck(userPassword);
+  const formCheck4 = useFormCheck(userPart);
 
   // redirect
   const navigate = useNavigate();
@@ -109,16 +113,7 @@ const SignUp = () => {
   }
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        width: '100vw',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <FullScreen>
       <Container onSubmit={handleSubmit}>
         <FormContainer>
           <div>
@@ -205,7 +200,7 @@ const SignUp = () => {
             </label>
           </div>
         </FormContainer>
-        {formCheck1 && formCheck2 ? (
+        {formCheck1 && formCheck2 && formCheck3 && formCheck4 ? (
           <Button mode="ok" style={{ marginBottom: '12px' }}>
             회원가입하기
           </Button>
@@ -213,7 +208,7 @@ const SignUp = () => {
           <Button style={{ marginBottom: '12px' }}>회원가입하기</Button>
         )}
       </Container>
-    </div>
+    </FullScreen>
   );
 };
 

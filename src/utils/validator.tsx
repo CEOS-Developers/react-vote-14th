@@ -1,4 +1,4 @@
-import axios from 'axios';
+import API from './API';
 
 // check email form
 export function isEmail(asValue: string) {
@@ -31,31 +31,23 @@ export function isPart(asValue: string) {
 
 export async function emailDuplicateCheck(input: string) {
   return new Promise((resolve, reject) => {
-    axios
-      .post('https://vote-mailedit.kro.kr/api/duplicate/email', {
-        email: input,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          return resolve(res.data);
-        } else {
-          return reject(false);
-        }
-      });
+    API.post('/duplicate/email', { email: input }).then((res) => {
+      if (res.status === 200) {
+        return resolve(res.data);
+      } else {
+        return reject(false);
+      }
+    });
   });
 }
 export async function userNameDuplicateCheck(input: string) {
   return new Promise((resolve, reject) => {
-    axios
-      .post('https://vote-mailedit.kro.kr/api/duplicate/username', {
-        username: input,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          return resolve(res.data);
-        } else {
-          return reject(false);
-        }
-      });
+    API.post('/duplicate/username', { username: input }).then((res) => {
+      if (res.status === 200) {
+        return resolve(res.data);
+      } else {
+        return reject(false);
+      }
+    });
   });
 }
