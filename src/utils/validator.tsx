@@ -24,8 +24,8 @@ export function isUserName(asValue: string) {
 }
 
 export function isPart(asValue: string) {
-  if (asValue === 'FE') return true;
-  else if (asValue === 'BE') return true;
+  if (asValue === 'frontend') return true;
+  else if (asValue === 'backend') return true;
   else return false;
 }
 

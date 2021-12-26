@@ -31,7 +31,6 @@ interface ModeProp {
 
 export const Button = styled.button<ModeProp>`
   ${(props) => {
-    console.log(props.mode);
     switch (props.mode) {
       case 'ok':
         return css`
