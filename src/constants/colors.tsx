@@ -10,6 +10,7 @@ const COLORS = {
   darkBackground: '#343A40',
 
   green: '#4CAF50',
+  tomato: '#ff6347',
 };
 
 export default COLORS;
