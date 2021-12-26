@@ -18,7 +18,10 @@ function App() {
       <div className="Content">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          />
           <Route path="/signup" element={<Signup />} />
           <Route path="/frontend" element={<Front isLoggedIn={isLoggedIn} />} />
           <Route path="/backend" element={<Back isLoggedIn={isLoggedIn} />} />

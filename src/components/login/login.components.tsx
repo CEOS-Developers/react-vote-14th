@@ -1,8 +1,13 @@
 import { Input, Spacer, Radio, Button, useInput } from "@nextui-org/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+type LoginProps = {
+  setIsLoggedIn: Function;
+};
+
+function Login({ setIsLoggedIn }: LoginProps) {
+  let navigate = useNavigate();
   return (
     <>
       <div className="Title">
@@ -13,7 +18,14 @@ function Login() {
         <Spacer y={1.5} />
         <Input.Password placeholder="비밀번호" />
         <Spacer y={1.5} />
-        <Button auto ghost>
+        <Button
+          auto
+          ghost
+          onClick={() => {
+            setIsLoggedIn(true);
+            navigate("/", { replace: true });
+          }}
+        >
           로그인
         </Button>
       </div>
