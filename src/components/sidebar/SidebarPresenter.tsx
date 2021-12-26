@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import COLORS from '../../constants/Colors';
 
 export const Sidebar = styled.section`
   width: 20%;
@@ -71,7 +72,7 @@ export const Menu = styled.span`
   font-size: 16px;
 
   .active & {
-    color: #5d5fe7;
+    color: ${COLORS.primary};
     font-weight: 500;
   }
 `;

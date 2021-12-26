@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import COLORS from '../../constants/Colors';
+import COLORS from '../../constants/colors';
 import { slideUpAnimation } from '../../utils/animations';
 
 export const Container = styled.section`
