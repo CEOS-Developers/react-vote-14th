@@ -11,17 +11,14 @@ const AuthProvider = ({ children }: any) => {
 
   // user : 사용자가 입력한 id, password 객체
   const login = (url: string, user: any) => {
-    console.log(user);
     return new Promise((resolve, reject) => {
       axios
         .post(baseUrl + `${url}`, user)
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
             setIsAuth(true);
             const user = res.data.user;
             const token = res.data.token;
-            console.log('user: ', user);
 
             axios.defaults.headers.common['Authorization'] = token.access;
 

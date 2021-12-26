@@ -79,7 +79,6 @@ const SignUp = () => {
     };
     // axios call 하기 전 유효성 검사
     if (checkSignUpForm(payload)) {
-      console.log(payload);
       onSubmit(payload);
     }
   };
