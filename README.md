@@ -1,7 +1,7 @@
 # 마지막 미션 : React vote!
 
 ## 배포 링크
-
+[MailedIt Vote!](https://mailedit-vote.vercel.app)
 vercel을 통해 배포하였습니다.
 
 # 미션
