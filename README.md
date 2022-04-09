@@ -1,6 +1,7 @@
 ## 안녕하세요? ChatMinder 팀 프론트엔드 유시원, 이로움입니다.
 
-https://react-vote-14th-ten.vercel.app/ 배포 링크입니다. 바로 기능 이용 가능합니다! <br>
+~~https://react-vote-14th-ten.vercel.app/ 배포 링크입니다. 바로 기능 이용 가능합니다!~~ <br>
+2022/04/10 추가: Vercel Github Organization 비용으로 인해 배포 중단했습니다. <br>
 로그인, 유저 상태 관련 구현 : @SEEWON <br>
 투표 관련 구현: @roum02 
 
